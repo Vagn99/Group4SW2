@@ -1,4 +1,3 @@
 # Group4SW2
 This is epic. 
-Very cool vi arbejder virkelig seriøst... 
-Ad Toby
+But also a tad more epic amogus
