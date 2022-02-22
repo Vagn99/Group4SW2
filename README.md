@@ -1,7 +1,3 @@
 # Group4SW2
 This is epic. 
-
-
-
-
-test
+But also a tad more epic amogus
