@@ -2,4 +2,14 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p Welcome to #{title}! 
+  div(id="login-form")
+    form(action="/login")
+      div(class="form-control")
+        label(for="name") Name 
+        input(type="text" name="name" id="username" placeholder="Enter your name")
+      div(class="form-control")
+        label(for="password") Password 
+        input(type="password" name="password" id="password" placeholder="Enter your password") 
+      div(class="form-control")
+        button(type="submit" class="btn") Login
