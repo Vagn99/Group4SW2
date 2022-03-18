@@ -3,3 +3,41 @@ extends layout
 block content
   p Login success 
   p User: #{username}
+  p(id="count") Placeholder
+  button(id="button") Yay!
+
+  script.
+    function getCount(){
+      fetch('/number/get').then(response => {
+        if(!response.ok){
+          throw new Error("Response error: " + response.status);
+        }
+        return response.text();
+      }).then(text => {
+        console.log("Updating count!");
+        document.querySelector("#count").textContent = text;
+      }).catch(error => {
+        console.log(error);
+      });
+    }
+    getCount();
+
+    setInterval(getCount,500);
+
+    let button = document.getElementById("button");
+    button.addEventListener("click", setCount);
+
+    function setCount(){
+      fetch('/number/set').then(response => {
+        if(!response.ok){
+          throw new Error("Response error: " + response.status)
+        }
+        return response.text();
+      }).then(text =>{
+        console.log(text);
+      }).catch(error => {
+        console.log(error);
+      });
+    }
+
+
