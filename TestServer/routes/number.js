@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-let count = 69;
+let count = 0;
 
 router.get('/get', function(req, res) {
     res.send(count.toString());
