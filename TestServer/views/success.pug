@@ -20,10 +20,13 @@ block content
         console.log(error);
       });
     }
+    //Runs at page load
     getCount();
 
+    //Make the number update every X seconds
     setInterval(getCount,5000);
 
+    //Add event listener to button
     let button = document.getElementById("button");
     button.addEventListener("click", setCount);
 
