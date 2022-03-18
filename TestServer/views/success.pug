@@ -22,7 +22,7 @@ block content
     }
     getCount();
 
-    setInterval(getCount,500);
+    setInterval(getCount,5000);
 
     let button = document.getElementById("button");
     button.addEventListener("click", setCount);
@@ -38,6 +38,7 @@ block content
       }).catch(error => {
         console.log(error);
       });
+      getCount();
     }
 
 

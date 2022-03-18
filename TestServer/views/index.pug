@@ -1,9 +1,10 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}! 
-  div(id="login-form")
+  div(class="front-page-title") 
+    h1= title
+    p Welcome to #{title}! 
+  div(id="login-form" class="login-form")
     form(action="/login" method="post")
       div(class="form-control")
         label(for="name") Name 
