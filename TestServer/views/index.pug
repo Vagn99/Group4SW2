@@ -4,7 +4,7 @@ block content
   h1= title
   p Welcome to #{title}! 
   div(id="login-form")
-    form(action="/login")
+    form(action="/login" method="post")
       div(class="form-control")
         label(for="name") Name 
         input(type="text" name="name" id="username" placeholder="Enter your name")
