@@ -30,6 +30,7 @@ block content
     let button = document.getElementById("button");
     button.addEventListener("click", setCount);
 
+    //Request server to count 
     function setCount(){
       fetch('/number/set').then(response => {
         if(!response.ok){
