@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-
 var CountNumber = require('./../model/counterModel.js');
-let numberObject = new CountNumber();
+
+let numberObject = new CountNumber.CountNumber();
 
 
 router.get('/get', function(req, res) {
