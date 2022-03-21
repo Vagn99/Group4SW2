@@ -1,6 +1,7 @@
 var express = require('express');
-var CountNumber = require('./../model/counterModel.js');
 var router = express.Router();
+
+var CountNumber = require('./../model/counterModel.js');
 let numberObject = new CountNumber();
 
 router.get('/get', function(req, res) {
