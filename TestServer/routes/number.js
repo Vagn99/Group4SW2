@@ -4,6 +4,7 @@ var router = express.Router();
 var CountNumber = require('./../model/counterModel.js');
 let numberObject = new CountNumber();
 
+
 router.get('/get', function(req, res) {
     res.send(numberObject.getCount().toString());
 });

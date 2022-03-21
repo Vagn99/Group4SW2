@@ -11,4 +11,6 @@ class CountNumber {
     }
 }
 
-module.exports = CountNumber
+module.exports = {
+    CountNumber,
+};
