@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  div(class="front-page-title") 
+    h1= title
+    p Welcome to #{title}! 
+  div(id="login-form" class="login-form")
+    form(action="/login" method="post")
+      div(class="form-control")
+        label(for="name") Name 
+        input(type="text" name="name" id="username" placeholder="Enter your name")
+      div(class="form-control")
+        label(for="password") Password 
+        input(type="password" name="password" id="password" placeholder="Enter your password") 
+      div(class="form-control")
+        button(type="submit" class="btn") Login
