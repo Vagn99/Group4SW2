@@ -1,14 +1,15 @@
 var express = require('express');
+var CountNumber = require('./../model/counterModel.js');
 var router = express.Router();
-let count = 0;
+let numberObject = new CountNumber();
 
 router.get('/get', function(req, res) {
-    res.send(count.toString());
+    res.send(numberObject.getCount().toString());
 });
 
 router.get('/set', function(req, res) {
     res.send("Set number successfully!");
-    count++;
+    numberObject.incrementCount();
 });
 
 
