@@ -11,6 +11,7 @@ users.set("user5", "user5");
 users.set("user6", "user6");
 
 router.post('/', function(req, res) {
+  console.log("LOGIN!")
   const { name, password } = req.body;
   req.session = req.body;
   console.log(req.session);
@@ -22,6 +23,10 @@ router.post('/', function(req, res) {
   else{
     res.send('Login failed');
   }
+});
+
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Travian rip off' });
 });
 
 module.exports = router;
