@@ -162,8 +162,8 @@ class Barracks extends Building{
     constructor(){
         super('Barracks');
     }
-    /*
-    function trainTroops(resources, troops){
+    /* For some reason will not work */
+    trainTroops(resources, troops){
         let cost = 1;
         if (resources>cost) {
             resources = resources - cost;
@@ -172,5 +172,5 @@ class Barracks extends Building{
             return "Not enough resources";
         }
         return "Troop trained";
-    }*/
+    }
 }
