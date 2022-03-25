@@ -170,10 +170,17 @@ class Basefield extends Building {
 }
 
 class Barracks extends Building {
+    #trainingTime = 5;
     constructor() {
         super('Barracks');
     }
 
+    get trainingTime() {
+        return this.#trainingTime;
+    }
+    set trainingTime(value) {
+        this.#trainingTime = value;
+    }
 
     /* For some reason will not work */
     trainTroops(resources, troops) {
@@ -184,12 +191,16 @@ class Barracks extends Building {
         } else {
             return {message: "Not enough resources",
                 troops: troops,
-                resources: resources}
+                resources: resources,
+                trainingTime: this.trainingTime}
         }
         return {message: "Troop trained, you have " + troops + " troops in town",
             troops: troops,
-            resources: resources};
+            resources: resources,
+            trainingTime: this.trainingTime};
     }
+
+
 }
 
 module.exports = {
