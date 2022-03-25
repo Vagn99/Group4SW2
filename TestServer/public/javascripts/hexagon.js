@@ -18,5 +18,5 @@ function drawHexagon(x, y) {
   ctx.stroke();
 }
 
-let p = doucment.getElementById("check")
-p.textContent="sheesh";
+let p = document.getElementById('check')
+p.textContent = "sheesh";
