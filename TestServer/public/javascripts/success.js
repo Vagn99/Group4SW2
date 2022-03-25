@@ -3,7 +3,9 @@ let button = document.getElementById("button");
 button.addEventListener("click", setCount);
 
 let countDown = document.getElementById("countDown");
+let showQueue = document.getElementById("queue");
 let working = false;
+let queue = 0;
 
 
 //Runs at page load
@@ -51,6 +53,13 @@ function setCount() {
                     countDown.textContent = "";
                     working = false;
                     getCount();
+                    if (queue>0){
+                        queue--;
+                        showQueue.textContent = queue.toString() + " troops in queue";
+                        setCount();
+                    } else {
+                        showQueue.textContent = "";
+                    }
                 }
                 console.log(j);
             }, 1000)
@@ -60,5 +69,8 @@ function setCount() {
             console.log(error);
         });
         getCount();
+    } else {
+        queue++;
+        showQueue.textContent = queue.toString() + " troops in queue";
     }
 }
