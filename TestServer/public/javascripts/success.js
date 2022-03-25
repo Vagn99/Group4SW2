@@ -33,6 +33,54 @@ function getCount() {
 
 //Request server to count
 function setCount() {
+        fetch('/number/set'
+        ).then(response => {
+            if (!response.ok) {
+                throw new Error("Response error: " + response.status)
+            }
+            return response.text();
+        }).then(text => {
+            queue = Number(text);
+            if (working === false) {
+                //working = true;
+                console.log("party here? " + working);
+                displayWork();
+            } else {
+                showQueue.textContent = queue.toString() + " troops in queue";
+            }
+            console.log(text);
+        }).catch(error => {
+            console.log(error);
+        });
+}
+
+function displayWork() {
+    working = true;
+    let j = 5;
+    countDown.textContent = "Troop ready in " + j + " seconds";
+    let intervalCount = setInterval(() => {
+        j--;
+        countDown.textContent = "Troop ready in " + j + " seconds";
+        if (j === 0) {
+            clearInterval(intervalCount);
+            countDown.textContent = "";
+            getCount();
+            if (queue > 0) {
+                queue--;
+                queue===0?showQueue.textContent = "":showQueue.textContent = queue.toString() + " troops in queue";
+                displayWork();
+            } else {
+                showQueue.textContent = "";
+                working = false;
+            }
+        }
+        console.log(j);
+    }, 1010)
+
+}
+/*
+//Request server to count
+function setCount() {
     if (!working) {
         working = true;
         fetch('/number/set'
@@ -74,3 +122,4 @@ function setCount() {
         showQueue.textContent = queue.toString() + " troops in queue";
     }
 }
+*/
