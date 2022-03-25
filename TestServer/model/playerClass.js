@@ -194,9 +194,9 @@ class Barracks extends Building {
 
 module.exports = {
     Player,
-    Town,
+    /*Town,
     Building,
     Townhall,
     Basefield,
-    Barracks
+    Barracks*/
 }
