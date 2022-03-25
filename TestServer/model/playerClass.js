@@ -5,12 +5,13 @@ class Player {
     #map;
     #resources;
     #gold;
-    constructor(id, playerName, townName, x, y){
+
+    constructor(id, playerName, townName, x, y) {
         this.#playerName = playerName;
         this.#id = id;
         this.#town = new Town(id, townName, x, y);
         this.#map = new Map(x, y);
-        this.#resources = 0;
+        this.#resources = 10;
         this.#gold = 0;
     }
 
@@ -38,6 +39,12 @@ class Player {
     set map(value) {
         this.#map = value;
     }
+    get resources() {
+        return this.#resources;
+    }
+    set resources(value) {
+        this.#resources = value;
+    }
 }
 
 class Town {
@@ -48,11 +55,12 @@ class Town {
     #townHall;
     #baseField;
     #barracks;
-    constructor(id, townName, x, y){
+
+    constructor(id, townName, x, y) {
         this.#id = id;
         this.#townName = townName;
         this.#troopsInside = 0;
-        this.#locationOnMap = [x,y];
+        this.#locationOnMap = [x, y];
         this.#townHall = new Townhall();
         this.#baseField = new Basefield();
         this.#barracks = new Barracks();
@@ -86,18 +94,19 @@ class Town {
         return this.#townHall;
     }
     get baseField() {
-        return this.baseField;
+        return this.#baseField;
     }
     get barracks() {
-        return this.barracks;
+        return this.#barracks;
     }
 }
 
 class Map {
     #myTownLocation;
     #occupiedPlots;
-    constructor(x,y){
-        this.#myTownLocation = [x,y];
+
+    constructor(x, y) {
+        this.#myTownLocation = [x, y];
         this.#occupiedPlots = [];//will contain objects
     }
 
@@ -105,7 +114,7 @@ class Map {
         return this.#myTownLocation;
     }
     set myTownLocation(value) {
-        this.#myTownLocation= value;
+        this.#myTownLocation = value;
     }
     get occupiedPlots() {
         return this.#occupiedPlots;
@@ -118,7 +127,8 @@ class Map {
 class Building {
     #lvl;
     #name;
-    constructor(name){
+
+    constructor(name) {
         this.#lvl = 1;
         this.#name = name;
     }
@@ -137,15 +147,16 @@ class Building {
     }
 }
 
-class Townhall extends Building{
-    constructor(){
+class Townhall extends Building {
+    constructor() {
         super('Townhall');
     }
 }
 
-class Basefield extends Building{
+class Basefield extends Building {
     #resourcePerSec;
-    constructor(){
+
+    constructor() {
         super('Basefield');
         this.#resourcePerSec = 1;
     }
@@ -158,19 +169,34 @@ class Basefield extends Building{
     }
 }
 
-class Barracks extends Building{
-    constructor(){
+class Barracks extends Building {
+    constructor() {
         super('Barracks');
     }
+
+
     /* For some reason will not work */
-    trainTroops(resources, troops){
+    trainTroops(resources, troops) {
         let cost = 1;
-        if (resources>cost) {
+        if (resources >= cost) {
             resources = resources - cost;
             troops++;
         } else {
-            return "Not enough resources";
+            return {message: "Not enough resources",
+                troops: troops,
+                resources: resources}
         }
-        return "Troop trained";
+        return {message: "Troop trained, you have " + troops + " troops in town",
+            troops: troops,
+            resources: resources};
     }
+}
+
+module.exports = {
+    Player,
+    Town,
+    Building,
+    Townhall,
+    Basefield,
+    Barracks
 }
