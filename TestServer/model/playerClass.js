@@ -48,6 +48,7 @@ class Player {
 }
 
 class Town {
+
     #id;
     #townName;
     #troopsInside;
@@ -55,6 +56,7 @@ class Town {
     #townHall;
     #baseField;
     #barracks;
+    _visibleText = "Hello world";
 
     constructor(id, townName, x, y) {
         this.#id = id;
@@ -69,35 +71,53 @@ class Town {
     get id() {
         return this.#id;
     }
+
     set id(value) {
         this.#id = value;
     }
+
     get townName() {
         return this.#townName;
     }
+
     set townName(value) {
         this.#townName = value;
     }
+
     get troopsInside() {
         return this.#troopsInside;
     }
+
     set troopsInside(value) {
         this.#troopsInside = value;
     }
+
     get locationOnMap() {
         return this.#locationOnMap;
     }
+
     set locationOnMap(value) {
         this.#locationOnMap = value;
     }
+
     get townHall() {
         return this.#townHall;
     }
+
     get baseField() {
         return this.#baseField;
     }
+
     get barracks() {
         return this.#barracks;
+    }
+
+    get visibleText() {
+        return this._visibleText;
+    }
+
+    set visibleText(value) {
+        this._visibleText = value;
     }
 }
 
@@ -170,9 +190,12 @@ class Basefield extends Building {
 }
 
 class Barracks extends Building {
-    #trainingTime = 5;
+
+    #trainingTime = 50;
     _queue = 0;
     _barrackInUse = false;
+    _trainingTimeleft = 0;
+
     constructor() {
         super('Barracks');
     }
@@ -194,50 +217,42 @@ class Barracks extends Building {
     set trainingTime(value) {
         this.#trainingTime = value;
     }
-
-    /* For some reason will not work */
-    trainTroops(resources, troops) {
-        let cost = 1;
-        if (resources >= cost) {
-            resources = resources - cost;
-            troops++;
-        } else {
-            return {message: "Not enough resources",
-                troops: troops,
-                resources: resources,
-                trainingTime: this.trainingTime}
-        }
-        return {message: "Troop trained, you have " + troops + " troops in town",
-            troops: troops,
-            resources: resources,
-            trainingTime: this.trainingTime};
+    get trainingTimeleft() {
+        return this._trainingTimeleft;
     }
+    set trainingTimeleft(value) {
+        this._trainingTimeleft = value;
+    }
+
 
     newTrainTroops(town){
         console.log("Starting trainNewTroop ")
         if (!this.barrackInUse){
             this.trainNextTroop(town);
-
         } else {
             this.queue = this.queue+1;
             console.log("Queue added!")
         }
     }
 
-
     trainNextTroop(town){
         console.log("Actually training");
         this.barrackInUse = true;
-        setTimeout(()=>{
-            // increse troops by 1 ;
-            town.troopsInside = town.troopsInside+1;
-            this.barrackInUse = false;
-            console.log("Trained a troop! Troops are now: " + town.troopsInside);
-            if (this.queue>0){
-                this.queue = this.queue-1;
-                this.trainNextTroop(town);
+        this.trainingTimeleft = this.trainingTime;
+        let trainTimer = setInterval(()=>{
+            this.trainingTimeleft--;
+            if (this.trainingTimeleft===0) {
+                clearInterval(trainTimer);
+                // increse troops by 1 ;
+                town.troopsInside = town.troopsInside + 1;
+                this.barrackInUse = false;
+                console.log("Trained a troop! Troops are now: " + town.troopsInside);
+                if (this.queue > 0) {
+                    this.queue = this.queue - 1;
+                    this.trainNextTroop(town);
+                }
             }
-        },5000)
+        },100);
     }
 
 

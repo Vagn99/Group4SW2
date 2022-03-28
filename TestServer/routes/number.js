@@ -7,9 +7,14 @@ let players = Players.players;
 let working = false;
 let queue = 0;
 
+router.get('/start', function (req, res){
+    console.log("Started view");
+    res.send(players.get(req.session.name).town);
+
+})
+
 router.get('/get', function(req, res) {
     console.log(req.session.name);
-    //console.log(players.get(req.session.name));
 
     res.send(players.get(req.session.name).town.troopsInside + " troops in town");
 
@@ -34,29 +39,7 @@ function trainTrooper(req, res) {
         console.log("Not enough resources!");
     }
     console.log(activePlayer);
-    /*
-    if (!working) {
-        working = true;
-        console.log("start timer");
-        setTimeout(() => {
-            players.get(req.session.name).resources = action.resources;
-            players.get(req.session.name).town.troopsInside = action.troops;
-            console.log("Troop is done")
-            working = false;
-            console.log("end task");
-            if (queue > 0) {
-                queue--;
-                trainTrooper(req, res);
-            } else {
-                console.log("Queue empty ");
-            }
-        }, 5000);
-    } else {
-        queue++;
-    } */
+
 }
-
-
-
 
 module.exports = router;

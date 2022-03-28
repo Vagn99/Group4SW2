@@ -4,16 +4,43 @@ button.addEventListener("click", setCount);
 
 let countDown = document.getElementById("countDown");
 let showQueue = document.getElementById("queue");
+
 let working = false;
 let queue = 0;
 
 
 //Runs at page load
-getCount();
+getStart();
 
 //Make the number update every X seconds
 setInterval(getCount, 5000);
 
+
+function getStart(){
+    fetch('/number/start').then(response => {
+        if (!response.ok) {
+            throw new Error("Response error: " + response.status);
+        }
+        return response.text();
+    }).then(townJason => {
+        //Object parsing dont work!!!
+        let town = JSON.parse(townJason);
+        console.log(town._visibleText);
+        document.querySelector("#count").textContent = town.troopsInside.toString() + " in town";
+        if (town.barracks.queue>0) {
+            this.queue = town.barracks.queue;
+            showQueue.textContent = town.barracks.queue.toString() + " troops in queue";
+        }
+        if (town.barracks.barrackInUse){
+            //needs time from server
+            displayWork(town.barracks.trainingTimeleft/10);
+        }
+
+        console.log("View started");
+    }).catch(error => {
+        console.log(error);
+    });
+}
 
 
 function getCount() {
@@ -44,7 +71,7 @@ function setCount() {
 
             if (!working) {
                 //Function
-                displayWork();
+                displayWork(5);
             } else {
                 showQueue.textContent = queue.toString() + " troops in queue";
             }
@@ -54,9 +81,9 @@ function setCount() {
         });
 }
 
-function displayWork() {
+function displayWork(workTime) {
     working = true;
-    let j = 5; //parseInt when needed
+    let j = workTime; //parseInt when needed
     countDown.textContent = "Troop ready in " + j + " seconds";
     let intervalCount = setInterval(() => {
         j--;
@@ -68,7 +95,7 @@ function displayWork() {
             if (queue > 0) {
                 queue--;
                 queue===0?showQueue.textContent = "" : showQueue.textContent = queue.toString() + " troops in queue";
-                displayWork();
+                displayWork(workTime);
             } else {
                 showQueue.textContent = "";
                 working = false;
