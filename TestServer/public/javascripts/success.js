@@ -40,17 +40,14 @@ function setCount() {
             }
             return response.text();
         }).then(text => {
-            /*
             queue = Number(text);
-            if (working === false) {
-                //working = true;
-                console.log("party here? " + working);
+
+            if (!working) {
+                //Function
                 displayWork();
             } else {
                 showQueue.textContent = queue.toString() + " troops in queue";
-            }*/
-            countDown.textContent = text;
-            setTimeout(()=>{countDown.textContent = "Ready"},1000)
+            }
             console.log(text);
         }).catch(error => {
             console.log(error);
@@ -59,7 +56,7 @@ function setCount() {
 
 function displayWork() {
     working = true;
-    let j = 5;
+    let j = 5; //parseInt when needed
     countDown.textContent = "Troop ready in " + j + " seconds";
     let intervalCount = setInterval(() => {
         j--;
@@ -70,7 +67,7 @@ function displayWork() {
             getCount();
             if (queue > 0) {
                 queue--;
-                queue===0?showQueue.textContent = "":showQueue.textContent = queue.toString() + " troops in queue";
+                queue===0?showQueue.textContent = "" : showQueue.textContent = queue.toString() + " troops in queue";
                 displayWork();
             } else {
                 showQueue.textContent = "";
@@ -78,7 +75,7 @@ function displayWork() {
             }
         }
         console.log(j);
-    }, 1010)
+    }, 1005)
 
 }
 /*

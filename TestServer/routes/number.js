@@ -18,8 +18,8 @@ router.get('/get', function(req, res) {
 router.get('/set', function(req, res) {
     console.log("Req received working...");
     trainTrooper(req, res);
-    console.log("Res send, callbac under way...");
-    res.send("I did it!");
+    console.log("Res send, callback under way...");
+    res.send(players.get(req.session.name).town.barracks.queue.toString());
 
 });
 
