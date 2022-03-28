@@ -40,6 +40,7 @@ function setCount() {
             }
             return response.text();
         }).then(text => {
+            /*
             queue = Number(text);
             if (working === false) {
                 //working = true;
@@ -47,7 +48,9 @@ function setCount() {
                 displayWork();
             } else {
                 showQueue.textContent = queue.toString() + " troops in queue";
-            }
+            }*/
+            countDown.textContent = text;
+            setTimeout(()=>{countDown.textContent = "Ready"},1000)
             console.log(text);
         }).catch(error => {
             console.log(error);

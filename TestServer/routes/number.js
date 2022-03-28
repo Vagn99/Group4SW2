@@ -16,17 +16,25 @@ router.get('/get', function(req, res) {
 });
 
 router.get('/set', function(req, res) {
-    console.log("I start");
+    console.log("Req received working...");
     trainTrooper(req, res);
-    console.log("I send");
-    res.send(queue.toString());
+    console.log("Res send, callbac under way...");
+    res.send("I did it!");
 
 });
 
 function trainTrooper(req, res) {
-    console.log("1 In function");
-    let action = players.get(req.session.name).town.barracks.trainTroops(players.get(req.session.name).resources, players.get(req.session.name).town.troopsInside);
-    console.log(action);
+    console.log("trainTroops have been called by: " + req.session.name);
+    let activePlayer = players.get(req.session.name);
+    if (activePlayer.resources>0){
+        activePlayer.resources = activePlayer.resources-1;
+        console.log("Calling trainTroop function...");
+        activePlayer.town.barracks.newTrainTroops(activePlayer.town);
+    } else {
+        console.log("Not enough resources!");
+    }
+    console.log(activePlayer);
+    /*
     if (!working) {
         working = true;
         console.log("start timer");
@@ -45,7 +53,7 @@ function trainTrooper(req, res) {
         }, 5000);
     } else {
         queue++;
-    }
+    } */
 }
 
 

@@ -171,10 +171,23 @@ class Basefield extends Building {
 
 class Barracks extends Building {
     #trainingTime = 5;
+    _queue = 0;
+    _barrackInUse = false;
     constructor() {
         super('Barracks');
     }
-
+    get queue() {
+        return this._queue;
+    }
+    set queue(value) {
+        this._queue = value;
+    }
+    get barrackInUse() {
+        return this._barrackInUse;
+    }
+    set barrackInUse(value) {
+        this._barrackInUse = value;
+    }
     get trainingTime() {
         return this.#trainingTime;
     }
@@ -198,6 +211,33 @@ class Barracks extends Building {
             troops: troops,
             resources: resources,
             trainingTime: this.trainingTime};
+    }
+
+    newTrainTroops(town){
+        console.log("Starting trainNewTroop ")
+        if (!this.barrackInUse){
+            this.trainNextTroop(town);
+
+        } else {
+            this.queue = this.queue+1;
+            console.log("Queue added!")
+        }
+    }
+
+
+    trainNextTroop(town){
+        console.log("Actually training");
+        this.barrackInUse = true;
+        setTimeout(()=>{
+            // increse troops by 1 ;
+            town.troopsInside = town.troopsInside+1;
+            this.barrackInUse = false;
+            console.log("Trained a troop! Troops are now: " + town.troopsInside);
+            if (this.queue>0){
+                this.queue = this.queue-1;
+                this.trainNextTroop(town);
+            }
+        },5000)
     }
 
 
