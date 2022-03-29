@@ -25,15 +25,16 @@ function getStart(){
     }).then(townJason => {
         //Object parsing dont work!!!
         let town = JSON.parse(townJason);
-        console.log(town._visibleText);
-        document.querySelector("#count").textContent = town.troopsInside.toString() + " in town";
-        if (town.barracks.queue>0) {
-            this.queue = town.barracks.queue;
-            showQueue.textContent = town.barracks.queue.toString() + " troops in queue";
+        console.log(town);
+        document.querySelector("#count").textContent = town.troopsInside.toString() + " troops in town";
+        if (town.queue>0) {
+            this.queue = town.queue;
+            console.log(queue);
+            showQueue.textContent = this.queue.toString() + " troops in queue";
         }
-        if (town.barracks.barrackInUse){
+        if (town.barrackInUse){
             //needs time from server
-            displayWork(town.barracks.trainingTimeleft/10);
+            displayWork(parseInt(town.trainingTimeleft/10));
         }
 
         console.log("View started");

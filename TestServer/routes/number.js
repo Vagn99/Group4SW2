@@ -9,7 +9,13 @@ let queue = 0;
 
 router.get('/start', function (req, res){
     console.log("Started view");
-    res.send(players.get(req.session.name).town);
+    let town = players.get(req.session.name).town;
+    res.send({
+        troopsInside: town.troopsInside,
+        queue: town.barracks.queue,
+        barrackInUse: town.barracks.barrackInUse,
+        trainingTimeleft: town.barracks.trainingTimeleft
+    });
 
 })
 
