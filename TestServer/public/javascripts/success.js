@@ -28,9 +28,9 @@ function getStart(){
         console.log(town);
         document.querySelector("#count").textContent = town.troopsInside.toString() + " troops in town";
         if (town.queue>0) {
-            this.queue = town.queue;
-            console.log(queue);
-            showQueue.textContent = this.queue.toString() + " troops in queue";
+            queue = town.queue;
+            console.log("queue is: "+ queue);
+            showQueue.textContent = queue.toString() + " troops in queue";
         }
         if (town.barrackInUse){
             //needs time from server
@@ -87,22 +87,24 @@ function displayWork(workTime) {
     let j = workTime; //parseInt when needed
     countDown.textContent = "Troop ready in " + j + " seconds";
     let intervalCount = setInterval(() => {
-        j--;
-        countDown.textContent = "Troop ready in " + j + " seconds";
         if (j === 0) {
             clearInterval(intervalCount);
             countDown.textContent = "";
             getCount();
+            console.log("Queue is: "+ queue);
             if (queue > 0) {
                 queue--;
                 queue===0?showQueue.textContent = "" : showQueue.textContent = queue.toString() + " troops in queue";
-                displayWork(workTime);
+                displayWork(5);
             } else {
                 showQueue.textContent = "";
                 working = false;
             }
+        } else {
+            j--;
+            countDown.textContent = "Troop ready in " + j + " seconds";
         }
-        console.log(j);
+        //console.log(j);
     }, 1005)
 
 }
