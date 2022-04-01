@@ -192,24 +192,24 @@ class Basefield extends Building {
 class Barracks extends Building {
 
     #trainingTime = 50;
-    _queue = 0;
-    _barrackInUse = false;
-    _trainingTimeleft = 0;
+    #queue = 0;
+    #barrackInUse = false;
+    #trainingTimeLeft = 0;
 
     constructor() {
         super('Barracks');
     }
     get queue() {
-        return this._queue;
+        return this.#queue;
     }
     set queue(value) {
-        this._queue = value;
+        this.#queue = value;
     }
     get barrackInUse() {
-        return this._barrackInUse;
+        return this.#barrackInUse;
     }
     set barrackInUse(value) {
-        this._barrackInUse = value;
+        this.#barrackInUse = value;
     }
     get trainingTime() {
         return this.#trainingTime;
@@ -217,11 +217,11 @@ class Barracks extends Building {
     set trainingTime(value) {
         this.#trainingTime = value;
     }
-    get trainingTimeleft() {
-        return this._trainingTimeleft;
+    get trainingTimeLeft() {
+        return this.#trainingTimeLeft;
     }
-    set trainingTimeleft(value) {
-        this._trainingTimeleft = value;
+    set trainingTimeLeft(value) {
+        this.#trainingTimeLeft = value;
     }
 
 
@@ -238,10 +238,10 @@ class Barracks extends Building {
     trainNextTroop(town){
         console.log("Actually training");
         this.barrackInUse = true;
-        this.trainingTimeleft = this.trainingTime;
+        this.trainingTimeLeft = this.trainingTime;
         let trainTimer = setInterval(()=>{
-            this.trainingTimeleft--;
-            if (this.trainingTimeleft===0) {
+            this.trainingTimeLeft--;
+            if (this.trainingTimeLeft===0) {
                 clearInterval(trainTimer);
                 // increse troops by 1 ;
                 town.troopsInside = town.troopsInside + 1;

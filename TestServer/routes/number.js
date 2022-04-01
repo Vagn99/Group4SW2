@@ -4,8 +4,6 @@ var Players = require('./../model/userDB.js');
 
 let players = Players.players;
 
-let working = false;
-let queue = 0;
 
 router.get('/start', function (req, res){
     console.log("Started view");
@@ -14,7 +12,8 @@ router.get('/start', function (req, res){
         troopsInside: town.troopsInside,
         queue: town.barracks.queue,
         barrackInUse: town.barracks.barrackInUse,
-        trainingTimeleft: town.barracks.trainingTimeleft
+        trainingTimeLeft: town.barracks.trainingTimeLeft,
+        trainingTime: town.barracks.trainingTime
     });
 
 })

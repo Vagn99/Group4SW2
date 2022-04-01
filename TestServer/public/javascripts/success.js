@@ -7,6 +7,7 @@ let showQueue = document.getElementById("queue");
 
 let working = false;
 let queue = 0;
+let barrackTrainingTime = 0;
 
 
 //Runs at page load
@@ -27,6 +28,7 @@ function getStart(){
         let town = JSON.parse(townJason);
         console.log(town);
         document.querySelector("#count").textContent = town.troopsInside.toString() + " troops in town";
+        barrackTrainingTime = town.trainingTime;
         if (town.queue>0) {
             queue = town.queue;
             console.log("queue is: "+ queue);
@@ -34,7 +36,7 @@ function getStart(){
         }
         if (town.barrackInUse){
             //needs time from server
-            displayWork(parseInt(town.trainingTimeleft/10));
+            displayWork(parseInt(town.trainingTimeLeft/10));
         }
 
         console.log("View started");
@@ -72,7 +74,7 @@ function setCount() {
 
             if (!working) {
                 //Function
-                displayWork(5);
+                displayWork(barrackTrainingTime/10);
             } else {
                 showQueue.textContent = queue.toString() + " troops in queue";
             }
@@ -84,7 +86,7 @@ function setCount() {
 
 function displayWork(workTime) {
     working = true;
-    let j = workTime; //parseInt when needed
+    let j = parseInt(workTime);
     countDown.textContent = "Troop ready in " + j + " seconds";
     let intervalCount = setInterval(() => {
         if (j === 0) {
@@ -95,7 +97,7 @@ function displayWork(workTime) {
             if (queue > 0) {
                 queue--;
                 queue===0?showQueue.textContent = "" : showQueue.textContent = queue.toString() + " troops in queue";
-                displayWork(5);
+                displayWork(barrackTrainingTime/10);
             } else {
                 showQueue.textContent = "";
                 working = false;
