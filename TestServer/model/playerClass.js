@@ -2,15 +2,15 @@ class Player {
     #id;
     #playerName;
     #town;
-    #map;
+    #mapCoordinates;
     #resources;
     #gold;
 
     constructor(id, playerName, townName, x, y) {
         this.#playerName = playerName;
         this.#id = id;
-        this.#town = new Town(id, townName, x, y);
-        this.#map = new Map(x, y);
+        this.#town = new Town(playerName, id, townName, x, y);
+        this.#mapCoordinates = [x, y];
         this.#resources = 10;
         this.#gold = 0;
     }
@@ -33,12 +33,6 @@ class Player {
     set town(value) {
         this.#town = value;
     }
-    get map() {
-        return this.#map;
-    }
-    set map(value) {
-        this.#map = value;
-    }
     get resources() {
         return this.#resources;
     }
@@ -49,7 +43,9 @@ class Player {
 
 class Town {
 
+
     #id;
+    #owner;
     #townName;
     #troopsInside;
     #locationOnMap;
@@ -58,8 +54,9 @@ class Town {
     #barracks;
     _visibleText = "Hello world";
 
-    constructor(id, townName, x, y) {
+    constructor(playerName, id, townName, x, y) {
         this.#id = id;
+        this.#owner = playerName;
         this.#townName = townName;
         this.#troopsInside = 0;
         this.#locationOnMap = [x, y];
@@ -71,76 +68,47 @@ class Town {
     get id() {
         return this.#id;
     }
-
     set id(value) {
         this.#id = value;
     }
-
     get townName() {
         return this.#townName;
     }
-
     set townName(value) {
         this.#townName = value;
     }
-
     get troopsInside() {
         return this.#troopsInside;
     }
-
     set troopsInside(value) {
         this.#troopsInside = value;
     }
-
     get locationOnMap() {
         return this.#locationOnMap;
     }
-
     set locationOnMap(value) {
         this.#locationOnMap = value;
     }
-
     get townHall() {
         return this.#townHall;
     }
-
     get baseField() {
         return this.#baseField;
     }
-
     get barracks() {
         return this.#barracks;
     }
-
     get visibleText() {
         return this._visibleText;
     }
-
     set visibleText(value) {
         this._visibleText = value;
     }
-}
-
-class Map {
-    #myTownLocation;
-    #occupiedPlots;
-
-    constructor(x, y) {
-        this.#myTownLocation = [x, y];
-        this.#occupiedPlots = [];//will contain objects
+    get owner() {
+        return this.#owner;
     }
-
-    get myTownLocation() {
-        return this.#myTownLocation;
-    }
-    set myTownLocation(value) {
-        this.#myTownLocation = value;
-    }
-    get occupiedPlots() {
-        return this.#occupiedPlots;
-    }
-    set occupiedPlots(value) {
-        this.#occupiedPlots = value;
+    set owner(value) {
+        this.#owner = value;
     }
 }
 
@@ -257,6 +225,7 @@ class Barracks extends Building {
 
 
 }
+
 
 module.exports = {
     Player,

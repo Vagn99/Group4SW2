@@ -45,7 +45,6 @@ function getStart(){
     });
 }
 
-
 function getCount() {
     fetch('/number/get').then(response => {
         if (!response.ok) {

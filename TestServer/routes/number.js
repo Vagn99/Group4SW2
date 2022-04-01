@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var Players = require('./../model/userDB.js');
+var GameMap = require('./../model/mapDB');
 
 let players = Players.players;
+let gameMap = GameMap.gameMap;
 
 
 router.get('/start', function (req, res){
@@ -15,6 +17,7 @@ router.get('/start', function (req, res){
         trainingTimeLeft: town.barracks.trainingTimeLeft,
         trainingTime: town.barracks.trainingTime
     });
+
 
 })
 
