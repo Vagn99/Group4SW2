@@ -5,10 +5,17 @@ const a = 2 * Math.PI / 6;
 const r = 50;
 
 function init() {
-  drawHexagon(r, r);
+  drawGrid(canvas.width, canvas.height);
 }
 init();
 
+function drawGrid(width, height) {
+  for (let y = r; y + r * Math.sin(a) < height; y += r * Math.sin(a)){
+    for (let x = r, j = 0; x + r * (1 + Math.cos(a)) < width; x += r * (1 + Math.cos(a)), y += (-1) ** j++ * r * Math.sin(a)) {
+    drawHexagon(x, y);
+    }
+  }
+}
 function drawHexagon(x, y) {
   ctx.beginPath();
   for (var i = 0; i < 6; i++) {
@@ -17,6 +24,3 @@ function drawHexagon(x, y) {
   ctx.closePath();
   ctx.stroke();
 }
-
-let p = document.getElementById('check')
-p.textContent = "sheesh";
