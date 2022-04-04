@@ -59,8 +59,8 @@ body {
     cursor: pointer;
     -webkit-transform: scale(0.90);
 	  transform: scale(0.90);
-    -webkit-filter: saturate(4);
-    filter: saturate(4);
+    -webkit-filter: saturate(2);
+    filter: saturate(2);
   }
 
   .container:active:after {
