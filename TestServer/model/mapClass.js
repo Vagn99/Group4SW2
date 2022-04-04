@@ -100,15 +100,15 @@ class EmptyCell {
     get owner() {
         return this.#owner;
     }
-    set owner(value) {
+    /*set owner(value) {
         this.#owner = value;
-    }
+    }*/
     get type() {
         return this.#type;
     }
-    set type(value) {
+    /*set type(value) {
         this.#type = value;
-    }
+    }*/
 }
 
 class ResourceField {
