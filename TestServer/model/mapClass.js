@@ -23,12 +23,12 @@ class GameMap {
                 }
             }
         }
-        this.cellArray[0][0].type = type[0];
-        this.cellArray[0][Math.floor(y/2)].type = type[1];
-        this.cellArray[Math.floor(y/2)][y-1].type = type[2];
-        this.cellArray[y-1][y-1].type = type[3];
-        this.cellArray[y-1][Math.floor(y/2)].type = type[4];
-        this.cellArray[Math.floor(y/2)][0].type = type[5];
+        this.cellArray[Math.floor(x/4)][0].type = type[0];
+        this.cellArray[0][Math.floor(y/4)].type = type[1];
+        this.cellArray[Math.floor(x/1.5)][y-1].type = type[2];
+        this.cellArray[Math.floor(x/1.5)][Math.floor(y/4)].type = type[3];
+        this.cellArray[x-1][Math.floor(y/1.5)].type = type[4];
+        this.cellArray[Math.floor(x/4)][Math.floor(y/1.5)].type = type[5];
     }
 
     get cellArray() {
