@@ -1,12 +1,13 @@
+
 .main {
     display:flex;
-    --s:80px;  /* size  */
+    --s:5vw;  /* size  */
     --m: 0px;    /* space */
   }
   
 body {
     min-width: 412px;
-    margin: 20px;
+    margin: 0;
     background-color: rgb(46, 140, 213); /*rgb(35 174 97); Grøn til bagrunden*/
     font-size: 0;
     text-align: center;
@@ -30,6 +31,8 @@ body {
 
   .container {
     font-size: 0; /*disable white space between inline block element */
+    padding-top: calc(30vh/2);
+    padding-left: calc(5vw/2);
   }
   
   .container div {
@@ -43,6 +46,7 @@ body {
     background-image: url(https://i.imgur.com/DuqCNxA.png); /*grass https://i.imgur.com/DuqCNxA.png */
     background-size: contain;
     vertical-align: middle;
+    max-width: 100%;
   }
   .container::before {
     content: "";
@@ -61,9 +65,4 @@ body {
 	  transform: scale(0.90);
     -webkit-filter: saturate(2);
     filter: saturate(2);
-  }
-
-  .container:active:after {
-    opacity: 0.5;
-    transition: 0s
   }
