@@ -9,6 +9,7 @@ var cookieSession = require('cookie-session');
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var numberRouter = require('./routes/number.js');
+var mapviewRouter = require('./routes/mapview.js');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use(cookieSession({
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/number', numberRouter);
+app.use('/mapview', mapviewRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
