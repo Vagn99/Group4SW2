@@ -132,7 +132,7 @@ class ResourceField {
 
     #resourcesPerSec;
     #type;
-    #troopsOnLocation = 0;
+    #troopsInside = 0;
     #owner = "";
     #locationOnMap = [];
 
@@ -160,11 +160,11 @@ class ResourceField {
     set type(value) {
         this.#type = value;
     }
-    get troopsOnLocation() {
-        return this.#troopsOnLocation;
+    get troopsInside() {
+        return this.#troopsInside;
     }
-    set troopsOnLocation(value) {
-        this.#troopsOnLocation = value;
+    set troopsInside(value) {
+        this.#troopsInside = value;
     }
     get owner() {
         return this.#owner;
