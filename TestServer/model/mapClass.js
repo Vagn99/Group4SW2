@@ -23,12 +23,39 @@ class GameMap {
                 }
             }
         }
+        //Assigns towns to map location
         this.cellArray[Math.floor(x/4)][0].type = type[0];
         this.cellArray[0][Math.floor(y/4)].type = type[1];
         this.cellArray[Math.floor(x/1.5)][y-1].type = type[2];
         this.cellArray[Math.floor(x/1.5)][Math.floor(y/4)].type = type[3];
         this.cellArray[x-1][Math.floor(y/1.5)].type = type[4];
         this.cellArray[Math.floor(x/4)][Math.floor(y/1.5)].type = type[5];
+
+        //Assign resource fields
+        // !!!Make switch or something like that here!!!
+        //Common: 0,0 - 4,0 - 3,3 - 4,3 - 0,4 - 3,4 - 5,4 - 8,4 - 4,5 - 5,5 - 4,8 - 8,8
+        //Gold: 2,2 - 4,2 - 2,4 - 4,4 - 6,4 - 4,6 - 6,6
+        this.cellArray[0][0].type = new ResourceField(1, "common",0,0);
+        this.cellArray[4][0].type = new ResourceField(1, "common",4,0);
+        this.cellArray[3][3].type = new ResourceField(1, "common",3,3);
+        this.cellArray[4][3].type = new ResourceField(1, "common",4,3);
+        this.cellArray[0][4].type = new ResourceField(1, "common",0,4);
+        this.cellArray[3][4].type = new ResourceField(1, "common",3,4);
+        this.cellArray[5][4].type = new ResourceField(1, "common",5,4);
+        this.cellArray[8][4].type = new ResourceField(1, "common",8,4);
+        this.cellArray[4][5].type = new ResourceField(1, "common",4,5);
+        this.cellArray[5][5].type = new ResourceField(1, "common",5,5);
+        this.cellArray[4][8].type = new ResourceField(1, "common",4,8);
+        this.cellArray[8][8].type = new ResourceField(1, "common",8,8);
+
+        this.cellArray[2][2].type = new ResourceField(1, "gold",2,2);
+        this.cellArray[4][2].type = new ResourceField(1, "gold",4,2);
+        this.cellArray[2][4].type = new ResourceField(1, "gold",2,4);
+        this.cellArray[4][4].type = new ResourceField(1, "gold",4,4);
+        this.cellArray[6][4].type = new ResourceField(1, "gold",6,4);
+        this.cellArray[4][6].type = new ResourceField(1, "gold",4,6);
+        this.cellArray[6][6].type = new ResourceField(1, "gold",6,6);
+
     }
 
     get cellArray() {
@@ -46,14 +73,9 @@ class Cell {
     #type;
     constructor(x, y, owner, type) {
         this.#location = [x, y];
-        if (typeof(type)==="object"){
-            this.#type = type;
-            this.#owner = type.owner;
-            this.type.locationOnMap = this.location;
-        } else {
-            this.#type = new ResourceField(5, type);
-            this.#owner = "";
-        }
+        this.#type = new ResourceField(1, type, x, y);
+        this.#owner = "";
+
     }
 
     get location() {
@@ -72,14 +94,9 @@ class Cell {
         return this.#type;
     }
     set type(value) {
-        if (typeof(value)==="object"){
-            this.#type = value;
-            this.owner = value.owner;
-            this.type.locationOnMap = this.location;
-        } else {
-            this.#type = value;
-        }
-
+        this.#type = value;
+        this.owner = value.owner;
+        this.type.locationOnMap = this.location;
     }
 }
 
@@ -116,13 +133,18 @@ class ResourceField {
     #resourcesPerSec;
     #type;
     #troopsOnLocation = 0;
+    #owner = "";
+    #locationOnMap = [];
 
-    constructor(resourcesPerSec, type) {
-        this.#resourcesPerSec = resourcesPerSec;
+    constructor(resourcesPerSec, type, x, y) {
         if (type === "gold" || type === "common"){
             this.#type = type;
+            this.#resourcesPerSec = resourcesPerSec;
+            this.#locationOnMap = [x,y];
         } else {
             this.#type = "empty";
+            this.#resourcesPerSec = 0;
+            this.#locationOnMap = [x,y];
         }
     }
 
@@ -143,6 +165,18 @@ class ResourceField {
     }
     set troopsOnLocation(value) {
         this.#troopsOnLocation = value;
+    }
+    get owner() {
+        return this.#owner;
+    }
+    set owner(value) {
+        this.#owner = value;
+    }
+    get locationOnMap() {
+        return this.#locationOnMap;
+    }
+    set locationOnMap(value) {
+        this.#locationOnMap = value;
     }
 }
 
