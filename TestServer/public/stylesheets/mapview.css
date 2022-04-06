@@ -1,25 +1,29 @@
-
 .main {
-    display:flex;
-    --s:5vw;  /* size  */
-    --m: 0px;    /* space */
-  }
-  
-body {
-    min-width: 412px;
-    margin: 0;
-    background-color: rgb(46, 140, 213); /*rgb(35 174 97); Grøn til bagrunden*/
-    font-size: 0;
-    text-align: center;
-    background-image: url(https://i.imgur.com/FOHv2pm.png);
+  display: flex;
+  --s: 5vw;
+  /* size  */
+  --m: 0px;
+  /* space */
 }
 
-#base { 
+body {
+  min-width: 412px;
+  margin: 0;
+  background-color: rgb(46, 140, 213);
+  /*rgb(35 174 97); Grøn til bagrunden*/
+  font-size: 0;
+  text-align: center;
+  background-image: url(https://i.imgur.com/FOHv2pm.png);
+}
+
+#base {
   background-image: url(https://i.imgur.com/UfqroAA.png);
 }
-#resource1 { 
+
+#resource1 {
   background-image: url(https://i.imgur.com/o7yDmW1.png);
 }
+
 #resource2 {
   background-image: url(https://i.imgur.com/fHN7hUe.png);
 }
@@ -29,40 +33,44 @@ body {
   height: auto;
 }
 
-  .container {
-    font-size: 0; /*disable white space between inline block element */
-    padding-top: calc(30vh/2);
-    padding-left: calc(5vw/2);
-  }
-  
-  .container div {
-    width: var(--s);
-    margin: var(--m);
-    height: calc(var(--s)*1.1547); /*  = 1/cos(30)  */
-    display: inline-block;
-    font-size:initial;
-    clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
-    margin-bottom: calc(var(--m) + var(--s)*-0.2885); /* = tan(30)/2 */
-    background-image: url(../images/Tiles/Terrain/Grass/grass_10.png); /*grass https://i.imgur.com/DuqCNxA.png */
-    background-size: contain;
-    vertical-align: middle;
-    max-width: 100%;
-  }
-  .container::before {
-    content: "";
-    width: calc(var(--s)/2 + var(--m));
-    height: 100%;
-    --r:calc(var(--s)*3*1.1547/2 + 4*var(--m)  - 2px);
-    shape-outside: 
-     repeating-linear-gradient(     
-       transparent 0 calc(var(--r) - 3px),      
-       rgb(223, 7, 7)        0 var(--r));
-  }
+.container {
+  font-size: 0;
+  /*disable white space between inline block element */
+  padding-top: calc(30vh/2);
+  padding-left: calc(5vw/2);
+}
 
-  .container div:hover {
-    cursor: pointer;
-    -webkit-transform: scale(0.90);
-	  transform: scale(0.90);
-    -webkit-filter: saturate(2);
-    filter: saturate(2);
-  }
+.container div {
+  width: var(--s);
+  margin: var(--m);
+  height: calc(var(--s)*1.1547);
+  /*  = 1/cos(30)  */
+  display: inline-block;
+  font-size: initial;
+  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+  margin-bottom: calc(var(--m) + var(--s)*-0.2885);
+  /* = tan(30)/2 */
+  background-image: url(../images/Tiles/Terrain/Grass/grass_10.png);
+  /*grass https://i.imgur.com/DuqCNxA.png */
+  background-size: contain;
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+.container::before {
+  content: "";
+  width: calc(var(--s)/2 + var(--m));
+  height: 100%;
+  --r: calc(var(--s)*3*1.1547/2 + 4*var(--m) - 2px);
+  shape-outside:
+    repeating-linear-gradient(transparent 0 calc(var(--r) - 3px),
+      rgb(223, 7, 7) 0 var(--r));
+}
+
+.container div:hover {
+  cursor: pointer;
+  -webkit-transform: scale(0.90);
+  transform: scale(0.90);
+  -webkit-filter: saturate(2);
+  filter: saturate(2);
+}
