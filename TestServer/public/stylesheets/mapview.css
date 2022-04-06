@@ -35,9 +35,12 @@ body {
 
 .container {
   font-size: 0;
-  /*disable white space between inline block element */
-  padding-top: calc(30vh/2);
-  padding-left: calc(5vw/2);
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  margin-left: 50px;
 }
 
 .container div {
