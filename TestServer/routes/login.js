@@ -11,8 +11,12 @@ users.set("user5", "user5");
 users.set("user6", "user6");
 
 router.post('/', function(req, res) {
+  console.log("LOGIN!")
   const { name, password } = req.body;
-  req.session = req.body;
+  req.session = {
+    name: name,
+    loggedIn: true,
+  };
   console.log(req.session);
   if(users.get(name) === password){
     res.render("success", {
@@ -23,5 +27,23 @@ router.post('/', function(req, res) {
     res.send('Login failed');
   }
 });
+
+router.get('/', function(req, res, next) {
+  if (req.session.loggedIn == true){
+    res.render("success", {
+      username: req.session.name,
+    });
+  } else {
+    res.render('index', {title: 'Travian rip off'});
+  }
+});
+
+router.get('/logout', function(req, res, next) {
+  req.session.loggedIn = false;
+  console.log(req.session);
+  res.render('index', { title: 'Travian rip off' });
+});
+
+
 
 module.exports = router;
