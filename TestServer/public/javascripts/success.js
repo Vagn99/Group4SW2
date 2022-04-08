@@ -71,11 +71,13 @@ function setCount() {
         }).then(text => {
             queue = Number(text);
 
-            if (!working) {
+            if (!working && queue > 0) {
                 //Function
                 displayWork(barrackTrainingTime/10);
-            } else {
+            } else if (queue > 0){
                 showQueue.textContent = queue.toString() + " troops in queue";
+            } else {
+                showQueue.textContent = "";
             }
             console.log(text);
         }).catch(error => {

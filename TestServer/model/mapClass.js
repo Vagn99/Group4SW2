@@ -32,9 +32,11 @@ class GameMap {
         this.cellArray[Math.floor(x/4)][Math.floor(y/1.5)].type = type[5];
 
         //Assign resource fields
-        // !!!Make switch or something like that here!!!
+        // !!!Make switch or something like that here!!! or a map
         //Common: 0,0 - 4,0 - 3,3 - 4,3 - 0,4 - 3,4 - 5,4 - 8,4 - 4,5 - 5,5 - 4,8 - 8,8
         //Gold: 2,2 - 4,2 - 2,4 - 4,4 - 6,4 - 4,6 - 6,6
+
+        /*
         this.cellArray[0][0].type = new ResourceField(1, "common",0,0);
         this.cellArray[4][0].type = new ResourceField(1, "common",4,0);
         this.cellArray[3][3].type = new ResourceField(1, "common",3,3);
@@ -55,7 +57,7 @@ class GameMap {
         this.cellArray[6][4].type = new ResourceField(1, "gold",6,4);
         this.cellArray[4][6].type = new ResourceField(1, "gold",4,6);
         this.cellArray[6][6].type = new ResourceField(1, "gold",6,6);
-
+*/
     }
 
     get cellArray() {
@@ -73,7 +75,18 @@ class Cell {
     #type;
     constructor(x, y, owner, type) {
         this.#location = [x, y];
-        this.#type = new ResourceField(1, type, x, y);
+        //Still needs cases for the towns... perhaps, maybe, I dont know
+        switch (x.toString() + y.toString()){
+            case "00": case "40": case "33": case "43": case "04": case "34":
+            case "54": case "84": case "45": case "55": case "48": case "88":
+                this.#type = new ResourceField(1, "common",x,y);
+                break;
+            case "22": case "42": case "24": case "44": case "64": case "46": case "66":
+                this.#type = new ResourceField(1, "gold",x,y);
+                break;
+            default:
+                this.#type = new ResourceField(0, type, x, y);
+        }
         this.#owner = "";
 
     }
