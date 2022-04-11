@@ -1,12 +1,13 @@
 .main {
     display: flex;
-    --s: 7vw;
+    --s: 5vw;
     /* size  */
     --m: 0px;
     /* space */
   }
   
   body {
+    min-width: 412px;
     margin: 0;
     background-color: rgb(46, 140, 213);
     /*rgb(35 174 97); Grøn til bagrunden*/
@@ -33,12 +34,13 @@
   }
   
   .container {
+    font-size: 0;
     margin: 0;
     position: absolute;
     top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-    margin-left: 100px;
+    margin-left: 50px;
   }
   
   .container div {
