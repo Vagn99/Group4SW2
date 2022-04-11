@@ -1,5 +1,5 @@
 .main {
-  display: grid;
+  display: inline-block;
   --s: 5vw;
   /* size  */
   --m: 1px;
@@ -7,13 +7,12 @@
 }
 
 body {
-  margin: 0;
   background-color: rgb(46, 140, 213);
   /*rgb(35 174 97); Grøn til bagrunden*/
   font-size: 0;
   text-align: center;
   /*background-image: url(https://i.imgur.com/FOHv2pm.png);*/
-  background-color: rgb(44, 44, 44);
+  background-color: rgb(44, 44, 44)
 }
 
 #base {
@@ -28,20 +27,11 @@ body {
   background-image: url(https://i.imgur.com/fHN7hUe.png);
 }
 
-.grass_border {
-  max-width: 100%;
-  height: auto;
-}
-
 .container-v {
-  font-size: 0;
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  margin-left: 50px;
-  padding-bottom: calc(var(--m) + var(--s)*-0.2885);
+  height: 100vh;
+  padding-top: 50px; 
+  vertical-align: middle;
+  margin: 0 50% 0 0;
 }
 
 .container-v div {
@@ -57,7 +47,6 @@ body {
   background-image: url(../images/Tiles/Terrain/Grass/grass_10.png);
   /*grass https://i.imgur.com/DuqCNxA.png */
   background-size: contain;
-  vertical-align: middle;
   max-width: 100%;
 }
 
@@ -80,9 +69,16 @@ body {
 }
 
 .container-h {
-  border-radius : 10px; 
   margin : 0 0 0 50%; 
   flex : 0 0 50vw; 
-  height : 100vh; 
-  background : #27ae60 none repeat scroll 0% 0% / auto padding-box border-box;  
+  height : 100vh;
+  padding: 15px; 
+  max-height: 100vh
+  /*background : #27ae60 none repeat scroll 0% 0% / auto padding-box border-box;  */
+}
+
+.container-h div { 
+  border-radius : 10px; 
+  height: 100%;
+  background : #27ae60 none repeat scroll 0% 0% / auto padding-box border-box;
 }
