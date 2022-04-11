@@ -1,19 +1,19 @@
 .main {
-  display: flex;
+  display: grid;
   --s: 5vw;
   /* size  */
-  --m: 0px;
+  --m: 1px;
   /* space */
 }
 
 body {
-  min-width: 412px;
   margin: 0;
   background-color: rgb(46, 140, 213);
   /*rgb(35 174 97); Grøn til bagrunden*/
   font-size: 0;
   text-align: center;
-  background-image: url(https://i.imgur.com/FOHv2pm.png);
+  /*background-image: url(https://i.imgur.com/FOHv2pm.png);*/
+  background-color: rgb(44, 44, 44);
 }
 
 #base {
@@ -33,7 +33,7 @@ body {
   height: auto;
 }
 
-.container {
+.container-v {
   font-size: 0;
   margin: 0;
   position: absolute;
@@ -41,9 +41,10 @@ body {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   margin-left: 50px;
+  padding-bottom: calc(var(--m) + var(--s)*-0.2885);
 }
 
-.container div {
+.container-v div {
   width: var(--s);
   margin: var(--m);
   height: calc(var(--s)*1.1547);
@@ -70,10 +71,18 @@ body {
       rgb(223, 7, 7) 0 var(--r));
 }
 
-.container div:hover {
+.container-v div:hover {
   cursor: pointer;
   -webkit-transform: scale(0.90);
   transform: scale(0.90);
   -webkit-filter: saturate(2);
   filter: saturate(2);
+}
+
+.container-h {
+  border-radius : 10px; 
+  margin : 0 0 0 50%; 
+  flex : 0 0 50vw; 
+  height : 100vh; 
+  background : #27ae60 none repeat scroll 0% 0% / auto padding-box border-box;  
 }
