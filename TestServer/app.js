@@ -8,7 +8,6 @@ var cookieSession = require('cookie-session');
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
-var numberRouter = require('./routes/number');
 var numberRouter = require('./routes/number.js');
 var mapviewRouter = require('./routes/mapview.js');
 var cityviewRouter = require('./routes/cityview.js');
