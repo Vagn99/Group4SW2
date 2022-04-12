@@ -10,6 +10,8 @@ fetch('/timer').then(response => {
 }).then(text =>{
     timer.textContent = `Server time: ${text} seconds`;
     local_timer = text;
+}).catch(error => {
+    console.log(error);
 });
 
 //Continue timer locally

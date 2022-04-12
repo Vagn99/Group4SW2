@@ -5,7 +5,6 @@ var router = express.Router();
 let time = 0;
 runTimer();
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
   res.send(time.toString())
 });
