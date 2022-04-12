@@ -9,7 +9,6 @@ let gameMap = GameMap.gameMap;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    console.log(req.session.loggedIn);
     if (req.session.loggedIn){
         res.render('mapview');
     } else {
