@@ -8,10 +8,10 @@ let gameMap = GameMap.gameMap;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    if (req.session.loggedIn == false){
-        res.render('index', {title: 'Travian rip off'});
-    } else {
+    if (req.session.loggedIn){
         res.render('cityview');
+    } else {
+        res.redirect('/');
     }
 });
 

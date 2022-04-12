@@ -9,10 +9,11 @@ let gameMap = GameMap.gameMap;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    if (req.session.loggedIn == false){
-        res.render('index', {title: 'Travian rip off'});
-    } else {
+    console.log(req.session.loggedIn);
+    if (req.session.loggedIn){
         res.render('mapview');
+    } else {
+        res.redirect('/');
     }
 });
 
