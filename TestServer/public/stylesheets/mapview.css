@@ -1,5 +1,4 @@
 .main {
-  display: grid;
   --s: 5vw;
   /* size  */
   --m: 1px;
@@ -7,6 +6,7 @@
 }
 
 body {
+  overflow: hidden;
   margin: 0;
   background-color: rgb(46, 140, 213);
   /*rgb(35 174 97); Grøn til bagrunden*/
@@ -28,20 +28,15 @@ body {
   background-image: url(https://i.imgur.com/fHN7hUe.png);
 }
 
-.grass_border {
-  max-width: 100%;
-  height: auto;
-}
-
 .container-v {
   font-size: 0;
   margin: 0;
   position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  margin-left: 50px;
   padding-bottom: calc(var(--m) + var(--s)*-0.2885);
+  padding: 30px;
+  width: 50vw;
+  height: 100vh;
+
 }
 
 .container-v div {
@@ -80,9 +75,15 @@ body {
 }
 
 .container-h {
-  border-radius : 10px; 
   margin : 0 0 0 50%; 
-  flex : 0 0 50vw; 
   height : 100vh; 
-  background : #27ae60 none repeat scroll 0% 0% / auto padding-box border-box;  
+  width: 50vw;
+  padding: 4vh 4vw 4vh 4vw;
+}
+
+.container-h div{
+  border-radius : 10px; 
+  width: 46vw;
+  height: 96vh;
+  background : #27ae60 none repeat scroll 0% 0% / auto padding-box border-box;
 }
