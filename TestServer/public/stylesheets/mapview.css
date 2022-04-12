@@ -1,69 +1,84 @@
 .main {
-    display:flex;
-    --s:80px;  /* size  */
-    --m: 0px;    /* space */
-  }
-  
-body {
-    min-width: 412px;
-    margin: 20px;
-    background-color: rgb(46, 140, 213); /*rgb(35 174 97); Grøn til bagrunden*/
-    font-size: 0;
-    text-align: center;
-    background-image: url(https://i.imgur.com/FOHv2pm.png);
+  display: inline-block;
+  --s: 5vw;
+  /* size  */
+  --m: 1px;
+  /* space */
 }
 
-#base { 
+body {
+  background-color: rgb(46, 140, 213);
+  /*rgb(35 174 97); Grøn til bagrunden*/
+  font-size: 0;
+  text-align: center;
+  /*background-image: url(https://i.imgur.com/FOHv2pm.png);*/
+  background-color: rgb(44, 44, 44)
+}
+
+#base {
   background-image: url(https://i.imgur.com/UfqroAA.png);
 }
-#resource1 { 
+
+#resource1 {
   background-image: url(https://i.imgur.com/o7yDmW1.png);
 }
+
 #resource2 {
   background-image: url(https://i.imgur.com/fHN7hUe.png);
 }
 
-.grass_border {
-  max-width: 100%;
-  height: auto;
+.container-v {
+  height: 100vh;
+  padding-top: 50px; 
+  vertical-align: middle;
+  margin: 0 50% 0 0;
 }
 
-  .container {
-    font-size: 0; /*disable white space between inline block element */
-  }
-  
-  .container div {
-    width: var(--s);
-    margin: var(--m);
-    height: calc(var(--s)*1.1547); /*  = 1/cos(30)  */
-    display: inline-block;
-    font-size:initial;
-    clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
-    margin-bottom: calc(var(--m) + var(--s)*-0.2885); /* = tan(30)/2 */
-    background-image: url(https://i.imgur.com/DuqCNxA.png); /*grass https://i.imgur.com/DuqCNxA.png */
-    background-size: contain;
-    vertical-align: middle;
-  }
-  .container::before {
-    content: "";
-    width: calc(var(--s)/2 + var(--m));
-    height: 100%;
-    --r:calc(var(--s)*3*1.1547/2 + 4*var(--m)  - 2px);
-    shape-outside: 
-     repeating-linear-gradient(     
-       transparent 0 calc(var(--r) - 3px),      
-       rgb(223, 7, 7)        0 var(--r));
-  }
+.container-v div {
+  width: var(--s);
+  margin: var(--m);
+  height: calc(var(--s)*1.1547);
+  /*  = 1/cos(30)  */
+  display: inline-block;
+  font-size: initial;
+  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+  margin-bottom: calc(var(--m) + var(--s)*-0.2885);
+  /* = tan(30)/2 */
+  background-image: url(../images/Tiles/Terrain/Grass/grass_10.png);
+  /*grass https://i.imgur.com/DuqCNxA.png */
+  background-size: contain;
+  max-width: 100%;
+}
 
-  .container div:hover {
-    cursor: pointer;
-    -webkit-transform: scale(0.90);
-	  transform: scale(0.90);
-    -webkit-filter: saturate(2);
-    filter: saturate(2);
-  }
+.container::before {
+  content: "";
+  width: calc(var(--s)/2 + var(--m));
+  height: 100%;
+  --r: calc(var(--s)*3*1.1547/2 + 4*var(--m) - 2px);
+  shape-outside:
+    repeating-linear-gradient(transparent 0 calc(var(--r) - 3px),
+      rgb(223, 7, 7) 0 var(--r));
+}
 
-  .container:active:after {
-    opacity: 0.5;
-    transition: 0s
-  }
+.container-v div:hover {
+  cursor: pointer;
+  -webkit-transform: scale(0.90);
+  transform: scale(0.90);
+  -webkit-filter: saturate(2);
+  filter: saturate(2);
+}
+
+.container-h {
+  margin : 0 0 0 50%; 
+  flex : 0 0 50vw; 
+  height : 100vh;
+  padding: 15px; 
+  max-height: 100vh
+  /*background : #27ae60 none repeat scroll 0% 0% / auto padding-box border-box;  */
+}
+
+.container-h div { 
+  border-radius : 10px; 
+  height: 100%;
+  background : #27ae60 none repeat scroll 0% 0% / auto padding-box border-box;
+}
