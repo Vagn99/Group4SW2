@@ -5,6 +5,7 @@ block content
     div(class="front-page-title") 
       h1= title
       p Welcome to #{title}! 
+      p(id="timer") Timer
     div(id="login-form" class="login-form")
       form(action="/login" method="post")
         div(class="form-control")
@@ -15,3 +16,6 @@ block content
           input(type="password" name="password" id="password" placeholder="Enter your password") 
         div(class="form-control")
           button(type="submit" class="btn") Login
+
+  //- Scripts
+  script(src="./../javascripts/timer.js")
