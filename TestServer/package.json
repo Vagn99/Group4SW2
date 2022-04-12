@@ -10,6 +10,7 @@
   "dependencies": {
     "ajax": "^0.0.4",
     "body-parser": "^1.19.2",
+    "common-js": "^0.3.8",
     "cookie-parser": "~1.4.4",
     "cookie-session": "^2.0.0",
     "debug": "~2.6.9",
