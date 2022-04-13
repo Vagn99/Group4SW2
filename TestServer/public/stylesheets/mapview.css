@@ -32,16 +32,16 @@ body {
   to {background-position: 5% 0;}
 }
 
-#base {
-  background-image: url(https://i.imgur.com/UfqroAA.png);
+.base {
+  background-image: url(https://i.imgur.com/UfqroAA.png)!important;
 }
 
-#resource1 {
-  background-image: url(https://i.imgur.com/o7yDmW1.png);
+.resource1 {
+  background-image: url(https://i.imgur.com/o7yDmW1.png)!important;
 }
 
-#resource2 {
-  background-image: url(https://i.imgur.com/fHN7hUe.png);
+.resource2 {
+  background-image: url(https://i.imgur.com/fHN7hUe.png)!important;
 }
 
 .container-v {
@@ -105,9 +105,7 @@ body {
   display: grid;
   grid-template-areas:
     'header header header header'
-    'header1 header1 header1 header1'
     'nav1 nav2 nav3 nav4'
-    'info info info info'
     'info1 info1 info2 info2'
     'info3 info3 info4 info4'
     'header2 header2 header2 header2'
