@@ -1,3 +1,4 @@
+
 class Player {
     #id;
     #playerName;
@@ -247,12 +248,6 @@ class Barracks extends Building {
 
 }
 
-
 module.exports = {
     Player,
-    /*Town,
-    Building,
-    Townhall,
-    Basefield,
-    Barracks*/
 }
