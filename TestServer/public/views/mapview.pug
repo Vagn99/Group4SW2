@@ -6,6 +6,7 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel="stylesheet", href="/stylesheets/mapview.css")
     script(src="./../javascripts/mapveiw.js")
+    script(src="./../javascripts/success.js")
     title Minecraft
   body
     .box
@@ -84,9 +85,8 @@ html(lang="en")
         .container-h
           .container-h-box
             .grid-container
-              .header Basenavn 
-              .nav1
-                a(href="www.google.com")
+              .header Navn: #{username} 
+              .nav1(href="www.google.com")
                 img(src="../images/assets/home.png" width="35px" href='https://www.w3schools.com')
               .nav2
                 img(src="../images/assets/village.png" width="35px")  
@@ -99,7 +99,7 @@ html(lang="en")
               .info3 Troops 
               .info4 Time
               .header2 Dev
-              .dev1#dev1 Hex id:
+              .dev1#dev1 id:
               .dev2 Test
               .dev3 Test
               .dev4 Test
