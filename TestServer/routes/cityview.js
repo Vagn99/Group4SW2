@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Players = require('./../model/userDB.js');
+var Players = require('../model/playerDB.js');
 var GameMap = require('./../model/mapDB');
 
 let players = Players.players;
