@@ -43,7 +43,6 @@ class Player {
 
 class Town {
 
-
     #id;
     #owner;
     #townName;
@@ -52,6 +51,7 @@ class Town {
     #townHall;
     #baseField;
     #barracks;
+    #type = "town";
     _visibleText = "Hello world";
 
     constructor(playerName, id, townName, x, y) {
@@ -110,14 +110,22 @@ class Town {
     set owner(value) {
         this.#owner = value;
     }
+    get type() {
+        return this.#type;
+    }
+    set type(value) {
+        this.#type = value;
+    }
 }
 
 class Building {
+
     #lvl;
     #name;
+    #upgradeCost = [0,0];
 
     constructor(name) {
-        this.#lvl = 1;
+        this.#lvl = 0;
         this.#name = name;
     }
 
@@ -133,11 +141,18 @@ class Building {
     set lvl(value) {
         this.#lvl = value;
     }
+    get upgradeCost() {
+        return this.#upgradeCost;
+    }
+    set upgradeCost(value) {
+        this.#upgradeCost = value;
+    }
 }
 
 class Townhall extends Building {
     constructor() {
         super('Townhall');
+        this.upgradeCost = [1,1];
     }
 }
 
@@ -163,6 +178,7 @@ class Barracks extends Building {
     #queue = 0;
     #barrackInUse = false;
     #trainingTimeLeft = 0;
+    #trainingCost = 1;
 
     constructor() {
         super('Barracks');
@@ -191,7 +207,12 @@ class Barracks extends Building {
     set trainingTimeLeft(value) {
         this.#trainingTimeLeft = value;
     }
-
+    get trainingCost() {
+        return this.#trainingCost;
+    }
+    set trainingCost(value) {
+        this.#trainingCost = value;
+    }
 
     newTrainTroops(town){
         console.log("Starting trainNewTroop ")
