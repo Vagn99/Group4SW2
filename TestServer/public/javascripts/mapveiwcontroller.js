@@ -1,6 +1,6 @@
 let gold = document.getElementById('gold2');
 let common = document.getElementById('common2');
-let troops = document.getElementById('troops');
+let troops = document.getElementById('troops2');
 
 playerdata();
 //setInterval(playerdata, 500);

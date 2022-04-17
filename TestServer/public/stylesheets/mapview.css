@@ -125,8 +125,6 @@ body {
 
 .hover {
   cursor: pointer;
-  -webkit-transform: scale(0.90);
-  transform: scale(0.90);
   -webkit-filter: saturate(2);
   filter: saturate(2);
 }
@@ -162,7 +160,7 @@ body {
 
 .info1 { 
   grid-area: info1;
-  padding: 10px;
+  padding: 5px;
   display: grid;
   grid-template-areas:
     'gold1 gold2';
@@ -170,7 +168,7 @@ body {
 
 .info2{ 
   grid-area: info2;
-  padding: 10px; 
+  padding: 5px; 
   display: grid;
   grid-template-areas:
     'common1 common2';
@@ -178,7 +176,7 @@ body {
 
 .info3 { 
   grid-area: info3;
-  padding: 10px; 
+  padding: 5px; 
   display: grid;
   grid-template-areas:
     'troops1 troops2';
@@ -186,7 +184,10 @@ body {
 
 .info4 { 
   grid-area: info4;
-  padding: 10px; 
+  padding: 5px; 
+  display: grid;
+  grid-template-areas:
+    'time1 time2';
 }
 
 .header2 { 

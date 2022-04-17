@@ -8,7 +8,7 @@ fetch('/timer').then(response => {
     }
     return response.text();
 }).then(text =>{
-    timer.textContent = `Time: ${text} s`;
+    timer.textContent = `${text} s`;
     local_timer = text;
 }).catch(error => {
     console.log(error);
@@ -17,5 +17,5 @@ fetch('/timer').then(response => {
 //Continue timer locally
 setInterval(() => {
     local_timer++;
-    timer.textContent = `Time: ${local_timer} s`;
+    timer.textContent = `${local_timer} s`;
 }, 1000);
