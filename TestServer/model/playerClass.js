@@ -39,6 +39,12 @@ class Player {
     set resources(value) {
         this.#resources = value;
     }
+    get gold() {
+        return this.#gold;
+    }
+    set gold(value) {
+        this.#gold = value;
+    }
 }
 
 class Town {

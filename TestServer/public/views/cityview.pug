@@ -5,6 +5,7 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel="stylesheet", href="/stylesheets/cityview.css")
+
     title Minecraft
   body
     .box
@@ -21,9 +22,9 @@ html(lang="en")
           .container-h-box
             .grid-container
               .header Basenavn 
-              .nav1(href="www.google.com")
-                img(src="../images/assets/home.png" width="35px" href='https://www.w3schools.com')
-              .nav2
+              .nav1#nav1
+                img(src="../images/assets/home.png" width="35px")
+              .nav2#nav2
                 img(src="../images/assets/village.png" width="35px")  
               .nav3
                 img(src="../images/assets/chat.png" width="35px")
@@ -38,3 +39,4 @@ html(lang="en")
               .dev2 Test
               .dev3 Test
               .dev4 Test
+  script(src="./../javascripts/cityveiwcontroller.js")

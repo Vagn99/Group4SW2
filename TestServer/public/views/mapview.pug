@@ -5,8 +5,6 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel="stylesheet", href="/stylesheets/mapview.css")
-    script(src="./../javascripts/mapveiw.js")
-    script(src="./../javascripts/success.js")
     title Minecraft
   body
     .box
@@ -85,23 +83,25 @@ html(lang="en")
         .container-h
           .container-h-box
             .grid-container
-              .header Navn: #{username} 
-              .nav1(href="www.google.com")
-                img(src="../images/assets/home.png" width="35px" href='https://www.w3schools.com')
-              .nav2
+              .header#name Navn: #{username} 
+              .nav1#nav1
+                img(src="../images/assets/home.png" width="35px")
+              .nav2#nav2
                 img(src="../images/assets/village.png" width="35px")  
               .nav3
                 img(src="../images/assets/chat.png" width="35px")
               .nav4
                 img(src="../images/assets/logout.png" width="35px")
-              .info1 Gold
-              .info2 Tree 
-              .info3#troops Troops 
-              .info4 Time
+              .info1#gold 
+              .info2#common  
+              .info3#troops 
+              .info4#time Time
               .header2 Dev
               .dev1#dev1 id:
               .dev2 Test
               .dev3 Test
               .dev4 Test
+
+    script(src="./../javascripts/mapveiwcontroller.js")
 
 
