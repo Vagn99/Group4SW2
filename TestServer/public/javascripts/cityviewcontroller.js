@@ -2,8 +2,8 @@ let gold = document.getElementById('gold');
 let common = document.getElementById('common');
 let troops = document.getElementById('troops');
 
-playerdata();
-setInterval(playerdata, 500);
+//playerdata();
+//setInterval(playerdata, 500);
 
 function playerdata() {
     fetch('/cityview/playerdata').then(response => {

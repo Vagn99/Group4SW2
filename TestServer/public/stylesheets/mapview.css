@@ -118,12 +118,12 @@ body {
 
 .grid-container div {
   border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255);
   text-align: center;
   font-size: 20px;
 }
 
-.grid-container div:hover {
+.hover {
   cursor: pointer;
   -webkit-transform: scale(0.90);
   transform: scale(0.90);
@@ -162,17 +162,26 @@ body {
 
 .info1 { 
   grid-area: info1;
-  padding: 10px; 
+  padding: 10px;
+  display: grid;
+  grid-template-areas:
+    'gold1 gold2';
 }
 
 .info2{ 
   grid-area: info2;
   padding: 10px; 
+  display: grid;
+  grid-template-areas:
+    'common1 common2';
 }
 
 .info3 { 
   grid-area: info3;
   padding: 10px; 
+  display: grid;
+  grid-template-areas:
+    'troops1 troops2';
 }
 
 .info4 { 

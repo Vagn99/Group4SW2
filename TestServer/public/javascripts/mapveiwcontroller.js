@@ -1,9 +1,9 @@
-let gold = document.getElementById('gold');
-let common = document.getElementById('common');
+let gold = document.getElementById('gold2');
+let common = document.getElementById('common2');
 let troops = document.getElementById('troops');
 
 playerdata();
-setInterval(playerdata, 500);
+//setInterval(playerdata, 500);
 
 function playerdata() {
     fetch('/mapview/playerdata').then(response => {
@@ -13,9 +13,9 @@ function playerdata() {
         return response.text();
     }).then(playerobject => {
         let playerdata = JSON.parse(playerobject);
-        common.textContent = 'Common: ' + playerdata.common.toString();
-        gold.textContent = 'Gold: ' + playerdata.gold.toString();
-        troops.textContent = 'Troops: ' + playerdata.troops.toString();
+        common.textContent =  playerdata.common.toString();
+        gold.textContent =  playerdata.gold.toString();
+        troops.textContent =  playerdata.troops.toString();
     
     }).catch(error => {
         console.log(error);

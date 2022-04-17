@@ -83,19 +83,28 @@ html(lang="en")
         .container-h
           .container-h-box
             .grid-container
-              .header#name Navn: #{username} 
-              .nav1#nav1
+              .header#name #{username} 
+              .nav1#nav1.hover
                 img(src="../images/assets/home.png" width="35px")
-              .nav2#nav2
+              .nav2#nav2.hover
                 img(src="../images/assets/village.png" width="35px")  
-              .nav3
+              .nav3#nav3.hover
                 img(src="../images/assets/chat.png" width="35px")
-              .nav4
+              .nav4#nav4.hover
                 img(src="../images/assets/logout.png" width="35px")
-              .info1#gold 
-              .info2#common  
+              .info1#gold
+                .gold1#gold1
+                  img(src="../images/assets/coin.png" width="20px")
+                .gold2#gold2
+              .info2#common
+                .common1#common1
+                  img(src="../images/assets/box.png" width="20px")
+                .common2#common2
               .info3#troops 
-              .info4#time Time
+                .troops1#troops1
+                  img(src="../images/assets/soldier.png" width="30px")
+                .troops2#troops2
+              .info4#timer
               .header2 Dev
               .dev1#dev1 id:
               .dev2 Test
@@ -103,5 +112,6 @@ html(lang="en")
               .dev4 Test
 
     script(src="./../javascripts/mapveiwcontroller.js")
+    script(src="./../javascripts/timer.js")
 
 
