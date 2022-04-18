@@ -16,3 +16,45 @@ html(lang="en")
         #button_townhall 
         #button_resource
         #button_barrack 
+<div id="images">
+        <h1>This will be a test to create a popup window when pressing a photo</h1>
+        <div id="Barracks" class="barrack"></div>
+    </div>
+   <!-- Trigger the Modal -->
+<img id="myImg" src="Cityviewprototype.png" alt="Barracks" style="width:100%;max-width:1150px">
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- The Close Button -->
+  <span class="close">&times;</span>
+
+  <!-- Modal Content () -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>*insert name of player*'s city administration</h2>
+    </div>
+    <div class="modal-body">
+      <p>this is the barracks this is where we train our troops</p>
+      <p>click here to train your troops</p>
+      <button id="myBtn">Train Troops</button>
+      <p>this is your town hall, upgrade this to level 10 to win the game</p>
+      <p>click here to upgrade townhall</p>
+      <button id="myBtn">Upgrade townhall</button>
+      <p>this is your base resources, you get them passively, upgrade this 
+        to increse the amount of base resources you get passively </p>
+      <p>click here to upgrade passive income of basis resources</p>
+      <button id="myBtn">Upgrade resources</button>
+    </div>
+    <div class="modal-footer">
+      <h3>*insert name of player*'s city administration</h3>
+    </div>
+  </div>
+
+  <!-- Modal Caption (Image Text) -->
+  <div id="caption"></div>
+</div>  
+ <script src="javascripts/Modal.js"></script>
+</body>
+</html>
