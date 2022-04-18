@@ -5,6 +5,7 @@ class Player {
     #mapCoordinates;
     #resources;
     #gold;
+    #color;
 
     constructor(id, playerName, townName, x, y) {
         this.#playerName = playerName;

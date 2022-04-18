@@ -15,6 +15,7 @@ body {
   background-image: url(https://i.imgur.com/FOHv2pm.png);
   background-position: 0px 0px;
   animation: animatedBackground 5s linear infinite alternate-reverse;
+  font-family: Verdana;
 }
 
 .blur {
@@ -37,11 +38,11 @@ body {
 }
 
 .resource1 {
-  background-image: url(https://i.imgur.com/o7yDmW1.png)!important;
+  background-image: url(../images/Tiles/Medieval/farm.png)!important;
 }
 
 .resource2 {
-  background-image: url(https://i.imgur.com/fHN7hUe.png)!important;
+  background-image: url(../images/Tiles/Medieval/gold.png)!important;
 }
 
 .container-v {
@@ -102,25 +103,31 @@ body {
 }
 
 .grid-container {
+  font-size: 5em;
   display: grid;
   grid-template-areas:
     'header header header header'
+    'level level level level'
     'nav1 nav2 nav3 nav4'
     'info1 info1 info2 info2'
-    'info3 info3 info4 info4'
+    'info3 info3 info3 info3'
     'header2 header2 header2 header2'
-    'dev1 dev2 dev3 dev4';
+    'dev1 dev2 dev3 dev4'
+    'time time time time';
   gap: 10px;
   padding: 10px;
   color: black;
-  font-size: 5px;
 }
 
 .grid-container div {
   border-radius: 4px;
   background-color: rgba(255, 255, 255);
-  text-align: center;
   font-size: 20px;
+  align-items: center;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  height: auto;
 }
 
 .hover {
@@ -133,6 +140,15 @@ body {
   grid-area: header; 
   padding: 20px;
 }
+.level { 
+  grid-area: level;
+  padding: 5px;
+}
+.time {
+  grid-area: time; 
+  padding: 3px;
+}
+
 .header1 { 
   grid-area: header1;
   padding: 5px; 
@@ -176,18 +192,15 @@ body {
 
 .info3 { 
   grid-area: info3;
-  padding: 5px; 
+  padding: 3px; 
+  align-items: center;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  height: auto;
   display: grid;
   grid-template-areas:
-    'troops1 troops2';
-}
-
-.info4 { 
-  grid-area: info4;
-  padding: 5px; 
-  display: grid;
-  grid-template-areas:
-    'time1 time2';
+    'troops1 troops2 troops3';
 }
 
 .header2 { 
@@ -215,4 +228,26 @@ body {
 .dev4 { 
   grid-area: dev4;
   padding: 10px; 
+}
+
+/* CSS */
+.button-21 {
+  align-items: right !important;
+  appearance: none;
+  border: 10%;
+  width: 80%;
+  background-color: #27ae60;
+}
+
+.button-21:active,
+.button-21:focus {
+  outline: none;
+}
+
+.button-21:hover {
+  background-position: -20px -20px;
+}
+
+.button-21:focus:not(:active) {
+  box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
 }

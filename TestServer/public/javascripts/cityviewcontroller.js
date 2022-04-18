@@ -16,7 +16,7 @@ function playerdata() {
         common.textContent = 'Common: ' + playerdata.common.toString();
         gold.textContent = 'Gold: ' + playerdata.gold.toString();
         troops.textContent = 'Troops: ' + playerdata.troops.toString();
-    
+        
     }).catch(error => {
         console.log(error);
     });
@@ -29,7 +29,7 @@ window.onload = function() {
         if (event.target.id == 'nav1') {
             location.href = 'cityview';
         }
-        if (event.target.id == 'nav2') {
+        else if (event.target.id == 'nav2') {
             location.href = 'mapview';
         }
     });

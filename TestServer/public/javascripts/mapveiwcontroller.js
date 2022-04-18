@@ -29,7 +29,7 @@ window.onload = function() {
         if (event.target.id == 'nav1') {
             location.href = 'cityview';
         }
-        if (event.target.id == 'nav2') {
+        else if (event.target.id == 'nav2') {
             location.href = 'mapview';
         }
     });
