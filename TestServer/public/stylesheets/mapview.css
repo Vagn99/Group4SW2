@@ -1,69 +1,89 @@
 .main {
-    display:flex;
-    --s:80px;  /* size  */
-    --m: 0px;    /* space */
-  }
-  
+  --s: 8vh;
+  /* size  */
+  --m: 1px;
+  /* space */
+}
+
 body {
-    min-width: 412px;
-    margin: 20px;
-    background-color: rgb(46, 140, 213); /*rgb(35 174 97); Grøn til bagrunden*/
-    font-size: 0;
-    text-align: center;
-    background-image: url(https://i.imgur.com/FOHv2pm.png);
+  overflow: hidden;
+  margin: 0;
+  background-color: rgb(46, 140, 213);
+  /*rgb(35 174 97); Grøn til bagrunden*/
+  font-size: 0;
+  text-align: center;
+  background-image: url(https://i.imgur.com/FOHv2pm.png);
+  background-position: 0px 0px;
+  animation: animatedBackground 5s linear infinite alternate-reverse;
+  font-family: Verdana;
 }
 
-#base { 
-  background-image: url(https://i.imgur.com/UfqroAA.png);
-}
-#resource1 { 
-  background-image: url(https://i.imgur.com/o7yDmW1.png);
-}
-#resource2 {
-  background-image: url(https://i.imgur.com/fHN7hUe.png);
-}
-
-.grass_border {
-  max-width: 100%;
-  height: auto;
+.blur {
+  backdrop-filter: blur(2px);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;;
 }
 
-  .container {
-    font-size: 0; /*disable white space between inline block element */
-  }
-  
-  .container div {
-    width: var(--s);
-    margin: var(--m);
-    height: calc(var(--s)*1.1547); /*  = 1/cos(30)  */
-    display: inline-block;
-    font-size:initial;
-    clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
-    margin-bottom: calc(var(--m) + var(--s)*-0.2885); /* = tan(30)/2 */
-    background-image: url(https://i.imgur.com/DuqCNxA.png); /*grass https://i.imgur.com/DuqCNxA.png */
-    background-size: contain;
-    vertical-align: middle;
-  }
-  .container::before {
-    content: "";
-    width: calc(var(--s)/2 + var(--m));
-    height: 100%;
-    --r:calc(var(--s)*3*1.1547/2 + 4*var(--m)  - 2px);
-    shape-outside: 
-     repeating-linear-gradient(     
-       transparent 0 calc(var(--r) - 3px),      
-       rgb(223, 7, 7)        0 var(--r));
-  }
+@keyframes animatedBackground {
+  from {background-position: 0 0;}
+  to {background-position: 5% 0;}
+}
 
-  .container div:hover {
-    cursor: pointer;
-    -webkit-transform: scale(0.90);
-	  transform: scale(0.90);
-    -webkit-filter: saturate(2);
-    filter: saturate(2);
-  }
+.base {
+  background-image: url(https://i.imgur.com/UfqroAA.png)!important;
+}
 
-  .container:active:after {
-    opacity: 0.5;
-    transition: 0s
-  }
+.resource1 {
+  background-image: url(../images/Tiles/Medieval/farm.png)!important;
+}
+
+.resource2 {
+  background-image: url(../images/Tiles/Medieval/gold.png)!important;
+}
+
+.container-v {
+  font-size: 0;
+  margin: 0;
+  position: absolute;
+  width: 62vw;
+  height: 60vh;
+  padding: 19vh 4vw 20vh 4vw;
+}
+
+.container-v div {
+  width: var(--s);
+  margin: var(--m);
+  height: calc(var(--s)*1.1547);
+  /*  = 1/cos(30)  */
+  display: inline-block;
+  font-size: initial;
+  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+  margin-bottom: calc(var(--m) + var(--s)*-0.2885);
+  /* = tan(30)/2 */
+  background-image: url(../images/Tiles/Terrain/Grass/grass_10.png);
+  /*grass https://i.imgur.com/DuqCNxA.png */
+  background-size: contain;
+  vertical-align: middle;
+}
+
+.container::before {
+  content: "";
+  width: calc(var(--s)/2 + var(--m));
+  height: 100%;
+  --r: calc(var(--s)*3*1.1547/2 + 4*var(--m) - 2px);
+  shape-outside:
+    repeating-linear-gradient(transparent 0 calc(var(--r) - 3px),
+      rgb(223, 7, 7) 0 var(--r));
+}
+
+.container-v div:hover {
+  cursor: pointer;
+  -webkit-transform: scale(0.90);
+  transform: scale(0.90);
+  -webkit-filter: saturate(2);
+  filter: saturate(2);
+}

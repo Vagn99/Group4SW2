@@ -1,0 +1,63 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/stylesheets/cityview.css")
+    link(rel="stylesheet", href="/stylesheets/menu.css")
+
+    title Minecraft
+  body
+    .box
+    .main
+      .container
+        #cityview_tile
+      
+      .containerbtn
+        #button_townhall 
+        #button_resource
+        #button_barrack 
+        
+      .container-h
+          .container-h-box
+            .grid-container
+              .header#name #{username} 
+              .level#level Your level: 
+              a(href="/cityview")
+                .nav1#nav1.hover
+                  img(src="../images/assets/home.png" width="35px")
+              a(href="/mapview")
+                .nav2#nav2.hover
+                  img(src="../images/assets/village.png" width="35px")
+              a(href="/login")  
+                .nav3#nav3.hover
+                  img(src="../images/assets/chat.png" width="35px")
+              a(href="/login/logout")
+                .nav4#nav4.hover
+                  img(src="../images/assets/logout.png" width="35px")
+              .info1#gold
+                .gold1#gold1
+                  img(src="../images/assets/coin.png" width="25px")
+                .gold2#gold2
+              .info2#common
+                .common1#common1
+                  img(src="../images/assets/box.png" width="25px")
+                .common2#common2
+              .info3#troops 
+                .troops1#troops1
+                  img(src="../images/assets/soldier.png" width="25px")
+                .troops2#troops2
+                .troops3#troops3
+                  button.button-21 train 
+                .troops4#troops4
+              .info4
+              .header2 Dev
+              .dev1#dev1 id:
+              .dev2 Test
+              .dev3 Test
+              .dev4 Test
+              .time#timer
+
+    script(src="./../javascripts/mapveiwcontroller.js")
+    script(src="./../javascripts/timer.js")

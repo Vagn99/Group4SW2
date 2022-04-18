@@ -19,9 +19,7 @@ router.post('/', function(req, res) {
   };
   console.log(req.session);
   if(users.get(name) === password){
-    res.render("success", {
-      username: name,
-    });
+    res.redirect("/mapview");
   }
   else{
     res.send('Login failed');
