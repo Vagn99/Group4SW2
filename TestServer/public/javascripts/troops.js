@@ -1,5 +1,5 @@
 //Add event listener to button
-let button = document.getElementById("button");
+let button = document.getElementById("troopBtn");
 button.addEventListener("click", setCount);
 
 let countDown = document.getElementById("countDown");
