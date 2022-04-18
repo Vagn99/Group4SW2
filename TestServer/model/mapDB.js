@@ -1,5 +1,5 @@
 var GameMap = require('./mapClass.js');
-var Players = require('./../model/userDB.js');
+var Players = require('./playerDB.js');
 players = Players.players;
 let townArray = [
     players.get("user1").town,

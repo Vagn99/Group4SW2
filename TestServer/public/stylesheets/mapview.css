@@ -15,6 +15,7 @@ body {
   background-image: url(https://i.imgur.com/FOHv2pm.png);
   background-position: 0px 0px;
   animation: animatedBackground 5s linear infinite alternate-reverse;
+  font-family: Verdana;
 }
 
 .blur {
@@ -32,25 +33,25 @@ body {
   to {background-position: 5% 0;}
 }
 
-#base {
-  background-image: url(https://i.imgur.com/UfqroAA.png);
+.base {
+  background-image: url(https://i.imgur.com/UfqroAA.png)!important;
 }
 
-#resource1 {
-  background-image: url(https://i.imgur.com/o7yDmW1.png);
+.resource1 {
+  background-image: url(../images/Tiles/Medieval/farm.png)!important;
 }
 
-#resource2 {
-  background-image: url(https://i.imgur.com/fHN7hUe.png);
+.resource2 {
+  background-image: url(../images/Tiles/Medieval/gold.png)!important;
 }
 
 .container-v {
   font-size: 0;
   margin: 0;
   position: absolute;
-  width: 42vw;
-  height: 66vh;
-  padding: 16vh 4vw 18vh 4vw;
+  width: 62vw;
+  height: 60vh;
+  padding: 19vh 4vw 20vh 4vw;
 }
 
 .container-v div {
@@ -85,19 +86,4 @@ body {
   transform: scale(0.90);
   -webkit-filter: saturate(2);
   filter: saturate(2);
-}
-
-.container-h {
-  margin : 0 0 0 50%; 
-  height : 100vh; 
-  width: 50vw;
-  padding: 8vh 4vw 8vh 4vw;
-}
-
-.container-h div{
-  display: grid;
-  border-radius : 10px; 
-  width: 42vw;
-  height: 84vh;
-  background : #27ae60 none repeat scroll 0% 0% / auto padding-box border-box;
 }

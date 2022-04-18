@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Players = require('./../model/userDB.js');
+var Players = require('../model/playerDB.js');
 var GameMap = require('./../model/mapDB');
 
 let players = Players.players;
@@ -9,11 +9,16 @@ let gameMap = GameMap.gameMap;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    if (req.session.loggedIn == false){
-        res.render('index', {title: 'Travian rip off'});
+    if (req.session.loggedIn){
+        res.render('mapview', {username: req.session.name});
     } else {
-        res.render('mapview');
+        res.redirect('/');
     }
+});
+
+router.get('/playerdata', function (req,res){
+    // Should send an object with visible values
+    res.send(getPlayer(req, res));
 });
 
 router.get('/start', function (req,res){
@@ -78,6 +83,16 @@ function getOwnership(x, y){
     return gameMap.cellArray[x][y].type.owner;
 }
 
-
+function getPlayer(req, res){
+    console.log(req.session.name);
+    console.log(players.get('user1').playerName);
+    let player = players.get(req.session.name);
+    return {
+        gold: player.gold,
+        common: player.resources,
+        troops: player.town.troopsInside
+        //cords: {x: player.mapCoordinates[0], y: player.mapCoordinates[1]}
+    }
+}
 
 module.exports = router;

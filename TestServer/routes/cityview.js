@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Players = require('./../model/userDB.js');
+var Players = require('../model/playerDB.js');
 var GameMap = require('./../model/mapDB');
 
 let players = Players.players;
@@ -8,10 +8,10 @@ let gameMap = GameMap.gameMap;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    if (req.session.loggedIn == false){
-        res.render('index', {title: 'Travian rip off'});
-    } else {
+    if (req.session.loggedIn){
         res.render('cityview');
+    } else {
+        res.redirect('/');
     }
 });
 
