@@ -29,9 +29,27 @@ window.onload = function() {
         if (event.target.id == 'nav1') {
             location.href = 'cityview';
         }
-        else if (event.target.id == 'nav2') {
-            location.href = 'mapview';
-        }
     });
 }
 
+var barracksModal = document.getElementById("barracksModal");
+var barracksBtn = document.getElementById("button_barrack");
+var barracksSpan = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+barracksBtn.onclick = function() {
+    barracksModal.style.display = "block";
+    console.log("d");
+}
+  
+// When the user clicks on <span> (x), close the modal
+barracksSpan.onclick = function() {
+    barracksModal.style.display = "none";
+}
+  
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target === barracksModal) {
+        barracksModal.style.display = "none";
+    }
+}
