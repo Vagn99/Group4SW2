@@ -85,14 +85,18 @@ html(lang="en")
             .grid-container
               .header#name #{username} 
               .level#level Your level: 
-              .nav1#nav1.hover
-                img(src="../images/assets/home.png" width="35px")
-              .nav2#nav2.hover
-                img(src="../images/assets/village.png" width="35px")  
-              .nav3#nav3.hover
-                img(src="../images/assets/chat.png" width="35px")
-              .nav4#nav4.hover
-                img(src="../images/assets/logout.png" width="35px")
+              a(href="/cityview")
+                .nav1#nav1.hover
+                  img(src="../images/assets/home.png" width="35px")
+              a(href="/mapview")
+                .nav2#nav2.hover
+                  img(src="../images/assets/village.png" width="35px")  
+              a
+                .nav3#nav3.hover
+                  img(src="../images/assets/chat.png" width="35px")
+              a(href="/login/logout")
+                .nav4#nav4.hover
+                  img(src="../images/assets/logout.png" width="35px")
               .info1#gold
                 .gold1#gold1
                   img(src="../images/assets/coin.png" width="25px")
