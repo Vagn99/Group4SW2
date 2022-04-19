@@ -48,3 +48,13 @@
     padding: 10px; 
     grid-area: i;
   }
+
+  .button_train { 
+    color: #fff;
+    font-size: 2em;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 6px;
+    background: #27ae60;
+  }
