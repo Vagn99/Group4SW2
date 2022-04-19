@@ -224,10 +224,10 @@ class Barracks extends Building {
 
     newTrainTroops(town){
         console.log("Starting trainNewTroop ")
+        this.queue = this.queue + 1;
         if (!this.barrackInUse){
             this.trainNextTroop(town);
         } else {
-            this.queue = this.queue+1;
             console.log("Queue added!")
         }
     }
@@ -238,14 +238,14 @@ class Barracks extends Building {
         this.trainingTimeLeft = this.trainingTime;
         let trainTimer = setInterval(()=>{
             this.trainingTimeLeft--;
-            if (this.trainingTimeLeft===0) {
+            if (this.trainingTimeLeft===1) {
                 clearInterval(trainTimer);
                 // increse troops by 1 ;
                 town.troopsInside = town.troopsInside + 1;
                 this.barrackInUse = false;
                 console.log("Trained a troop! Troops are now: " + town.troopsInside);
+                this.queue = this.queue - 1;
                 if (this.queue > 0) {
-                    this.queue = this.queue - 1;
                     this.trainNextTroop(town);
                 }
             }

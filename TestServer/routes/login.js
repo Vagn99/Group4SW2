@@ -39,7 +39,8 @@ router.get('/', function(req, res, next) {
 router.get('/logout', function(req, res, next) {
   req.session.loggedIn = false;
   console.log(req.session);
-  res.render('index', { title: 'Travian rip off' });
+  // res.render('index', { title: 'Travian rip off' });
+  res.redirect('/');
 });
 
 
