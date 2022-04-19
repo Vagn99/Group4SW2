@@ -20,9 +20,10 @@
       'level level level level'
       'nav1 nav2 nav3 nav4'
       'info1 info1 info2 info2'
-      'info3 info3 info3 info3'
+      'info3 info3 info4 info4'
       'header2 header2 header2 header2'
       'dev1 dev2 dev3 dev4'
+      'selector selector selector selector'
       'time time time time';
     gap: 10px;
     padding: 10px;
@@ -110,7 +111,11 @@
     height: auto;
     display: grid;
     grid-template-areas:
-      'troops1 troops2 troops3';
+      'troops1 troops2';
+  }
+  .info4 { 
+    grid-area: info3;
+    padding: 3px; 
   }
   
   .header2 { 
@@ -138,26 +143,4 @@
   .dev4 { 
     grid-area: dev4;
     padding: 10px; 
-  }
-  
-  /* CSS */
-  .button-21 {
-    align-items: right !important;
-    appearance: none;
-    border: 10%;
-    width: 80%;
-    background-color: #27ae60;
-  }
-  
-  .button-21:active,
-  .button-21:focus {
-    outline: none;
-  }
-  
-  .button-21:hover {
-    background-position: -20px -20px;
-  }
-  
-  .button-21:focus:not(:active) {
-    box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
   }

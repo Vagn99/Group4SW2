@@ -1,0 +1,42 @@
+.selector { 
+    grid-area: selector;
+    padding: 10px; 
+    gap: 10px;
+    display: grid;
+    grid-template-areas:
+      'h h h h'
+      's1 s1 s2 s2'
+      's3 s3 s4 s4'
+      'train train train train'
+      'i i i i';
+  }
+  .h {
+  padding: 10px; 
+  border: 3px solid #27ae60;
+  grid-area: h;
+  }
+  
+  .s1 {
+    padding: 10px; 
+    grid-area: s1;
+  }
+  .s2 {
+    padding: 10px; 
+    grid-area: s2;
+  }
+  .s3 {
+    padding: 10px; 
+    grid-area: s3;
+  }
+  .s4 {
+    padding: 10px; 
+    grid-area: s4;
+  }
+  .train { 
+    padding: 10px; 
+    grid-area: train;
+  }
+  .i { 
+    padding: 10px; 
+    grid-area: i;
+  }
