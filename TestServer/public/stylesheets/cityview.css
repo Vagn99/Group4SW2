@@ -106,10 +106,8 @@ body {
   background-repeat: no-repeat;
 }
 
-.container-v div:hover {
+.containerbtn div:hover {
   cursor: pointer;
-  -webkit-transform: scale(0.90);
-  transform: scale(0.90);
   -webkit-filter: saturate(2);
   filter: saturate(2);
 }
