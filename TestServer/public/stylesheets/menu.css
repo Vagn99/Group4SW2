@@ -43,8 +43,6 @@
   
   .hover {
     cursor: pointer;
-    -webkit-filter: saturate(2);
-    filter: saturate(2);
   }
   
   .header { 
