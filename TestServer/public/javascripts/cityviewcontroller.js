@@ -1,22 +1,24 @@
-let gold = document.getElementById('gold');
-let common = document.getElementById('common');
-let troops = document.getElementById('troops');
+let gold = document.getElementById('gold2');
+let common = document.getElementById('common2');
+let troops = document.getElementById('troops2');
+let name = document.getElementById('name');
 
-//playerdata();
-//setInterval(playerdata, 500);
+playerdata();
+setInterval(playerdata, 500);
 
 function playerdata() {
-    fetch('/cityview/playerdata').then(response => {
+    fetch('/cityview/start').then(response => {
         if (!response.ok) {
             throw new Error("Response error: " + response.status);
         }
         return response.text();
     }).then(playerobject => {
         let playerdata = JSON.parse(playerobject);
-        common.textContent = 'Common: ' + playerdata.common.toString();
-        gold.textContent = 'Gold: ' + playerdata.gold.toString();
-        troops.textContent = 'Troops: ' + playerdata.troops.toString();
-        
+        common.textContent = playerdata.commonResources.toString();
+        gold.textContent = playerdata.goldResources.toString();
+        troops.textContent = playerdata.troopsInside.toString();
+        name.textContent = playerdata.playerName;
+
     }).catch(error => {
         console.log(error);
     });

@@ -17,20 +17,21 @@ router.get('/', function(req, res, next) {
 
 router.get('/start', function (req, res){
     // Should send an object with visible values
-    res.send(getStartValues());
+    res.send(getStartValues(req,res));
 });
 
 router.get('/update', function (req, res){
     // Should send an object with visible values
-    res.send(getUpdateValues());
+    res.send(getUpdateValues(req,res));
 });
 
 // This function should return an object with visible values for start
-function getStartValues(){
+function getStartValues(req,res){
     //Values: townhall level, resources per sec, resources, gold per sec, gold,
     // troops in town, troop training cost, town hall upgrade cost,
     let player = players.get(req.session.name);
-    let valuePack = getUpdateValues();
+    let valuePack = getUpdateValues(req,res);
+    valuePack.playerName = req.session.name;
     valuePack.troopTrainingCost = player.town.barracks.trainingCost;
     valuePack.upgradeCostTownHall = player.town.townHall.upgradeCost;
 
@@ -38,7 +39,7 @@ function getStartValues(){
 }
 
 // This function should return an object with visible values for update
-function getUpdateValues(){
+function getUpdateValues(req,res){
     //Values: townhall level, resources per sec, resources, gold per sec, gold,
     // troops in town
     let player = players.get(req.session.name);
