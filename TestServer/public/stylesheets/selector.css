@@ -12,25 +12,33 @@
   }
   .h {
   padding: 10px; 
-  border: 3px solid #27ae60;
+  border: 6px solid #27ae60;
   grid-area: h;
   }
   
   .s1 {
     padding: 10px; 
     grid-area: s1;
+    grid-template-areas:
+      's11 s12';
   }
   .s2 {
     padding: 10px; 
     grid-area: s2;
+    grid-template-areas:
+      's21 s22';
   }
   .s3 {
     padding: 10px; 
     grid-area: s3;
+    grid-template-areas:
+      's31 s32';
   }
   .s4 {
     padding: 10px; 
     grid-area: s4;
+    grid-template-areas:
+      's41 s42';
   }
   .train { 
     padding: 10px; 
