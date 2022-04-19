@@ -28,4 +28,3 @@ window.onload = function() {
         document.getElementById("dev1").textContent = ""+ event.target.id;
     });
 }
-
