@@ -25,7 +25,7 @@ body {
   background-image: url(../images/Objects/Custom/Townhall);
   position: relative;
   top: -3vw;
-  left: 17vw;
+  left: 31vw;
   height: 10vw;
   width: 8vw;
 }
@@ -34,7 +34,7 @@ body {
   background-image: url(../images/Objects/Custom/Resource);
   position: relative;
   top: 6vw;
-  left: -2vw;
+  left: 11vw;
   height: 10vw;
   width: 8vw;
 }
@@ -43,15 +43,15 @@ body {
   background-image: url(../images/Objects/Custom/Barracks);
   position: relative;
   top: 12vw;
-  left: 1vw;
-  height: 10vw;
+  left: 19vw;
+  height: 15vw;
   width: 8vw;
   transform: scaleX(-1);
 }
 
 .container {
   font-size: 0;
-  margin: 0;
+  left: 15%;
   position: absolute;
   top: 40%;
   -ms-transform: translateY(-50%);
