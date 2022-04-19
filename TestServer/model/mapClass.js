@@ -1,3 +1,4 @@
+
 class GameMap {
 
     #cellArray = [];
@@ -192,7 +193,6 @@ class ResourceField {
         this.#locationOnMap = value;
     }
 }
-
 
 module.exports = {
     GameMap,
