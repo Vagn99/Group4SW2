@@ -112,8 +112,11 @@
       'troops1 troops2';
   }
   .info4 { 
+    display: grid;
     grid-area: info4;
     padding: 3px; 
+    grid-template-areas:
+      'outtroops1 outtroops2';
   }
   
   .header2 { 

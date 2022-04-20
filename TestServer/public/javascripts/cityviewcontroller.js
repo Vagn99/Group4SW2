@@ -2,7 +2,7 @@
 let gold = document.getElementById('gold2');
 let common = document.getElementById('common2');
 let troops = document.getElementById('troops2');
-let troops2 = document.getElementById('insideTroops');
+//let troops2 = document.getElementById('insideTroops');
 let name = document.getElementById('name');
 let troopTrainingCost = document.getElementById('cost');
 
@@ -37,7 +37,7 @@ function playerdata() {
         
         common.textContent = playerdata.commonResources.toString();
         gold.textContent = playerdata.goldResources.toString();
-        troops2.textContent = playerdata.troopsInside.toString();
+        //troops2.textContent = playerdata.troopsInside.toString();
         troops.textContent = playerdata.troopsInside.toString();
         name.textContent = playerdata.playerName;
         troopTrainingCost.textContent = playerdata.troopTrainingCost.toString();
