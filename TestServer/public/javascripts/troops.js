@@ -27,12 +27,12 @@ function getStart(){
         //Object parsing dont work!!!
         let town = JSON.parse(townJason);
         console.log(town);
-        document.querySelector("#count").textContent = town.troopsInside.toString() + " troops in town";
+        document.querySelector("#count").textContent = town.troopsInside.toString();
         barrackTrainingTime = town.trainingTime;
         if (town.queue>0) {
             queue = town.queue;
             console.log("queue is: "+ queue);
-            showQueue.textContent = queue.toString() + " troops in queue";
+            showQueue.textContent = queue.toString();
         }
         if (town.barrackInUse){
             //needs time from server
@@ -73,12 +73,12 @@ function setCount() {
 
         if (!working && queue > 0) {
             //Function
-            showQueue.textContent = queue.toString() + " troops in queue";
+            showQueue.textContent = queue.toString();
             displayWork(barrackTrainingTime/10);
         } else if (queue === 0){
             showQueue.textContent = "Not enough resources!"
         } else if (queue > 0){
-            showQueue.textContent = queue.toString() + " troops in queue";
+            showQueue.textContent = queue.toString();
         } else {
             showQueue.textContent = "";
         }
@@ -91,7 +91,7 @@ function setCount() {
 function displayWork(workTime) {
     working = true;
     let j = parseInt(workTime);
-    countDown.textContent = "Troop ready in " + j + " seconds";
+    countDown.textContent = "Next troop ready in " + j + " seconds";
     let intervalCount = setInterval(() => {
         if (j === 1) {
             clearInterval(intervalCount);
@@ -108,7 +108,7 @@ function displayWork(workTime) {
             }
         } else {
             j--;
-            countDown.textContent = "Troop ready in " + j + " seconds";
+            countDown.textContent = "Next troop ready in " + j + " seconds";
         }
     }, 1005)
 
