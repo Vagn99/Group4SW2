@@ -24,7 +24,7 @@ router.get('/start', function (req, res){
 router.get('/get', function(req, res) {
     //console.log(req.session.name);
 
-    res.send(players.get(req.session.name).town.troopsInside + " troops in town");
+    res.send(players.get(req.session.name).town.troopsInside.toString());
 
 });
 

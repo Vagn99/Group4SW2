@@ -8,13 +8,14 @@ class Player {
     #gold;
     #color;
 
-    constructor(id, playerName, townName, x, y) {
+    constructor(id, playerName, townName, x, y, color) {
         this.#playerName = playerName;
         this.#id = id;
         this.#town = new Town(playerName, id, townName, x, y);
         this.#mapCoordinates = [x, y];
         this.#resources = 10;
         this.#gold = 0;
+        this.#color = color;
     }
 
     get id() {
@@ -46,6 +47,12 @@ class Player {
     }
     set gold(value) {
         this.#gold = value;
+    }
+    get color() {
+        return this.#color;
+    }
+    set color(value) {
+        this.#color = value;
     }
 }
 
