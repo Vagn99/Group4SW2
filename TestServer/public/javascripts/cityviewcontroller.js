@@ -52,6 +52,24 @@ function playerdata() {
     });
 }
 
+function upgradeTownHall() {
+    fetch('/upgradeTownHall').then(response => {
+        if (!response.ok) {
+            throw new Error("Response error: " + response.status);
+        }
+        return response.text();
+    }).then(upgradeResponse => {
+        //Set name displaying response = upgrade response.
+        //the responses are either time to upgrade complete in secs (as a string), or "Not enough resources"
+    }).catch(error => {
+        console.log(error);
+    });
+}
+
+
+
+
+
 
 
 window.onload = function() {

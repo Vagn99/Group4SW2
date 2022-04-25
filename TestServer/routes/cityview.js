@@ -25,6 +25,20 @@ router.get('/update', function (req, res){
     res.send(getUpdateValues(req,res));
 });
 
+router.get('/upgradeTownHall', function (req, res){
+    res.send((req,res)=>{
+        let player = players.get(req.session.name);
+        let upgradeResponse = player.town.townHall.upgradeBuilding(player);
+        if (upgradeResponse>=0){
+            return upgradeResponse.toString();
+        } else {
+            return "Not enough resources!";
+        }
+    });
+});
+
+
+
 // This function should return an object with visible values for start
 function getStartValues(req,res){
     //Values: townhall level, resources per sec, resources, gold per sec, gold,
@@ -33,7 +47,6 @@ function getStartValues(req,res){
     let valuePack = getUpdateValues(req,res);
     valuePack.playerName = req.session.name;
     valuePack.troopTrainingCost = player.town.barracks.trainingCost;
-    valuePack.upgradeCostTownHall = player.town.townHall.upgradeCost;
 
     return valuePack;
 }
@@ -49,8 +62,9 @@ function getUpdateValues(req,res){
         // handle income from conquered fields
         commonResources: player.resources,
         goldResourcesPerSec: 0,
-        goldResources: 0,
+        goldResources: player.gold,
         troopsInside: player.town.troopsInside,
+        upgradeCostTownHall: player.town.townHall.upgradeCost,
     }
     return valuePack;
 }

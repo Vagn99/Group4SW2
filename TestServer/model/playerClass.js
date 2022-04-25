@@ -1,11 +1,14 @@
 
 class Player {
+
     #id;
     #playerName;
     #town;
     #mapCoordinates;
     #resources;
+    #resourcesPerSec;
     #gold;
+    #goldPerSec = 0;
     #color;
 
     constructor(id, playerName, townName, x, y, color) {
@@ -14,6 +17,7 @@ class Player {
         this.#town = new Town(playerName, id, townName, x, y);
         this.#mapCoordinates = [x, y];
         this.#resources = 10;
+        this.#resourcesPerSec = this.town.baseField.resourcePerSec;
         this.#gold = 0;
         this.#color = color;
     }
@@ -54,6 +58,26 @@ class Player {
     set color(value) {
         this.#color = value;
     }
+    get resourcesPerSec() {
+        return this.#resourcesPerSec;
+    }
+    set resourcesPerSec(value) {
+        this.#resourcesPerSec = value;
+    }
+    get goldPerSec() {
+        return this.#goldPerSec;
+    }
+    set goldPerSec(value) {
+        this.#goldPerSec = value;
+    }
+
+
+    generateIncome(common, gold){
+        setInterval(()=>{
+            this.resources = this.resources + this.resourcesPerSec;
+            this.gold = this.gold + this.goldPerSec;
+        },1000)
+    }
 }
 
 class Town {
@@ -75,8 +99,8 @@ class Town {
         this.#townName = townName;
         this.#troopsInside = 0;
         this.#locationOnMap = [x, y];
-        this.#townHall = new Townhall();
-        this.#baseField = new Basefield();
+        this.#townHall = new TownHall();
+        this.#baseField = new BaseField();
         this.#barracks = new Barracks();
     }
 
@@ -135,9 +159,11 @@ class Town {
 
 class Building {
 
+
     #lvl;
     #name;
     #upgradeCost = [0,0];
+    #upgradeTime = 0;
 
     constructor(name) {
         this.#lvl = 0;
@@ -162,20 +188,40 @@ class Building {
     set upgradeCost(value) {
         this.#upgradeCost = value;
     }
-}
+    get upgradeTime() {
+        return this.#upgradeTime;
+    }
+    set upgradeTime(value) {
+        this.#upgradeTime = value;
+    }
 
-class Townhall extends Building {
-    constructor() {
-        super('Townhall');
-        this.upgradeCost = [1,1];
+    upgradeBuilding(player){
+        if (player.resources>this.upgradeCost[0] && player.gold>this.upgradeCost[1]){
+            player.resources = player.resources-this.upgradeCost[0];
+            player.gold = player.gold-this.upgradeCost[1];
+            setTimeout(()=>{
+                this.lvl = this.lvl +1;
+            }, this.upgradeTime*1000)
+            return this.upgradeTime;
+        } else {
+            return -1;
+        }
     }
 }
 
-class Basefield extends Building {
+class TownHall extends Building {
+    constructor() {
+        super('Town Hall');
+        this.upgradeCost = [1,1];
+        this.upgradeTime = 5;
+    }
+}
+
+class BaseField extends Building {
     #resourcePerSec;
 
     constructor() {
-        super('Basefield');
+        super('Base Field');
         this.#resourcePerSec = 1;
     }
 
