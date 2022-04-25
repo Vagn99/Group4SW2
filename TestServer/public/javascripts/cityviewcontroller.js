@@ -7,6 +7,7 @@ let name = document.getElementById('name');
 let troopTrainingCost = document.getElementById('cost');
 
 //Add event listener to button
+/*
 let button = document.getElementById("buttonTrain");
 button.addEventListener("click", setCount);
 
@@ -16,15 +17,19 @@ let showQueue = document.getElementById("queue");
 let working = false;
 let queue = 0;
 let barrackTrainingTime = 0;
+*/
+
 
 //Runs at page load
-getStart();
+//getStart();
 playerdata();
 
 //Make the number update every X seconds
 
-setInterval(playerdata, 500);
-setInterval(getCount, 500);
+setInterval(()=>{
+    playerdata();
+}, 500);
+//setInterval(getCount, 500);
 
 function playerdata() {
     fetch('/cityview/start').then(response => {
@@ -56,7 +61,7 @@ window.onload = function() {
 }
 
 //This!!!
-
+/*
 
 function getStart(){
     fetch('/number/start').then(response => {
@@ -153,6 +158,6 @@ function displayWork(workTime) {
         }
     }, 1005)
 
-}
+} */
 
 
