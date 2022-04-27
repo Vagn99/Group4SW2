@@ -96,7 +96,7 @@ class Player {
 
 
 
-    generateIncome(common, gold){
+    generateIncome(){
         setInterval(()=>{
             this.resources = this.resources + this.resourcesPerSec;
             this.gold = this.gold + this.goldPerSec;
