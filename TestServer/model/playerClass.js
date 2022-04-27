@@ -76,7 +76,22 @@ class Player {
         return this.#controlledResources;
     }
 
-    
+    addField(field){
+        this.controlledResources.set(field.location[0].toString() + field.location[1].toString(),field);
+        if (field.type == "common") {
+            this.resourcesPerSec = this.resourcesPerSec + field.resourcePerSec;
+        } else if (field.type == "gold"){
+            this.goldPerSec = this.resourcesPerSec + field.resourcePerSec;
+        }
+    }
+    removeField(field){
+        this.controlledResources.delete(field.location[0].toString() + field.location[1].toString());
+        if (field.type == "common") {
+            this.resourcesPerSec = this.resourcesPerSec - field.resourcePerSec;
+        } else if (field.type == "gold"){
+            this.goldPerSec = this.resourcesPerSec - field.resourcePerSec;
+        }
+    }
 
 
 

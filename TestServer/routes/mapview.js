@@ -53,7 +53,7 @@ function sendTroopsToLocation(req,res){
     let cell = gameMap.cellArray[req.query.x][req.query.y];
     //if uncontrolled
     if (cell.owner==""){
-        getControlOfCell(cell,req,res);
+        takeControlOfCell(cell,req,res);
         cell.type.troopsInside = Number(req.query.troopsSend);
     } //if controlled by another player
     else {
@@ -61,10 +61,10 @@ function sendTroopsToLocation(req,res){
     }
 }
 //Still needs a function in player calls to handle changes in income
-function getControlOfCell(cell,req,res){
-    players.get(cell.owner).controlledResources.delete(cell.location[0].toString()+cell.location[1].toString())
+function takeControlOfCell(cell,req,res){
+    players.get(cell.owner).removeField(cell.type);
     cell.owner = req.session.name;
-    players.get(req.session.name).controlledResources.set(cell.location[0].toString()+cell.location[1].toString(), cell.type);
+    players.get(req.session.name).addField(cell.type);
 
 }
 
