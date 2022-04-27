@@ -10,6 +10,7 @@ class Player {
     #gold;
     #goldPerSec = 0;
     #color;
+    #controlledResources;
 
     constructor(id, playerName, townName, x, y, color) {
         this.#playerName = playerName;
@@ -20,6 +21,7 @@ class Player {
         this.#resourcesPerSec = this.town.baseField.resourcePerSec;
         this.#gold = 0;
         this.#color = color;
+        this.#controlledResources = new Map;
     }
 
     get id() {
@@ -70,6 +72,13 @@ class Player {
     set goldPerSec(value) {
         this.#goldPerSec = value;
     }
+    get controlledResources() {
+        return this.#controlledResources;
+    }
+
+    
+
+
 
 
     generateIncome(common, gold){

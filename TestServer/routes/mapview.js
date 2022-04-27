@@ -32,6 +32,42 @@ router.get('/update', function (req,res){
 });
 
 
+// Test route in prep for send troops
+router.get('/sendId', function (req,res){
+    // Should send an object with visible values
+    res.send(showId(req,res));
+});
+
+function showId(req,res){
+    console.log("x="+req.query.x);
+    console.log("y="+req.query.y);
+}
+
+// Test route in prep for send troops
+router.get('/sendTroopsToLocation', function (req,res){
+    // Should send an object with visible values
+    res.send(sendTroopsToLocation(req,res));
+});
+
+function sendTroopsToLocation(req,res){
+    let cell = gameMap.cellArray[req.query.x][req.query.y];
+    //if uncontrolled
+    if (cell.owner==""){
+        getControlOfCell(cell,req,res);
+        cell.type.troopsInside = Number(req.query.troopsSend);
+    } //if controlled by another player
+    else {
+
+    }
+}
+//Still needs a function in player calls to handle changes in income
+function getControlOfCell(cell,req,res){
+    players.get(cell.owner).controlledResources.delete(cell.location[0].toString()+cell.location[1].toString())
+    cell.owner = req.session.name;
+    players.get(req.session.name).controlledResources.set(cell.location[0].toString()+cell.location[1].toString(), cell.type);
+
+}
+
 // This function should return an object with visible values for start
 function getStartValues(){
     //Values: All player town hall level, field ownership, (if map approach, then also:

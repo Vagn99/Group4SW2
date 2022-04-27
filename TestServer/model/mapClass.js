@@ -76,6 +76,7 @@ class Cell {
     }
     set owner(value) {
         this.#owner = value;
+        this.type.owner = value;
     }
     get type() {
         return this.#type;
