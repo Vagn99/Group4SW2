@@ -65,7 +65,6 @@ function takeControlOfCell(cell,req,res){
     players.get(cell.owner).removeField(cell.type);
     cell.owner = req.session.name;
     players.get(req.session.name).addField(cell.type);
-
 }
 
 // This function should return an object with visible values for start
