@@ -41,6 +41,7 @@ router.get('/sendId', function (req,res){
 function showId(req,res){
     console.log("x="+req.query.x);
     console.log("y="+req.query.y);
+    console.log("troopsSend="+req.query.troopsSend);
 }
 
 // Test route in prep for send troops

@@ -1,11 +1,15 @@
 let gold = document.getElementById('gold2');
 let common = document.getElementById('common2');
 let troops = document.getElementById('troops2');
+
+let numberOfTroops = document.getElementById("numberOfTroops");
+let attackButton = document.getElementById("buttonAttack");
+attackButton.addEventListener("click", sendId);
 let x;
 let y;
 
 playerdata();
-setInterval(playerdata, 500);
+setInterval(playerdata, 5000);
 
 function playerdata() {
     fetch('/mapview/playerdata').then(response => {
@@ -27,25 +31,34 @@ function playerdata() {
 window.onload = function() {
     document.addEventListener('click', function handleClick(event) {
         console.log('Button id:',event.target.id);
-        sendId(event.target.id);
+        currentTileSelected(event.target.id);
 
         document.getElementById("dev1").textContent = ""+ event.target.id;
     });
 }
 
-//Test function for sending troops
-function sendId(id){
-    if (id!="") {
+function currentTileSelected(id){
+    if (id!=""&&Number(id.charAt(1))<10) {
         x = id.charAt(1);
         y = id.charAt(2);
-        fetch('/mapview/sendId?x=' + x + "&y=" + y).then(response => {
+    }
+}
+
+//Test function for sending troops
+function sendId(){
+    if (x!=undefined&&y!=undefined) {
+        fetch('/mapview/sendId?x=' + x + "&y=" + y + "&troopsSend=" + document.querySelector('input').value)
+        .then(response => {
             if (!response.ok) {
                 throw new Error("Response error: " + response.status);
             }
             return response.text();
-        }).then(handle => {
+        })
+        .then(handle => {
+            console.log(document.querySelector('input').value);
             console.log("Send nudes");
-        }).catch(error => {
+        })
+        .catch(error => {
             console.log(error);
         });
     }
