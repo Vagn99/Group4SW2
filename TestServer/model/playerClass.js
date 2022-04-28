@@ -223,6 +223,8 @@ class Building {
         if (player.resources>this.upgradeCost[0] && player.gold>this.upgradeCost[1]){
             player.resources = player.resources-this.upgradeCost[0];
             player.gold = player.gold-this.upgradeCost[1];
+            this.upgradeCost[0] = this.upgradeCost[0]+1;
+            this.upgradeCost[1] = this.upgradeCost[1]+1;
             setTimeout(()=>{
                 this.lvl = this.lvl +1;
             }, this.upgradeTime*1000)

@@ -51,20 +51,28 @@ router.get('/sendTroopsToLocation', function (req,res){
 
 function sendTroopsToLocation(req,res){
     let cell = gameMap.cellArray[req.query.x][req.query.y];
+    let attackingTroops = Number(req.query.troopsSend);
+    players.get(req.session.name).town.troopsInside -= attackingTroops;
     //if uncontrolled
     if (cell.owner==""){
-        takeControlOfCell(cell,req,res);
-        cell.type.troopsInside = Number(req.query.troopsSend);
+        takeControlOfCell(cell, attackingTroops, req, res);
     } //if controlled by another player
     else {
+        if (attackingTroops>cell.type.troopsInside){
+            attackingTroops -= cell.type.troopsInside;
+            takeControlOfCell(cell, attackingTroops, req, res);
+        } else {
+            cell.type.troopsInside = cell.type.troopsInside - attackingTroops;
+        }
 
     }
 }
 //Still needs a function in player calls to handle changes in income
-function takeControlOfCell(cell,req,res){
+function takeControlOfCell(cell, attackingTroops, req, res){
     players.get(cell.owner).removeField(cell.type);
     cell.owner = req.session.name;
     players.get(req.session.name).addField(cell.type);
+    cell.type.troopsInside = attackingTroops;
 }
 
 // This function should return an object with visible values for start

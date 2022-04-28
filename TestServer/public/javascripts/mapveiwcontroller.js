@@ -5,7 +5,7 @@ let x;
 let y;
 
 playerdata();
-//setInterval(playerdata, 500);
+setInterval(playerdata, 500);
 
 function playerdata() {
     fetch('/mapview/playerdata').then(response => {
