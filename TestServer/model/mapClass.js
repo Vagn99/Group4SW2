@@ -25,6 +25,13 @@ class GameMap {
             }
         }
         //Assigns towns to map location
+        this.cellArray[2][0].owner = type[0].owner;
+        this.cellArray[0][2].owner = type[1].owner;
+        this.cellArray[6][8].owner = type[2].owner;
+        this.cellArray[6][2].owner = type[3].owner;
+        this.cellArray[8][6].owner = type[4].owner;
+        this.cellArray[2][6].owner = type[5].owner;
+
         this.cellArray[2][0].type = type[0];
         this.cellArray[0][2].type = type[1];
         this.cellArray[6][8].type = type[2];
@@ -120,8 +127,8 @@ class ResourceField {
 
     #resourcesPerSec;
     #type;
-    #troopsInside = 0;
-    #owner = "";
+    #troopsInside = 5;
+    #owner = "user7";
     #locationOnMap = [];
 
     constructor(resourcesPerSec, type, x, y) {

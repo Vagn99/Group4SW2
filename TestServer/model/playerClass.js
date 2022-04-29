@@ -75,21 +75,27 @@ class Player {
     get controlledResources() {
         return this.#controlledResources;
     }
+    get mapCoordinates() {
+        return this.#mapCoordinates;
+    }
+    set mapCoordinates(value) {
+        this.#mapCoordinates = value;
+    }
 
     addField(field){
-        this.controlledResources.set(field.location[0].toString() + field.location[1].toString(),field);
+        this.controlledResources.set(field.locationOnMap[0].toString() + field.locationOnMap[1].toString(),field);
         if (field.type == "common") {
-            this.resourcesPerSec = this.resourcesPerSec + field.resourcePerSec;
+            this.resourcesPerSec = this.resourcesPerSec + field.resourcesPerSec;
         } else if (field.type == "gold"){
-            this.goldPerSec = this.resourcesPerSec + field.resourcePerSec;
+            this.goldPerSec = this.goldPerSec + field.resourcesPerSec;
         }
     }
     removeField(field){
-        this.controlledResources.delete(field.location[0].toString() + field.location[1].toString());
+        this.controlledResources.delete(field.locationOnMap[0].toString() + field.locationOnMap[1].toString());
         if (field.type == "common") {
-            this.resourcesPerSec = this.resourcesPerSec - field.resourcePerSec;
+            this.resourcesPerSec = this.resourcesPerSec - field.resourcesPerSec;
         } else if (field.type == "gold"){
-            this.goldPerSec = this.resourcesPerSec - field.resourcePerSec;
+            this.goldPerSec = this.goldPerSec - field.resourcesPerSec;
         }
     }
 
@@ -121,7 +127,7 @@ class Town {
         this.#id = id;
         this.#owner = playerName;
         this.#townName = townName;
-        this.#troopsInside = 0;
+        this.#troopsInside = 5;
         this.#locationOnMap = [x, y];
         this.#townHall = new TownHall();
         this.#baseField = new BaseField();
