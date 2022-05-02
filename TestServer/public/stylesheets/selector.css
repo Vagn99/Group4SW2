@@ -1,12 +1,12 @@
-.selector { 
-    grid-area: selector;
+/* BARRAC */
+
+.selector1 { 
+    grid-area: selector1;
     padding: 10px; 
-    gap: 10px;
     display: grid;
     grid-template-areas:
       'h h h h'
       's1 s1 s2 s2'
-      's3 s3 s4 s4'
       'train train train train'
       'i i i i';
   }
@@ -28,18 +28,6 @@
     grid-template-areas:
       's21 s22';
   }
-  .s3 {
-    padding: 10px; 
-    grid-area: s3;
-    grid-template-areas:
-      's31 s32';
-  }
-  .s4 {
-    padding: 10px; 
-    grid-area: s4;
-    grid-template-areas:
-      's41 s42';
-  }
   .train { 
     padding: 10px; 
     grid-area: train;
@@ -58,4 +46,32 @@
     border-radius: 6px;
     background: #27ae60;
 
+  }
+
+  /* Townhall */
+
+  .selector2 { 
+    grid-area: selector2;
+    padding: 10px; 
+    display: grid;
+    grid-template-areas:
+      'h h h h'
+      's1 s1 s2 s2'
+      's3 s3 s4 s4'
+      'train train train train'
+      'i i i i';
+  }
+
+   /* Resource */
+
+   .selector3 { 
+    grid-area: selector3;
+    padding: 10px; 
+    display: grid;
+    grid-template-areas:
+      'h h h h'
+      's1 s1 s2 s2'
+      's3 s3 s4 s4'
+      'train train train train'
+      'i i i i';
   }

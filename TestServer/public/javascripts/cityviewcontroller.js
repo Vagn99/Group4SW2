@@ -23,8 +23,8 @@ playerdata();
 
 //Make the number update every X seconds
 
-setInterval(playerdata, 500);
-setInterval(getCount, 500);
+//setInterval(playerdata, 500);
+//setInterval(getCount, 500);
 
 function playerdata() {
     fetch('/cityview/start').then(response => {
@@ -50,8 +50,41 @@ function playerdata() {
 
 
 window.onload = function() {
+
+    var barrack = document.getElementsByClassName("selector1")[0];
+    var townhall = document.getElementsByClassName("selector2")[0];
+    var resource = document.getElementsByClassName("selector3")[0];
+
+    barrack.style.display = "none";
+    townhall.style.display = "none";
+    resource.style.display = "none";
+
     document.addEventListener('click', function handleClick(event) {
         console.log('Button id:',event.target.id);
+        if (event.target.id == 'button_barrack') {
+                if (townhall.style.display === "grid" || resource.style.display === "grid") {
+                    townhall.style.display = "none";
+                    resource.style.display = "none";
+                    
+            }
+            barrack.style.display = "grid";
+        }        
+        if (event.target.id == 'button_townhall') {
+                if (barrack.style.display === "grid" || resource.style.display === "grid") {
+                    barrack.style.display = "none";
+                    resource.style.display = "none";
+                    
+            }
+            townhall.style.display = "grid";
+        }  
+        if (event.target.id == 'button_resource') {
+                if (barrack.style.display === "grid" || townhall.style.display === "grid") {
+                    barrack.style.display = "none";
+                    townhall.style.display = "none";
+                    
+            }
+            resource.style.display = "grid";
+        }
     });
 }
 

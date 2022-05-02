@@ -12,9 +12,41 @@
     background : #27ae60 none repeat scroll 0% 0% / auto padding-box border-box;
   }
   
+  .grid-main {
+    display: grid;
+    padding: 10px;
+    grid-template-areas:
+      'grid-container grid-container grid-container grid-container'
+      'selector selector selector selector'
+      'time time time time';
+    padding: 10px;
+  }
+
+  .selector { 
+    grid-area: selector;
+    padding: 10px; 
+    display: grid;
+    grid-template-areas:
+      'selector1 selector1 selector1 selector1'
+      'selector2 selector2 selector2 selector2'
+      'selector3 selector3 selector3 selector3'
+  }
+
+  .selector div {
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255);
+    font-size: 20px;
+    align-items: center;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    height: auto;
+  }
+
   .grid-container {
     font-size: 5em;
     display: grid;
+    grid-area: grid-container; 
     grid-template-areas:
       'header header header header'
       'level level level level'
@@ -22,9 +54,7 @@
       'info1 info1 info2 info2'
       'info3 info3 info4 info4'
       'header2 header2 header2 header2'
-      'dev1 dev2 dev3 dev4'
-      'selector selector selector selector'
-      'time time time time';
+      'dev1 dev2 dev3 dev4';
     gap: 10px;
     padding: 10px;
     color: black;
@@ -55,7 +85,18 @@
   }
   .time {
     grid-area: time; 
-    padding: 3px;
+    padding: 10px; 
+  }
+
+  .time div {
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255);
+    font-size: 20px;
+    align-items: center;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    height: auto;
   }
   
   .header1 { 

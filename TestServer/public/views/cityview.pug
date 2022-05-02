@@ -22,50 +22,56 @@ html(lang="en")
         
       .container-h
           .container-h-box
-            .grid-container
-              .header#name #{username} 
-              .level#level Your level: 
-              a(href="/cityview")
-                .nav1#nav1.hover
-                  img(src="../images/assets/home.png" width="35px")
-              a(href="/mapview")
-                .nav2#nav2.hover
-                  img(src="../images/assets/village.png" width="35px")
-              a(href="/login")  
-                .nav3#nav3.hover
-                  img(src="../images/assets/chat.png" width="35px")
-              a(href="/login/logout")
-                .nav4#nav4.hover
-                  img(src="../images/assets/logout.png" width="35px")
-              .info1#gold
-                .gold1#gold1
-                  img(src="../images/assets/coin.png" width="25px")
-                .gold2#gold2 0
-              .info2#common
-                .common1#common1
-                  img(src="../images/assets/box.png" width="25px")
-                .common2#common2 0
-              .info3#troops 
-                .troops1#troops1
-                  img(src="../images/assets/intown.png" width="25px")
-                .troops2#troops2
-              .info4#info4
-                .outtroops1#outtroops1
-                  img(src="../images/assets/outtown.png" width="25px")
-                .outtroops2#outtroops2 0
+            .grid-main
+              .grid-container
+                .header#name #{username} 
+                .level#level Your level: 
+                a(href="/cityview")
+                  .nav1#nav1.hover
+                    img(src="../images/assets/home.png" width="35px")
+                a(href="/mapview")
+                  .nav2#nav2.hover
+                    img(src="../images/assets/village.png" width="35px")
+                a(href="/login")  
+                  .nav3#nav3.hover
+                    img(src="../images/assets/chat.png" width="35px")
+                a(href="/login/logout")
+                  .nav4#nav4.hover
+                    img(src="../images/assets/logout.png" width="35px")
+                .info1#gold
+                  .gold1#gold1
+                    img(src="../images/assets/coin.png" width="25px")
+                  .gold2#gold2 0
+                .info2#common
+                  .common1#common1
+                    img(src="../images/assets/box.png" width="25px")
+                  .common2#common2 0
+                .info3#troops 
+                  .troops1#troops1
+                    img(src="../images/assets/intown.png" width="25px")
+                  .troops2#troops2
+                .info4#info4
+                  .outtroops1#outtroops1
+                    img(src="../images/assets/outtown.png" width="25px")
+                  .outtroops2#outtroops2 0
               .selector
-                .h Barrack
-                .s3
-                  .s31
-                    img(src="../images/assets/dollar.png" width="25px" alt="Cost")
-                  .s32#cost 0
-                .s4
-                  .s41
-                    img(src="../images/assets/que.png" width="25px" alt="Queue")
-                  .s42#queue 0
-                .train 
-                  button.button_train.hover#buttonTrain Train
-                  .i#queueTime info
+                .selector1
+                  .h Barrack
+                  .s1
+                    .s11
+                      img(src="../images/assets/dollar.png" width="25px" alt="Cost")
+                      .s12#cost 0
+                  .s2
+                    .s21
+                      img(src="../images/assets/que.png" width="25px" alt="Queue")
+                      .s22#queue 0
+                  .train 
+                    button.button_train.hover#buttonTrain Train
+                    .i#queueTime info
+                .selector2
+                  .h Townhall
+                .selector3
+                  .h Resource
               .time#timer
 
     script(src="./../javascripts/cityviewcontroller.js")
