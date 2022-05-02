@@ -56,10 +56,41 @@
     display: grid;
     grid-template-areas:
       'h h h h'
-      's1 s1 s2 s2'
-      's3 s3 s4 s4'
-      'train train train train'
+      't1 t1 t2 t2'
+      'upgrade upgrade upgrade upgrade'
       'i i i i';
+  }
+
+  .t1 {
+    padding: 10px; 
+    grid-area: t1;
+    grid-template-areas:
+      't11 t12';
+  }
+  .t2 {
+    padding: 10px; 
+    grid-area: t2;
+    grid-template-areas:
+      't21 t22';
+  }
+  .upgrade { 
+    padding: 10px; 
+    grid-area: upgrade;
+  }
+  .i { 
+    padding: 10px; 
+    grid-area: i;
+  }
+
+  .button_upgrade { 
+    color: #fff;
+    font-size: 2em;
+    width: 100%;
+    height: 100%;
+    border: -4px;
+    border-radius: 6px;
+    background: #27ae60;
+
   }
 
    /* Resource */
@@ -70,8 +101,19 @@
     display: grid;
     grid-template-areas:
       'h h h h'
-      's1 s1 s2 s2'
-      's3 s3 s4 s4'
-      'train train train train'
+      'r1 r1 r2 r2'
       'i i i i';
+  }
+
+  .r1 {
+    padding: 10px; 
+    grid-area: r1;
+    grid-template-areas:
+      'r11 r12';
+  }
+  .r2 {
+    padding: 10px; 
+    grid-area: r2;
+    grid-template-areas:
+      'r21 r22';
   }
