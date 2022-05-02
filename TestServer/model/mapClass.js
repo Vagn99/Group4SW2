@@ -1,3 +1,4 @@
+var startValues = require('./startValues.js');
 
 class GameMap {
 
@@ -25,6 +26,13 @@ class GameMap {
             }
         }
         //Assigns towns to map location
+        this.cellArray[2][0].owner = type[0].owner;
+        this.cellArray[0][2].owner = type[1].owner;
+        this.cellArray[6][8].owner = type[2].owner;
+        this.cellArray[6][2].owner = type[3].owner;
+        this.cellArray[8][6].owner = type[4].owner;
+        this.cellArray[2][6].owner = type[5].owner;
+
         this.cellArray[2][0].type = type[0];
         this.cellArray[0][2].type = type[1];
         this.cellArray[6][8].type = type[2];
@@ -53,10 +61,10 @@ class Cell {
         switch (x.toString() + y.toString()){
             case "00": case "40": case "33": case "43": case "04": case "34":
             case "54": case "84": case "45": case "55": case "48": case "88":
-                this.#type = new ResourceField(1, "common",x,y);
+                this.#type = new ResourceField(startValues.startCommonTileRecoursesPerSec, "common",x,y);
                 break;
             case "22": case "42": case "24": case "44": case "64": case "46": case "66":
-                this.#type = new ResourceField(1, "gold",x,y);
+                this.#type = new ResourceField(startValues.startGoldTileRecoursesPerSec, "gold",x,y);
                 break;
             default:
                 this.#type = new ResourceField(0, type, x, y);
@@ -76,6 +84,7 @@ class Cell {
     }
     set owner(value) {
         this.#owner = value;
+        this.type.owner = value;
     }
     get type() {
         return this.#type;
@@ -119,8 +128,8 @@ class ResourceField {
 
     #resourcesPerSec;
     #type;
-    #troopsInside = 0;
-    #owner = "";
+    #troopsInside = startValues.startTroopsNeutralTiles;
+    #owner = "user7";
     #locationOnMap = [];
 
     constructor(resourcesPerSec, type, x, y) {

@@ -1,21 +1,28 @@
+var startValues = require('./startValues.js');
 
 class Player {
+
     #id;
     #playerName;
     #town;
     #mapCoordinates;
     #resources;
+    #resourcesPerSec;
     #gold;
+    #goldPerSec = 0;
     #color;
+    #controlledResources;
 
     constructor(id, playerName, townName, x, y, color) {
         this.#playerName = playerName;
         this.#id = id;
         this.#town = new Town(playerName, id, townName, x, y);
         this.#mapCoordinates = [x, y];
-        this.#resources = 10;
-        this.#gold = 0;
+        this.#resources = startValues.startCommon;
+        this.#resourcesPerSec = this.town.baseField.resourcePerSec;
+        this.#gold = startValues.startGold;
         this.#color = color;
+        this.#controlledResources = new Map;
     }
 
     get id() {
@@ -54,6 +61,54 @@ class Player {
     set color(value) {
         this.#color = value;
     }
+    get resourcesPerSec() {
+        return this.#resourcesPerSec;
+    }
+    set resourcesPerSec(value) {
+        this.#resourcesPerSec = value;
+    }
+    get goldPerSec() {
+        return this.#goldPerSec;
+    }
+    set goldPerSec(value) {
+        this.#goldPerSec = value;
+    }
+    get controlledResources() {
+        return this.#controlledResources;
+    }
+    get mapCoordinates() {
+        return this.#mapCoordinates;
+    }
+    set mapCoordinates(value) {
+        this.#mapCoordinates = value;
+    }
+
+    addField(field){
+        this.controlledResources.set(field.locationOnMap[0].toString() + field.locationOnMap[1].toString(),field);
+        if (field.type == "common") {
+            this.resourcesPerSec = this.resourcesPerSec + field.resourcesPerSec;
+        } else if (field.type == "gold"){
+            this.goldPerSec = this.goldPerSec + field.resourcesPerSec;
+        }
+    }
+    removeField(field){
+        this.controlledResources.delete(field.locationOnMap[0].toString() + field.locationOnMap[1].toString());
+        if (field.type == "common") {
+            this.resourcesPerSec = this.resourcesPerSec - field.resourcesPerSec;
+        } else if (field.type == "gold"){
+            this.goldPerSec = this.goldPerSec - field.resourcesPerSec;
+        }
+    }
+
+
+
+
+    generateIncome(){
+        setInterval(()=>{
+            this.resources = this.resources + this.resourcesPerSec;
+            this.gold = this.gold + this.goldPerSec;
+        },1000)
+    }
 }
 
 class Town {
@@ -73,10 +128,10 @@ class Town {
         this.#id = id;
         this.#owner = playerName;
         this.#townName = townName;
-        this.#troopsInside = 0;
+        this.#troopsInside = startValues.startTroopsPlayers;
         this.#locationOnMap = [x, y];
-        this.#townHall = new Townhall();
-        this.#baseField = new Basefield();
+        this.#townHall = new TownHall();
+        this.#baseField = new BaseField();
         this.#barracks = new Barracks();
     }
 
@@ -135,9 +190,11 @@ class Town {
 
 class Building {
 
+
     #lvl;
     #name;
     #upgradeCost = [0,0];
+    #upgradeTime = 0;
 
     constructor(name) {
         this.#lvl = 0;
@@ -162,21 +219,43 @@ class Building {
     set upgradeCost(value) {
         this.#upgradeCost = value;
     }
-}
+    get upgradeTime() {
+        return this.#upgradeTime;
+    }
+    set upgradeTime(value) {
+        this.#upgradeTime = value;
+    }
 
-class Townhall extends Building {
-    constructor() {
-        super('Townhall');
-        this.upgradeCost = [1,1];
+    upgradeBuilding(player){
+        if (player.resources>this.upgradeCost[0] && player.gold>this.upgradeCost[1]){
+            player.resources = player.resources-this.upgradeCost[0];
+            player.gold = player.gold-this.upgradeCost[1];
+            this.upgradeCost[0] = this.upgradeCost[0]+1;
+            this.upgradeCost[1] = this.upgradeCost[1]+1;
+            setTimeout(()=>{
+                this.lvl = this.lvl +1;
+            }, this.upgradeTime*1000)
+            return this.upgradeTime;
+        } else {
+            return -1;
+        }
     }
 }
 
-class Basefield extends Building {
+class TownHall extends Building {
+    constructor() {
+        super('Town Hall');
+        this.upgradeCost = startValues.startTownHallUpgradeCost;
+        this.upgradeTime = startValues.startTownHallUpgradeTime;
+    }
+}
+
+class BaseField extends Building {
     #resourcePerSec;
 
     constructor() {
-        super('Basefield');
-        this.#resourcePerSec = 1;
+        super('Base Field');
+        this.#resourcePerSec = startValues.startCommonIncome;
     }
 
     get resourcePerSec() {
@@ -189,14 +268,15 @@ class Basefield extends Building {
 
 class Barracks extends Building {
 
-    #trainingTime = 50;
+    #trainingTime = startValues.startTroopTrainingTime*10;
     #queue = 0;
     #barrackInUse = false;
     #trainingTimeLeft = 0;
-    #trainingCost = 1;
+    #trainingCost;
 
     constructor() {
         super('Barracks');
+        this.#trainingCost = startValues.startTroopsCost;
     }
     get queue() {
         return this.#queue;
@@ -244,10 +324,9 @@ class Barracks extends Building {
         this.barrackInUse = true;
         this.trainingTimeLeft = this.trainingTime;
         let trainTimer = setInterval(()=>{
-            this.trainingTimeLeft--;
-            if (this.trainingTimeLeft===1) {
+            if (this.trainingTimeLeft===6) {
                 clearInterval(trainTimer);
-                // increse troops by 1 ;
+                // increase troops by 1 ;
                 town.troopsInside = town.troopsInside + 1;
                 this.barrackInUse = false;
                 console.log("Trained a troop! Troops are now: " + town.troopsInside);
@@ -255,6 +334,8 @@ class Barracks extends Building {
                 if (this.queue > 0) {
                     this.trainNextTroop(town);
                 }
+            } else {
+                this.trainingTimeLeft--;
             }
         },100);
     }
