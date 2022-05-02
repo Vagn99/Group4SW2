@@ -1,3 +1,4 @@
+var startValues = require('./startValues.js');
 
 class Player {
 
@@ -17,9 +18,9 @@ class Player {
         this.#id = id;
         this.#town = new Town(playerName, id, townName, x, y);
         this.#mapCoordinates = [x, y];
-        this.#resources = 10;
+        this.#resources = startValues.startCommon;
         this.#resourcesPerSec = this.town.baseField.resourcePerSec;
-        this.#gold = 0;
+        this.#gold = startValues.startGold;
         this.#color = color;
         this.#controlledResources = new Map;
     }
@@ -127,7 +128,7 @@ class Town {
         this.#id = id;
         this.#owner = playerName;
         this.#townName = townName;
-        this.#troopsInside = 5;
+        this.#troopsInside = startValues.startTroopsPlayers;
         this.#locationOnMap = [x, y];
         this.#townHall = new TownHall();
         this.#baseField = new BaseField();
@@ -244,8 +245,8 @@ class Building {
 class TownHall extends Building {
     constructor() {
         super('Town Hall');
-        this.upgradeCost = [1,1];
-        this.upgradeTime = 5;
+        this.upgradeCost = startValues.startTownHallUpgradeCost;
+        this.upgradeTime = startValues.startTownHallUpgradeTime;
     }
 }
 
@@ -254,7 +255,7 @@ class BaseField extends Building {
 
     constructor() {
         super('Base Field');
-        this.#resourcePerSec = 1;
+        this.#resourcePerSec = startValues.startCommonIncome;
     }
 
     get resourcePerSec() {
@@ -267,14 +268,15 @@ class BaseField extends Building {
 
 class Barracks extends Building {
 
-    #trainingTime = 50;
+    #trainingTime = startValues.startTroopTrainingTime*10;
     #queue = 0;
     #barrackInUse = false;
     #trainingTimeLeft = 0;
-    #trainingCost = 1;
+    #trainingCost;
 
     constructor() {
         super('Barracks');
+        this.#trainingCost = startValues.startTroopsCost;
     }
     get queue() {
         return this.#queue;

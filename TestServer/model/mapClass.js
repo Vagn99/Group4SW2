@@ -1,3 +1,4 @@
+var startValues = require('./startValues.js');
 
 class GameMap {
 
@@ -60,10 +61,10 @@ class Cell {
         switch (x.toString() + y.toString()){
             case "00": case "40": case "33": case "43": case "04": case "34":
             case "54": case "84": case "45": case "55": case "48": case "88":
-                this.#type = new ResourceField(1, "common",x,y);
+                this.#type = new ResourceField(startValues.startCommonTileRecoursesPerSec, "common",x,y);
                 break;
             case "22": case "42": case "24": case "44": case "64": case "46": case "66":
-                this.#type = new ResourceField(1, "gold",x,y);
+                this.#type = new ResourceField(startValues.startGoldTileRecoursesPerSec, "gold",x,y);
                 break;
             default:
                 this.#type = new ResourceField(0, type, x, y);
@@ -127,7 +128,7 @@ class ResourceField {
 
     #resourcesPerSec;
     #type;
-    #troopsInside = 5;
+    #troopsInside = startValues.startTroopsNeutralTiles;
     #owner = "user7";
     #locationOnMap = [];
 
