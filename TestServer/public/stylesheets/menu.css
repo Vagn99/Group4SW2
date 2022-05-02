@@ -30,6 +30,7 @@
       'selector1 selector1 selector1 selector1'
       'selector2 selector2 selector2 selector2'
       'selector3 selector3 selector3 selector3'
+      'selector4 selector4 selector4 selector4';
   }
 
   .selector div {
@@ -52,9 +53,7 @@
       'level level level level'
       'nav1 nav2 nav3 nav4'
       'info1 info1 info2 info2'
-      'info3 info3 info4 info4'
-      'header2 header2 header2 header2'
-      'dev1 dev2 dev3 dev4';
+      'info3 info3 info4 info4';
     gap: 10px;
     padding: 10px;
     color: black;

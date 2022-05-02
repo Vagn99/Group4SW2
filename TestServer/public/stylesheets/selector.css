@@ -117,3 +117,47 @@
     grid-template-areas:
       'r21 r22';
   }
+
+  /* Attack */
+
+  .selector4 { 
+    grid-area: selector4;
+    padding: 10px; 
+    display: grid;
+    grid-template-areas:
+      'h h h h'
+      'a1 a1 a2 a2'
+      'attack attack attack attack'
+      'i i i i';
+  }
+  .a1 {
+    padding: 10px; 
+    grid-area: a1;
+    grid-template-areas:
+      'a11 a12';
+  }
+  .a2 {
+    padding: 10px; 
+    grid-area: a2;
+    grid-template-areas:
+      'a21 a22';
+  }
+  .attack { 
+    padding: 10px; 
+    grid-area: attack;
+  }
+  .i { 
+    padding: 10px; 
+    grid-area: i;
+  }
+
+  .button_attack { 
+    color: #fff;
+    font-size: 2em;
+    width: 100%;
+    height: 100%;
+    border: -4px;
+    border-radius: 6px;
+    background: #27ae60;
+
+  }
