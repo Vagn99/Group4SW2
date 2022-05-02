@@ -112,3 +112,8 @@ body {
   -webkit-filter: saturate(2);
   filter: saturate(2);
 }
+
+.barrack, .townHall, .baseRecourseField{
+  display: none;
+}
+

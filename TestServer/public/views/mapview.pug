@@ -6,6 +6,8 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel="stylesheet", href="/stylesheets/mapview.css")
     link(rel="stylesheet", href="/stylesheets/menu.css")
+    link(rel="stylesheet", href="/stylesheets/selector.css")
+
     title Minecraft
   body
     .box
@@ -112,6 +114,18 @@ html(lang="en")
                     img(src="../images/assets/soldier.png" width="25px")
                   .troops2#troops2
                 .info4#info4
+              .header2 Dev
+              .dev1#dev1 id:
+              .dev2 Test
+              .dev3 Test
+              .dev4 Test
+              .selector
+                .h Select a tile to attack, and how many troops
+                .s3
+                  input(type="number", max="0", id="numberOfTroops")
+                .train
+                  button.button_train.hover#buttonAttack Attack
+                  .i#queueTime info
               .time#timer
 
 

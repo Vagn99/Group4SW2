@@ -16,44 +16,125 @@ router.get('/', function(req, res, next) {
     }
 });
 
-router.get('/playerdata', function (req,res){
+router.get('/getValues', function (req,res){
     // Should send an object with visible values
-    res.send(getPlayer(req, res));
-});
-
-router.get('/start', function (req,res){
-    // Should send an object with visible values
-    res.send(getStartValues());
-});
-
-router.get('/update', function (req,res){
-    // Should send an object with visible values
-    res.send(getUpdateValues());
+    res.send(getValues(req, res));
 });
 
 
-// This function should return an object with visible values for start
-function getStartValues(){
-    //Values: All player town hall level, field ownership, (if map approach, then also:
-    // field income value, troops on every plot.)
-    let mapObject = [[]];
-    for (let i = 0; i < 9; i++) {
-        for (let j = 0; j < 9; j++) {
-            mapObject[i][j].cell = {};
-            mapObject[i][j].cell.owner = gameMap.cellArray[i][j].owner;
-            mapObject[i][j].cell.troopsInside = gameMap.cellArray[i][j].type.troopsInside;
-            if (gameMap.cellArray[i][j].type.type == "town"){
-                mapObject[i][j].cell.townHallLVL = gameMap.cellArray[i][j].type.townHall.lvl;
-            } else if (gameMap.cellArray[i][j].type.type == "common" || gameMap.cellArray[i][j].type.type == "gold"){
-                mapObject[i][j].cell.resourcesPerSec = gameMap.cellArray[i][j].type.resourcesPerSec;
-            }
+// Test route in prep for send troops
+router.get('/sendId', function (req,res){
+    // Should send an object with visible values
+    res.send(showId(req,res));
+});
 
-        }
-    }
-
-    return mapObject;
+function showId(req,res){
+    console.log("x="+req.query.x);
+    console.log("y="+req.query.y);
+    console.log("troopsSend="+req.query.troopsSend);
 }
 
+// Test route in prep for send troops
+router.get('/sendTroopsToLocation', function (req,res){
+    // Should send an object with visible values
+    showId(req, res);
+    let text = sendTroopsToLocation(req,res);
+    console.log(text);
+    res.send(text);
+});
+//could use some cleanup
+function sendTroopsToLocation(req,res){
+    let cell = gameMap.cellArray[req.query.x][req.query.y];
+    let attackingTroops = Number(req.query.troopsSend);
+
+    players.get(req.session.name).town.troopsInside -= attackingTroops;
+    //If the player already owns the tile, it just moves the troops
+    if (cell.owner==req.session.name){
+        cell.type.troopsInside += attackingTroops;
+        return {
+            message: "You own this tile already, moving troops!",
+            victory: false
+        };
+    } //If attacking another players city
+    else if (cell.type.type == "town"){
+        if (players.get(cell.type.owner).gold>attackingTroops){
+            players.get(cell.type.owner).gold -= attackingTroops;
+            players.get(req.session.name).gold += attackingTroops;
+            return {
+                message: "You stole "+ attackingTroops + " gold from " + cell.type.owner,
+                victory: false
+            };
+        } else {
+            let goldText = players.get(cell.type.owner).gold;
+            players.get(req.session.name).gold += players.get(cell.type.owner).gold;
+            players.get(cell.type.owner).gold = 0;
+            return {
+                message: "You stole "+ goldText + " gold from " + cell.type.owner,
+                victory: false
+            };
+        }
+    }//If attacking an uncontrolled recourse tile
+    else if (cell.type.owner==""){
+        return takeControlOfCell(cell, attackingTroops, req, res);
+    }//If attacking a recourse tile controlled by another player
+    else {
+        if (attackingTroops>cell.type.troopsInside){
+            attackingTroops -= cell.type.troopsInside;
+            return takeControlOfCell(cell, attackingTroops, req, res);
+        } else {
+            cell.type.troopsInside = cell.type.troopsInside - attackingTroops;
+            return {
+                message: "You lost, " + cell.type.troopsInside + " troop remaining on " + cell.location,
+                victory: false
+            };
+        }
+
+    }
+}
+
+function takeControlOfCell(cell, attackingTroops, req, res){
+    console.log("Time to take control");
+    if (cell.owner!="") {
+        players.get(cell.owner).removeField(cell.type);
+    }
+    cell.owner = req.session.name;
+    players.get(req.session.name).addField(cell.type);
+    cell.type.troopsInside = attackingTroops;
+    return {
+        message: "You now control the " + cell.type.type + " at " + cell.location,
+        victory: true
+    };
+}
+
+// This function should return an object with visible values for start
+function getValues(req, res){
+    //Values: All player town hall level, field ownership, (if map approach, then also:
+    // field income value, troops on every plot.)
+    let player = players.get(req.session.name);
+    let mapCreator = [];
+    for (let i = 0; i < 9; i++) {
+        mapCreator.push([]);
+    }
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            mapCreator[i][j] = {};
+            mapCreator[i][j].owner = gameMap.cellArray[i][j].owner;
+            mapCreator[i][j].troopsInside = gameMap.cellArray[i][j].type.troopsInside;
+        }
+    }
+    let valueObject = {
+        mapObject: mapCreator,
+        playerObject: {
+            gold: player.gold,
+            common: player.resources,
+            troops: player.town.troopsInside,
+            playerLocation: player.mapCoordinates[0].toString()+player.mapCoordinates[1].toString()
+        }
+    }
+    console.log("Im done! Here's start values ");
+    return valueObject;
+}
+/*
 // This function should return an object with visible values for update
 function getUpdateValues(){
     //Values: All player town hall level, toops inside, ownership
@@ -83,16 +164,21 @@ function getOwnership(x, y){
     return gameMap.cellArray[x][y].type.owner;
 }
 
+router.get('/playerData', function (req,res){
+    // Should send an object with visible values
+    res.send(getPlayer(req, res));
+});
+
+
 function getPlayer(req, res){
-    console.log(req.session.name);
-    console.log(players.get('user1').playerName);
+    console.log(req.session.name + " updated");
     let player = players.get(req.session.name);
     return {
         gold: player.gold,
         common: player.resources,
-        troops: player.town.troopsInside
-        //cords: {x: player.mapCoordinates[0], y: player.mapCoordinates[1]}
+        troops: player.town.troopsInside,
+        playerLocation: player.mapCoordinates[0].toString()+player.mapCoordinates[1].toString()
     }
 }
-
+*/
 module.exports = router;

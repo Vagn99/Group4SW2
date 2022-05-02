@@ -1,8 +1,8 @@
 //Add event listener to button
-let button = document.getElementById("buttomTrain");
+let button = document.getElementById("buttonTrain");
 button.addEventListener("click", setCount);
 
-let countDown = document.getElementById("countDown");
+let countDown = document.getElementById("queueTime");
 let showQueue = document.getElementById("queue");
 
 let working = false;
@@ -14,7 +14,6 @@ let barrackTrainingTime = 0;
 getStart();
 
 //Make the number update every X seconds
-//setInterval(getCount, 5000);
 
 
 function getStart(){
@@ -27,7 +26,7 @@ function getStart(){
         //Object parsing dont work!!!
         let town = JSON.parse(townJason);
         console.log(town);
-        document.querySelector("#count").textContent = town.troopsInside.toString();
+        troops.textContent = town.troopsInside.toString();
         barrackTrainingTime = town.trainingTime;
         if (town.queue>0) {
             queue = town.queue;
@@ -53,7 +52,7 @@ function getCount() {
         return response.text();
     }).then(text => {
         console.log("Updating count!");
-        document.querySelector("#count").textContent = text;
+        troops.textContent = text;
     }).catch(error => {
         console.log(error);
     });
@@ -62,13 +61,13 @@ function getCount() {
 
 //Request server to count
 function setCount() {
-    fetch('/number/set'
-    ).then(response => {
+    fetch('/number/set')
+        .then(response => {
         if (!response.ok) {
             throw new Error("Response error: " + response.status)
         }
-        return response.text();
-    }).then(text => {
+        return response.text();})
+        .then(text => {
         queue = Number(text);
 
         if (!working && queue > 0) {
@@ -82,8 +81,8 @@ function setCount() {
         } else {
             showQueue.textContent = "";
         }
-        console.log(text);
-    }).catch(error => {
+        console.log(text);})
+        .catch(error => {
         console.log(error);
     });
 }
@@ -100,7 +99,7 @@ function displayWork(workTime) {
             console.log("Queue is: "+ queue);
             if (queue > 1) {
                 queue--;
-                showQueue.textContent = queue.toString() + " troops in queue";
+                showQueue.textContent = queue.toString();
                 displayWork(barrackTrainingTime/10);
             } else {
                 showQueue.textContent = "";
