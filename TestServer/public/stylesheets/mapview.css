@@ -38,8 +38,25 @@ body {
 }
 
 .base[id="i20"]{
-  background-image: url(../images/Tiles/Sci-fi/scifi_base.png)!important;
+  background-image: url(../images/mapview/BaseRed.png)!important;
 }
+.base[id="i02"]{
+  background-image: url(../images/mapview/BaseBlue.png)!important;
+}
+.base[id="i68"]{
+  background-image: url(../images/mapview/BaseOrange.png)!important;
+}
+.base[id="i62"]{
+  background-image: url(../images/mapview/BasePink.png)!important;
+}
+.base[id="i86"]{
+  background-image: url(../images/mapview/BaseYellow.png)!important;
+}
+.base[id="i26"]{
+  background-image: url(../images/mapview/BaseGreen.png)!important;
+}
+
+
 
 .resource1 {
   background-image: url(../images/Tiles/Medieval/farm.png)!important;
