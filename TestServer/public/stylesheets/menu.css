@@ -19,7 +19,6 @@
       'grid-container grid-container grid-container grid-container'
       'selector selector selector selector'
       'time time time time';
-    padding: 10px;
   }
 
   .selector { 
@@ -86,18 +85,6 @@
     grid-area: time; 
     padding: 10px; 
   }
-
-  .time div {
-    border-radius: 4px;
-    background-color: rgba(255, 255, 255);
-    font-size: 20px;
-    align-items: center;
-    font-size: 1rem;
-    text-align: center;
-    text-decoration: none;
-    height: auto;
-  }
-  
   .header1 { 
     grid-area: header1;
     padding: 5px; 
@@ -161,27 +148,5 @@
   
   .header2 { 
     grid-area: header2;
-    padding: 10px; 
-  }
-  
-  .dev1 { 
-    padding: 10px;
-    grid-area: dev1;
-    text-align: center;
-    font-size-adjust: 0.74;
-  }
-  
-  .dev2 { 
-    grid-area: dev2;
-    padding: 10px; 
-  }
-  
-  .dev3 { 
-    grid-area: dev3;
-    padding: 10px; 
-  }
-  
-  .dev4 { 
-    grid-area: dev4;
     padding: 10px; 
   }

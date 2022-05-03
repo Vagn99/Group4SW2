@@ -67,11 +67,28 @@
     grid-template-areas:
       't11 t12';
   }
+  .t11 {
+    padding: 10px; 
+    grid-area: t11;
+  }
+  .t12 {
+    padding: 10px; 
+    grid-area: t12;
+  }
+
   .t2 {
     padding: 10px; 
     grid-area: t2;
     grid-template-areas:
       't21 t22';
+  }
+  .t21 {
+    padding: 10px; 
+    grid-area: t21;
+  }
+  .t22 {
+    padding: 10px; 
+    grid-area: t22;
   }
   .upgrade { 
     padding: 10px; 
@@ -124,8 +141,12 @@
     grid-area: selector4;
     padding: 10px; 
     display: grid;
+    gap: 5px;
     grid-template-areas:
       'h h h h'
+      'h1 h1 h1 h1'
+      'i1 i1 i2 i2'
+      'i3 i3 i4 i4'
       'a1 a1 a2 a2'
       'attack attack attack attack'
       'i i i i';
@@ -160,4 +181,25 @@
     border-radius: 6px;
     background: #27ae60;
 
+  }
+  .h1 { 
+    padding: 10px; 
+    grid-area: h1;
+    border: 2px solid #27ae60;
+  }
+  .i1 { 
+    padding: 10px; 
+    grid-area: i1;
+  }
+  .i2 { 
+    padding: 10px; 
+    grid-area: i2;
+  }
+  .i3 { 
+    padding: 10px; 
+    grid-area: i3;
+  }
+  .i4 { 
+    padding: 10px; 
+    grid-area: i4;
   }

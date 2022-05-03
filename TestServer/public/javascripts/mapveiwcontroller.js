@@ -8,6 +8,7 @@ let attackButton = document.getElementById("buttonAttack");
 attackButton.addEventListener("click", sendTroopsToLocation);
 let x;
 let y;
+let array = [];
 
 getValues();
 
@@ -19,10 +20,19 @@ window.onload = function() {
     document.addEventListener('click', function handleClick(event) {
         console.log('Button id:',event.target.id);
         currentTileSelected(event.target.id);
+       
+        array = event.target.id.split('i')
+        document.getElementsByClassName('i1')[0].textContent = array[1];
 
-        document.getElementById("dev1").textContent = ""+ event.target.id;
     });
 }
+
+/*
+function tile(id) {
+    array = id.split('i')
+    return array[1];
+}
+*/
 
 function currentTileSelected(id){
     if (id!=""&&Number(id.charAt(1))<10) {
