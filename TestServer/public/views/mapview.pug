@@ -6,6 +6,8 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel="stylesheet", href="/stylesheets/mapview.css")
     link(rel="stylesheet", href="/stylesheets/menu.css")
+    link(rel="stylesheet", href="/stylesheets/selector.css")
+
     title Minecraft
   body
     .box
@@ -84,7 +86,7 @@ html(lang="en")
         .container-h
           .container-h-box
             .grid-container
-              .header#name #{username} 
+              .header#name #{username}
               .level#level Your level: 1 
               a(href="/cityview")
                 .nav1#nav1.hover
@@ -116,6 +118,13 @@ html(lang="en")
               .dev2 Test
               .dev3 Test
               .dev4 Test
+              .selector
+                .h Select a tile to attack, and how many troops
+                .s3
+                  input(type="number", max="0", id="numberOfTroops")
+                .train
+                  button.button_train.hover#buttonAttack Attack
+                  .i#queueTime info
               .time#timer
 
 

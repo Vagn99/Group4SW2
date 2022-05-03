@@ -12,7 +12,7 @@ body {
   /*rgb(35 174 97); Grøn til bagrunden*/
   font-size: 0;
   text-align: center;
-  background-image: url(https://i.imgur.com/FOHv2pm.png);
+  background-image: url(../images/FOHv2pm.png);
   background-position: 0px 0px;
   animation: animatedBackground 5s linear infinite alternate-reverse;
   font-family: Verdana;
@@ -34,11 +34,38 @@ body {
 }
 
 .base {
-  background-image: url(https://i.imgur.com/UfqroAA.png)!important;
+  background-image: url(../images/UfqroAA.png)!important;
 }
+
+.base[id="i20"]{
+  background-image: url(../images/mapview/BaseRed.png)!important;
+}
+.base[id="i02"]{
+  background-image: url(../images/mapview/BaseBlue.png)!important;
+}
+.base[id="i68"]{
+  background-image: url(../images/mapview/BaseOrange.png)!important;
+}
+.base[id="i62"]{
+  background-image: url(../images/mapview/BasePink.png)!important;
+}
+.base[id="i86"]{
+  background-image: url(../images/mapview/BaseYellow.png)!important;
+}
+.base[id="i26"]{
+  background-image: url(../images/mapview/BaseGreen.png)!important;
+}
+
+
 
 .resource1 {
   background-image: url(../images/Tiles/Medieval/farm.png)!important;
+}
+.resource1[owner="user1"]{
+  background-image: url(../images/Tiles/Sci-fi/scifi_silo.png)!important;
+}
+.resource1[owner="user2"]{
+  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
 }
 
 .resource2 {
