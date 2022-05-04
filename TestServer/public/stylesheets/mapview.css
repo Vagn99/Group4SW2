@@ -68,9 +68,39 @@ body {
 .resource1[owner="user2"]{
   background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
 }
+.resource1[owner="user3"]{
+  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
+}
+.resource1[owner="user4"]{
+  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
+}
+.resource1[owner="user5"]{
+  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
+}
+.resource1[owner="user6"]{
+  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
+}
 
 .resource2 {
   background-image: url(../images/Tiles/Medieval/gold.png)!important;
+}
+.resource2[owner="user1"]{
+  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
+}
+.resource2[owner="user2"]{
+  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
+}
+.resource2[owner="user3"]{
+  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
+}
+.resource2[owner="user4"]{
+  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
+}
+.resource2[owner="user5"]{
+  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
+}
+.resource2[owner="user6"]{
+  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
 }
 
 .container-v {
