@@ -63,44 +63,44 @@ body {
   background-image: url(../images/Tiles/Medieval/farm.png)!important;
 }
 .resource1[owner="user1"]{
-  background-image: url(../images/Tiles/Sci-fi/scifi_silo.png)!important;
+  background-image: url(../images/mapview/ResourceRed.png)!important;
 }
 .resource1[owner="user2"]{
-  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
+  background-image: url(../images/mapview/ResourceBlue.png)!important;
 }
 .resource1[owner="user3"]{
-  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
+  background-image: url(../images/mapview/ResourceOrange.png)!important;
 }
 .resource1[owner="user4"]{
-  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
+  background-image: url(../images/mapview/ResourcePink.png)!important;
 }
 .resource1[owner="user5"]{
-  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
+  background-image: url(../images/mapview/ResourceYellow.png)!important;
 }
 .resource1[owner="user6"]{
-  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
+  background-image: url(../images/mapview/ResourceGreen.png)!important;
 }
 
 .resource2 {
   background-image: url(../images/Tiles/Medieval/gold.png)!important;
 }
 .resource2[owner="user1"]{
-  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
+  background-image: url(../images/mapview/GoldRed.png)!important;
 }
 .resource2[owner="user2"]{
-  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
+  background-image: url(../images/mapview/GoldBlue.png)!important;
 }
 .resource2[owner="user3"]{
-  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
+  background-image: url(../images/mapview/GoldOrange.png)!important;
 }
 .resource2[owner="user4"]{
-  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
+  background-image: url(../images/mapview/GoldPink.png)!important;
 }
 .resource2[owner="user5"]{
-  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
+  background-image: url(../images/mapview/GoldYellow.png)!important;
 }
 .resource2[owner="user6"]{
-  background-image: url(../images/Tiles/Sci-fi/scifi_tower.png)!important;
+  background-image: url(../images/mapview/GoldGreen.png)!important;
 }
 
 .container-v {

@@ -9,7 +9,7 @@ module.exports = {
 
         startTroopsPlayers: 5,
         startTroopsCost: 1,
-        startTroopTrainingTime: 5,
+        startTroopTrainingTime: 3,
 
         startTownHallUpgradeCost: [1,1],
         startTownHallUpgradeTime: 5,
