@@ -55,11 +55,16 @@
     padding: 10px; 
     display: grid;
     grid-template-areas:
-      'h h h h'
+      'h h hdub hdub'
       't1 t1 t2 t2'
       'upgrade upgrade upgrade upgrade'
       'i i i i';
   }
+.hdub {
+  padding: 10px;
+  border: 6px solid #27ae60;
+  grid-area: hdub;
+}
 
   .t1 {
     padding: 10px; 

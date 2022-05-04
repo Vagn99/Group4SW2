@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
     }
 });
 
-router.get('/start', function (req, res){
+router.get('/getValues', function (req, res){
     // Should send an object with visible values
     res.send(getStartValues(req,res));
 });
@@ -26,16 +26,15 @@ router.get('/update', function (req, res){
 });
 
 router.get('/upgradeTownHall', function (req, res){
-    res.send((req,res)=>{
-        let player = players.get(req.session.name);
-        let upgradeResponse = player.town.townHall.upgradeBuilding(player);
-        if (upgradeResponse>=0){
-            return upgradeResponse.toString();
-        } else {
-            return "Not enough resources!";
-        }
-    });
+    res.send(upgradeTownHall(req,res));
 });
+
+function upgradeTownHall(req, res){
+    let player = players.get(req.session.name);
+    let upgradeResponse = player.town.townHall.upgradeBuilding(player);
+    console.log("I did upgrade");
+    return upgradeResponse;
+}
 
 
 
@@ -44,29 +43,21 @@ function getStartValues(req,res){
     //Values: townhall level, resources per sec, resources, gold per sec, gold,
     // troops in town, troop training cost, town hall upgrade cost,
     let player = players.get(req.session.name);
-    let valuePack = getUpdateValues(req,res);
-    valuePack.playerName = req.session.name;
-    valuePack.troopTrainingCost = player.town.barracks.trainingCost;
-
-    return valuePack;
-}
-
-// This function should return an object with visible values for update
-function getUpdateValues(req,res){
-    //Values: townhall level, resources per sec, resources, gold per sec, gold,
-    // troops in town
-    let player = players.get(req.session.name);
     let valuePack = {
-        townHallLVL: player.town.townHall.lvl,
-        commonResourcesPerSec: player.town.baseField.resourcesPerSec, //Needs to also
-        // handle income from conquered fields
-        commonResources: player.resources,
-        goldResourcesPerSec: 0,
-        goldResources: player.gold,
-        troopsInside: player.town.troopsInside,
-        upgradeCostTownHall: player.town.townHall.upgradeCost,
+        townHallLVL:                player.town.townHall.lvl,
+        upgradeCostTownHall:        player.town.townHall.upgradeCost,
+        baseCommonResourcesPerSec:  player.town.baseField.resourcesPerSec,
+        totalCommonIncome:          player.resourcesPerSec,
+        commonResources:            player.resources,
+        goldResourcesPerSec:        player.goldPerSec,
+        goldResources:              player.gold,
+        troopsInside:               player.town.troopsInside,
+        playerName:                 req.session.name,
+        troopTrainingCost:          player.town.barracks.trainingCost
     }
     return valuePack;
 }
+
+
 
 module.exports = router;

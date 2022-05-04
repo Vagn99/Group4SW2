@@ -19,7 +19,7 @@ class Player {
         this.#town = new Town(playerName, id, townName, x, y);
         this.#mapCoordinates = [x, y];
         this.#resources = startValues.startCommon;
-        this.#resourcesPerSec = this.town.baseField.resourcePerSec;
+        this.#resourcesPerSec = this.town.baseField.resourcesPerSec;
         this.#gold = startValues.startGold;
         this.#color = color;
         this.#controlledResources = new Map;
@@ -190,11 +190,11 @@ class Town {
 
 class Building {
 
-
     #lvl;
     #name;
     #upgradeCost = [0,0];
     #upgradeTime = 0;
+    #busy = false;
 
     constructor(name) {
         this.#lvl = 0;
@@ -225,19 +225,31 @@ class Building {
     set upgradeTime(value) {
         this.#upgradeTime = value;
     }
+    get busy() {
+        return this.#busy;
+    }
+    set busy(value) {
+        this.#busy = value;
+    }
 
     upgradeBuilding(player){
-        if (player.resources>this.upgradeCost[0] && player.gold>this.upgradeCost[1]){
-            player.resources = player.resources-this.upgradeCost[0];
-            player.gold = player.gold-this.upgradeCost[1];
-            this.upgradeCost[0] = this.upgradeCost[0]+1;
-            this.upgradeCost[1] = this.upgradeCost[1]+1;
-            setTimeout(()=>{
-                this.lvl = this.lvl +1;
-            }, this.upgradeTime*1000)
-            return this.upgradeTime;
+        if (this.busy){
+            return "Already in use";
         } else {
-            return -1;
+            if (player.resources >= this.upgradeCost[0] && player.gold >= this.upgradeCost[1]) {
+                this.busy = true;
+                player.resources = player.resources - this.upgradeCost[0];
+                player.gold = player.gold - this.upgradeCost[1];
+                setTimeout(() => {
+                    this.upgradeCost[0] = this.upgradeCost[0] + startValues.upgradeTownHallCostIncreaseCommon;
+                    this.upgradeCost[1] = this.upgradeCost[1] + startValues.upgradeTownHallCostIncreaseGold;
+                    this.lvl = this.lvl + 1;
+                    this.busy = false;
+                }, this.upgradeTime * 1000)
+                return this.upgradeTime.toString();
+            } else {
+                return "Not enough resources!";
+            }
         }
     }
 }
@@ -251,18 +263,18 @@ class TownHall extends Building {
 }
 
 class BaseField extends Building {
-    #resourcePerSec;
+    #resourcesPerSec;
 
     constructor() {
         super('Base Field');
-        this.#resourcePerSec = startValues.startCommonIncome;
+        this.#resourcesPerSec = startValues.startCommonIncome;
     }
 
-    get resourcePerSec() {
-        return this.#resourcePerSec;
+    get resourcesPerSec() {
+        return this.#resourcesPerSec;
     }
-    set resourcePerSec(value) {
-        this.#resourcePerSec = value;
+    set resourcesPerSec(value) {
+        this.#resourcesPerSec = value;
     }
 }
 
