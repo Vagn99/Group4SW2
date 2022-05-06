@@ -42,8 +42,9 @@ router.get('/sendTroopsToLocation', function (req,res){
     console.log(text);
     res.send(text);
 });
-//could use some cleanup
-function sendTroopsToLocation(req,res){
+
+function sendTroopsToLocation (req,res) {
+    let timeFactor = 1000;
     let cell = gameMap.cellArray[req.query.x][req.query.y];
     let attackingTroops = Number(req.query.troopsSend);
     let troopsAvailable = players.get(req.session.name).town.troopsInside;
@@ -53,6 +54,22 @@ function sendTroopsToLocation(req,res){
 
 
     troopsAvailable -= attackingTroops;
+
+    destX = cell.location[0];
+    destY = cell.location[1];
+    startX = players.get(req.session.name).town.locationOnMap[0];
+    startY = players.get(req.session.name).town.locationOnMap[1];
+
+    let deltaX = Math.abs(destX-startX);
+    let deltaY = Math.abs(destY-startY);
+    let dist;
+    deltaX > deltaY ? dist = deltaX : dist = deltaY;
+
+    setTimeout(() => {return whenArrived(req,res,cell,attackingTroops)},timeFactor * dist);
+}
+
+//could use some cleanup
+function whenArrived (req,res,cell,attackingTroops){
     //If the player already owns the tile, it just moves the troops
     if (cell.owner==req.session.name){
         cell.type.troopsInside += attackingTroops;
