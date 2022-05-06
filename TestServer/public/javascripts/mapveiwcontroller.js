@@ -45,6 +45,8 @@ function currentTileSelected(id){
 function sendTroopsToLocation(){
     if (Number(document.querySelector('input').value)>Number(troops.textContent))
         document.querySelector('input').value = troops.textContent;
+    else if (Number(document.querySelector('input').value)<0)
+        document.querySelector('input').value = 0;
     if (x!=undefined&&y!=undefined) {
         fetch('/mapview/sendTroopsToLocation?x=' + x + "&y=" + y + "&troopsSend=" + document.querySelector('input').value)
         .then(response => {

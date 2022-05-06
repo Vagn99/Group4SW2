@@ -46,8 +46,13 @@ router.get('/sendTroopsToLocation', function (req,res){
 function sendTroopsToLocation(req,res){
     let cell = gameMap.cellArray[req.query.x][req.query.y];
     let attackingTroops = Number(req.query.troopsSend);
+    let troopsAvailable = players.get(req.session.name).town.troopsInside;
+    if (attackingTroops>troopsAvailable||attackingTroops<0){
+        return "You can't do that";
+    }
 
-    players.get(req.session.name).town.troopsInside -= attackingTroops;
+
+    troopsAvailable -= attackingTroops;
     //If the player already owns the tile, it just moves the troops
     if (cell.owner==req.session.name){
         cell.type.troopsInside += attackingTroops;
