@@ -49,7 +49,10 @@ function sendTroopsToLocation (req,res) {
     let attackingTroops = Number(req.query.troopsSend);
     let troopsAvailable = players.get(req.session.name).town.troopsInside;
     if (attackingTroops>troopsAvailable||attackingTroops<0){
-        return "You can't do that";
+        return {
+            message: "You can't do that",
+            victory: false
+        };
     }
 
 
