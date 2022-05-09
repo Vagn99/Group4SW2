@@ -48,20 +48,19 @@ function sendTroopsToLocation (req,res) {
     let cell = gameMap.cellArray[req.query.x][req.query.y];
     let attackingTroops = Number(req.query.troopsSend);
     let troopsAvailable = players.get(req.session.name).town.troopsInside;
-    if (attackingTroops>troopsAvailable||attackingTroops<0){
+    if (attackingTroops>troopsAvailable || attackingTroops<0){
         return {
             message: "You can't do that",
             victory: false
         };
     }
 
+    players.get(req.session.name).town.troopsInside -= attackingTroops;
 
-    troopsAvailable -= attackingTroops;
-
-    destX = cell.location[0];
-    destY = cell.location[1];
-    startX = players.get(req.session.name).town.locationOnMap[0];
-    startY = players.get(req.session.name).town.locationOnMap[1];
+    let destX = cell.location[0];
+    let destY = cell.location[1];
+    let startX = players.get(req.session.name).town.locationOnMap[0];
+    let startY = players.get(req.session.name).town.locationOnMap[1];
 
     let deltaX = Math.abs(destX-startX);
     let deltaY = Math.abs(destY-startY);
