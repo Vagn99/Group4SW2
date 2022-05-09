@@ -111,7 +111,14 @@ function getValues(){
         troops.textContent =  loadValues.playerObject.troops.toString();
         numberOfTroops.setAttribute("max", troops.textContent);
 
+        document.getElementById("i20").textContent = loadValues.playerObject.user1LVL;
+        document.getElementById("i02").textContent = loadValues.playerObject.user2LVL;
+        document.getElementById("i68").textContent = loadValues.playerObject.user3LVL;
+        document.getElementById("i62").textContent = loadValues.playerObject.user4LVL;
+        document.getElementById("i86").textContent = loadValues.playerObject.user5LVL;
+        document.getElementById("i26").textContent = loadValues.playerObject.user6LVL;
 
+        console.log("Update done");
     }).catch(error => {
         console.log(error);
     });

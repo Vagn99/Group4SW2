@@ -152,7 +152,14 @@ function getValues(req, res){
             gold: player.gold,
             common: player.resources,
             troops: player.town.troopsInside,
-            playerLocation: player.mapCoordinates[0].toString()+player.mapCoordinates[1].toString()
+            playerLocation: player.mapCoordinates[0].toString()+player.mapCoordinates[1].toString(),
+            user1LVL: gameMap.cellArray[2][0].type.townHall.lvl,
+            user2LVL: gameMap.cellArray[0][2].type.townHall.lvl,
+            user3LVL: gameMap.cellArray[6][8].type.townHall.lvl,
+            user4LVL: gameMap.cellArray[6][2].type.townHall.lvl,
+            user5LVL: gameMap.cellArray[8][6].type.townHall.lvl,
+            user6LVL: gameMap.cellArray[2][6].type.townHall.lvl,
+
         }
     }
     console.log("Im done! Here's start values ");
