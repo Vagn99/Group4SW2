@@ -192,13 +192,16 @@ class Building {
 
     #lvl;
     #name;
-    #upgradeCost = [0,0];
-    #upgradeTime = 0;
-    #busy = false;
+    #upgradeCost;
+    #upgradeTime;
+    #busy;
 
     constructor(name) {
         this.#lvl = 0;
         this.#name = name;
+        this.#upgradeCost = [0,0]
+        this.#upgradeTime = 0;
+        this.#busy = false;
     }
 
     get name() {
@@ -241,8 +244,8 @@ class Building {
                 player.resources = player.resources - this.upgradeCost[0];
                 player.gold = player.gold - this.upgradeCost[1];
                 setTimeout(() => {
-                    this.upgradeCost[0] = this.upgradeCost[0] + startValues.upgradeTownHallCostIncreaseCommon;
-                    this.upgradeCost[1] = this.upgradeCost[1] + startValues.upgradeTownHallCostIncreaseGold;
+                    this.upgradeCost[0] += startValues.upgradeTownHallCostIncreaseCommon;
+                    this.upgradeCost[1] += startValues.upgradeTownHallCostIncreaseGold;
                     this.lvl = this.lvl + 1;
                     this.busy = false;
                 }, this.upgradeTime * 1000)
@@ -257,7 +260,8 @@ class Building {
 class TownHall extends Building {
     constructor() {
         super('Town Hall');
-        this.upgradeCost = startValues.startTownHallUpgradeCost;
+        this.upgradeCost[0] = startValues.startTownHallUpgradeCost[0];
+        this.upgradeCost[1] = startValues.startTownHallUpgradeCost[1];
         this.upgradeTime = startValues.startTownHallUpgradeTime;
     }
 }
