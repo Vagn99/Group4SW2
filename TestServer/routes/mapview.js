@@ -144,6 +144,7 @@ function getValues(req, res){
             mapCreator[i][j] = {};
             mapCreator[i][j].owner = gameMap.cellArray[i][j].owner;
             mapCreator[i][j].troopsInside = gameMap.cellArray[i][j].type.troopsInside;
+            mapCreator[i][j].type = gameMap.cellArray[i][j].type.type;
         }
     }
     let valueObject = {

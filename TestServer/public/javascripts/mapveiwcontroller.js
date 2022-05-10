@@ -20,7 +20,9 @@ window.onload = function() {
     document.addEventListener('click', function handleClick(event) {
         console.log('Button id:',event.target.id);
         currentTileSelected(event.target.id);
-       
+        document.getElementById("troopsI").textContent = document.getElementById(event.target.id).getAttribute("troopsInside")+" troops here";
+        document.getElementById("Owned").textContent = "Owned by "+document.getElementById(event.target.id).getAttribute("owner")
+
         array = event.target.id.split('i')
         document.getElementsByClassName('i1')[0].textContent = array[1];
 
@@ -87,6 +89,7 @@ function getValues(){
                     if (j < i + 5) {
                         document.getElementById("i" + i.toString() + j.toString()).setAttribute("owner", loadValues.mapObject[i][j].owner);
                         document.getElementById("i" + i.toString() + j.toString()).setAttribute("troopsInside", loadValues.mapObject[i][j].troopsInside);
+                        document.getElementById("i" + i.toString() + j.toString()).setAttribute("type", loadValues.mapObject[i][j].type.type);
                         someString += i.toString()+j.toString()+" ";
                     } else {
                         someString += "xx ";
@@ -97,6 +100,7 @@ function getValues(){
                     } else {
                         document.getElementById("i" + i.toString() + j.toString()).setAttribute("owner", loadValues.mapObject[i][j].owner);
                         document.getElementById("i" + i.toString() + j.toString()).setAttribute("troopsInside", loadValues.mapObject[i][j].troopsInside);
+                        document.getElementById("i" + i.toString() + j.toString()).setAttribute("type", loadValues.mapObject[i][j].type.type);
                         someString += i.toString()+j.toString()+" ";
                     }
                 }
