@@ -44,6 +44,7 @@ function getStartValues(req,res){
     // troops in town, troop training cost, town hall upgrade cost,
     let player = players.get(req.session.name);
     let valuePack = {
+        color:                      player.color,
         townHallLVL:                player.town.townHall.lvl,
         upgradeCostTownHall:        player.town.townHall.upgradeCost,
         baseCommonResourcesPerSec:  player.town.baseField.resourcesPerSec,

@@ -149,6 +149,7 @@ function getValues(req, res){
     let valueObject = {
         mapObject: mapCreator,
         playerObject: {
+            myLevel: player.town.townHall.lvl,
             color: player.color,
             gold: player.gold,
             common: player.resources,

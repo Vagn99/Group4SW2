@@ -41,6 +41,8 @@ function getValues() {
         document.getElementById("resourceOutsideIncome").textContent = "Outside income: " + (valueData.totalCommonIncome - valueData.baseCommonResourcesPerSec);
         document.getElementById("goldCost").textContent = valueData.upgradeCostTownHall[1].toString();
         document.getElementById("commonCost").textContent = valueData.upgradeCostTownHall[0].toString();
+        document.getElementById("borderColor").style.borderColor = valueData.color;
+        document.getElementById("level").textContent = 'Your level: ' + valueData.townHallLVL.toString();
 
     }).catch(error => {
         console.log(error);

@@ -20,6 +20,7 @@ window.onload = function() {
     document.addEventListener('click', function handleClick(event) {
         console.log('Button id:',event.target.id);
         currentTileSelected(event.target.id);
+        document.getElementById(event.target.id).style.filter = "brightness(50%)";
 
         array = event.target.id.split('i')
         document.getElementsByClassName('i1')[0].textContent = array[1];
@@ -117,7 +118,8 @@ function getValues(){
         document.getElementById("i62").textContent = loadValues.playerObject.user4LVL;
         document.getElementById("i86").textContent = loadValues.playerObject.user5LVL;
         document.getElementById("i26").textContent = loadValues.playerObject.user6LVL;
-        console.log(loadValues.playerObject.color)
+        
+        document.getElementById("level").textContent = 'Your level: ' + loadValues.playerObject.myLevel;
 
         document.getElementById("borderColor").style.borderColor = loadValues.playerObject.color;
 
