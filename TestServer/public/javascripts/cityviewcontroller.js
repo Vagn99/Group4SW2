@@ -8,6 +8,8 @@ let troopTrainingCost = document.getElementById('cost');
 let upgradeButton = document.getElementById("buttonUpgrade");
 upgradeButton.addEventListener("click", upgradeTownHall);
 
+var popup = document.getElementById("myPopup");
+
 
 //Runs at page load
 
@@ -94,6 +96,7 @@ window.onload = function() {
     document.addEventListener('click', function handleClick(event) {
         console.log('Button id:',event.target.id);
         if (event.target.id == 'button_barrack') {
+            popup()
                 if (townhall.style.display === "grid" || resource.style.display === "grid") {
                     townhall.style.display = "none";
                     resource.style.display = "none";
