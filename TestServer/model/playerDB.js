@@ -7,7 +7,7 @@ players
     .set("user3", user3 = new Player.Player(3, "user3", "Player 3's Town", 6, 8,"orange"))
     .set("user4", user4 = new Player.Player(4, "user4", "Player 4's Town", 6, 2,"pink"))
     .set("user5", user5 = new Player.Player(5, "user5", "Player 5's Town", 8, 6,"yellow"))
-    .set("user6", user6 = new Player.Player(6, "user6", "Player 6's Town", 2, 6,"black"));
+    .set("user6", user6 = new Player.Player(6, "user6", "Player 6's Town", 2, 6,"green"));
 
 // Starts the income (I think - stefan)
 

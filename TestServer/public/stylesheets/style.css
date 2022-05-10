@@ -1,7 +1,8 @@
 body {
   font-family: "Lato", "Helvetica", Helvetica, sans-serif;
   color: white;
-  background-color: rgb(46, 140, 213); /*rgb(35 174 97); Grøn til bagrunden*/
+  background-color: rgb(46, 140, 213);
+  /*rgb(35 174 97); Grøn til bagrunden*/
   font-size: 1rem;
   padding: 1rem;
   letter-spacing: 1px;
@@ -17,12 +18,18 @@ body {
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 10;;
+  z-index: 10;
+  ;
 }
 
 @keyframes animatedBackground {
-  from {background-position: 0 0;}
-  to {background-position: 5% 0;}
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 5% 0;
+  }
 }
 
 a {

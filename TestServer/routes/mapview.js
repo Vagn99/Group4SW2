@@ -149,6 +149,7 @@ function getValues(req, res){
     let valueObject = {
         mapObject: mapCreator,
         playerObject: {
+            color: player.color,
             gold: player.gold,
             common: player.resources,
             troops: player.town.troopsInside,

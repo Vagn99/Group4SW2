@@ -65,6 +65,7 @@ function upgradeTownHall() {
         console.log(error);
     });
 }
+
 function upgradeTimer(upgradeTime, upgradeText) {
     upgradeText.textContent = "Upgrade finished in " + upgradeTime + " seconds";
     if (upgradeTime == 0){
@@ -76,11 +77,6 @@ function upgradeTimer(upgradeTime, upgradeText) {
         }, 1000)
     }
 }
-
-
-
-
-
 
 window.onload = function() {
 
@@ -96,7 +92,6 @@ window.onload = function() {
     document.addEventListener('click', function handleClick(event) {
         console.log('Button id:',event.target.id);
         if (event.target.id == 'button_barrack') {
-            popup()
                 if (townhall.style.display === "grid" || resource.style.display === "grid") {
                     townhall.style.display = "none";
                     resource.style.display = "none";
