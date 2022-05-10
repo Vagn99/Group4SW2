@@ -75,6 +75,20 @@ function upgradeTimer(upgradeTime, upgradeText) {
     }
 }
 
+function victoryChecker(level) {
+    if (Number(level)>=10) {
+        fetch('/cityview/victory').then(response => {
+            if (!response.ok) {
+                throw new Error("Response error: " + response.status);
+            }
+            return response.text();
+        }).then(upgradeResponse => {
+
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+}
 
 
 
