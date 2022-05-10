@@ -125,7 +125,7 @@ function getValues(){
         document.getElementById("i26").textContent = loadValues.playerObject.user6LVL;
         
         document.getElementById("level").textContent = 'Your level: ' + loadValues.playerObject.myLevel;
-
+        victoryChecker(loadValues.playerObject.myLevel);
         document.getElementById("borderColor").style.borderColor = loadValues.playerObject.color;
 
         console.log("Update done");

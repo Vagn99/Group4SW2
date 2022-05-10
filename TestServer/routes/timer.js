@@ -15,4 +15,14 @@ function runTimer() {
   }, 1000);
 }
 
+let winner = "";
+router.get('/victory', function(req, res) {
+  if (winner==""){
+    winner = req.session.name;
+  }
+  console.log(winner+" won");
+  res.render("success", {winner: winner});
+});
+
+
 module.exports = router;

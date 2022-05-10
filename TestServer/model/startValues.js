@@ -1,8 +1,8 @@
 
 module.exports = {
         startCommonIncome: 1,
-        startCommon: 10,
-        startGold: 10,
+        startCommon: 100,
+        startGold: 100,
         startCommonTileRecoursesPerSec: 1,
         startGoldTileRecoursesPerSec: 1,
         startTroopsNeutralTiles: 5,
