@@ -84,11 +84,11 @@ html(lang="en")
           .resource1#i40
           br
         .container-h
-          .container-h-box
+          .container-h-box#borderColor
             .grid-main
               .grid-container
                 .header#name #{username} 
-                .level#level Your level: 1 
+                .level#level Your level: #
                 a(href="/cityview")
                   .nav1#nav1.hover
                     img(src="../images/assets/home.png" width="35px")
@@ -120,11 +120,6 @@ html(lang="en")
               .selector
                 .selector4
                   .h Select a tile to attack, and how many troops
-                  .h1 Selected tile
-                  .i1 koor
-                  .i2 type
-                  .i3#troopsI
-                  .i4#Owned
                   .a1 Amount of troops
                   .a2
                     input(type="number", max="0", min="0", id="numberOfTroops")

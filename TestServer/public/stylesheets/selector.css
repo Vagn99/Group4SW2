@@ -1,211 +1,232 @@
 /* BARRAC */
 
-.selector1 { 
-    grid-area: selector1;
-    padding: 10px; 
-    display: grid;
-    grid-template-areas:
-      'h h h h'
-      's1 s1 s2 s2'
-      'train train train train'
-      'i i i i';
-  }
-  .h {
-  padding: 10px; 
+.selector1 {
+  grid-area: selector1;
+  padding: 10px;
+  display: grid;
+  grid-template-areas:
+    'h h h h'
+    's1 s1 s2 s2'
+    'train train train train'
+    'i i i i';
+}
+
+.h {
+  padding: 10px;
   border: 6px solid #27ae60;
   grid-area: h;
-  }
-  
-  .s1 {
-    padding: 10px; 
-    grid-area: s1;
-    grid-template-areas:
-      's11 s12';
-  }
-  .s2 {
-    padding: 10px; 
-    grid-area: s2;
-    grid-template-areas:
-      's21 s22';
-  }
-  .train { 
-    padding: 10px; 
-    grid-area: train;
-  }
-  .i { 
-    padding: 10px; 
-    grid-area: i;
-  }
+}
 
-  .button_train { 
-    color: #fff;
-    font-size: 2em;
-    width: 100%;
-    height: 100%;
-    border: -4px;
-    border-radius: 6px;
-    background: #27ae60;
+.s1 {
+  padding: 10px;
+  grid-area: s1;
+  grid-template-areas:
+    's11 s12';
+}
 
-  }
+.s2 {
+  padding: 10px;
+  grid-area: s2;
+  grid-template-areas:
+    's21 s22';
+}
 
-  /* Townhall */
+.train {
+  padding: 10px;
+  grid-area: train;
+}
 
-  .selector2 { 
-    grid-area: selector2;
-    padding: 10px; 
-    display: grid;
-    grid-template-areas:
-      'h h h h'
-      'hdub hdub hdub hdub'
-      't1 t1 t2 t2'
-      'upgrade upgrade upgrade upgrade'
-      'i i i i';
-  }
+.i {
+  padding: 10px;
+  grid-area: i;
+}
+
+.button_train {
+  color: #fff;
+  font-size: 2em;
+  width: 100%;
+  height: 100%;
+  border: -4px;
+  border-radius: 6px;
+  background: #27ae60;
+
+}
+
+/* Townhall */
+
+.selector2 {
+  grid-area: selector2;
+  padding: 10px;
+  display: grid;
+  grid-template-areas:
+    'h h h h'
+    'hdub hdub hdub hdub'
+    't1 t1 t2 t2'
+    'upgrade upgrade upgrade upgrade'
+    'i i i i';
+}
+
 .hdub {
   padding: 10px;
 
   grid-area: hdub;
 }
 
-  .t1 {
-    padding: 10px; 
-    grid-area: t1;
-    grid-template-areas:
-      't11 t12';
-  }
-  .t11 {
-    padding: 10px; 
-    grid-area: t11;
-  }
-  .t12 {
-    padding: 10px; 
-    grid-area: t12;
-  }
+.t1 {
+  padding: 10px;
+  grid-area: t1;
+  grid-template-areas:
+    't11 t12';
+}
 
-  .t2 {
-    padding: 10px; 
-    grid-area: t2;
-    grid-template-areas:
-      't21 t22';
-  }
-  .t21 {
-    padding: 10px; 
-    grid-area: t21;
-  }
-  .t22 {
-    padding: 10px; 
-    grid-area: t22;
-  }
-  .upgrade { 
-    padding: 10px; 
-    grid-area: upgrade;
-  }
-  .i { 
-    padding: 10px; 
-    grid-area: i;
-  }
+.t11 {
+  padding: 10px;
+  grid-area: t11;
+}
 
-  .button_upgrade { 
-    color: #fff;
-    font-size: 2em;
-    width: 100%;
-    height: 100%;
-    border: -4px;
-    border-radius: 6px;
-    background: #27ae60;
+.t12 {
+  padding: 10px;
+  grid-area: t12;
+}
 
-  }
+.t2 {
+  padding: 10px;
+  grid-area: t2;
+  grid-template-areas:
+    't21 t22';
+}
 
-   /* Resource */
+.t21 {
+  padding: 10px;
+  grid-area: t21;
+}
 
-   .selector3 { 
-    grid-area: selector3;
-    padding: 10px; 
-    display: grid;
-    grid-template-areas:
-      'h h h h'
-      'r1 r1 r2 r2'
-      'i i i i';
-  }
+.t22 {
+  padding: 10px;
+  grid-area: t22;
+}
 
-  .r1 {
-    padding: 10px; 
-    grid-area: r1;
-    grid-template-areas:
-      'r11 r12';
-  }
-  .r2 {
-    padding: 10px; 
-    grid-area: r2;
-    grid-template-areas:
-      'r21 r22';
-  }
+.upgrade {
+  padding: 10px;
+  grid-area: upgrade;
+}
 
-  /* Attack */
+.i {
+  padding: 10px;
+  grid-area: i;
+}
 
-  .selector4 { 
-    grid-area: selector4;
-    padding: 10px; 
-    display: grid;
-    gap: 5px;
-    grid-template-areas:
-      'h h h h'
-      'h1 h1 h1 h1'
-      'i1 i1 i2 i2'
-      'i3 i3 i4 i4'
-      'a1 a1 a2 a2'
-      'attack attack attack attack'
-      'i i i i';
-  }
-  .a1 {
-    padding: 10px; 
-    grid-area: a1;
-    grid-template-areas:
-      'a11 a12';
-  }
-  .a2 {
-    padding: 10px; 
-    grid-area: a2;
-    grid-template-areas:
-      'a21 a22';
-  }
-  .attack { 
-    padding: 10px; 
-    grid-area: attack;
-  }
-  .i { 
-    padding: 10px; 
-    grid-area: i;
-  }
+.button_upgrade {
+  color: #fff;
+  font-size: 2em;
+  width: 100%;
+  height: 100%;
+  border: -4px;
+  border-radius: 6px;
+  background: #27ae60;
 
-  .button_attack { 
-    color: #fff;
-    font-size: 2em;
-    width: 100%;
-    height: 100%;
-    border: -4px;
-    border-radius: 6px;
-    background: #27ae60;
+}
 
-  }
-  .h1 { 
-    padding: 10px; 
-    grid-area: h1;
-    border: 2px solid #27ae60;
-  }
-  .i1 { 
-    padding: 10px; 
-    grid-area: i1;
-  }
-  .i2 { 
-    padding: 10px; 
-    grid-area: i2;
-  }
-  .i3 { 
-    padding: 10px; 
-    grid-area: i3;
-  }
-  .i4 { 
-    padding: 10px; 
-    grid-area: i4;
-  }
+/* Resource */
+
+.selector3 {
+  grid-area: selector3;
+  padding: 10px;
+  display: grid;
+  grid-template-areas:
+    'h h h h'
+    'r1 r1 r2 r2'
+    'i i i i';
+}
+
+.r1 {
+  padding: 10px;
+  grid-area: r1;
+  grid-template-areas:
+    'r11 r12';
+}
+
+.r2 {
+  padding: 10px;
+  grid-area: r2;
+  grid-template-areas:
+    'r21 r22';
+}
+
+/* Attack */
+
+.selector4 {
+  grid-area: selector4;
+  padding: 10px;
+  display: grid;
+  gap: 5px;
+  grid-template-areas:
+    'h h h h'
+    'h1 h1 h1 h1'
+    'i1 i1 i2 i2'
+    'i3 i3 i4 i4'
+    'a1 a1 a2 a2'
+    'attack attack attack attack'
+    'i i i i';
+}
+
+.a1 {
+  padding: 10px;
+  grid-area: a1;
+  grid-template-areas:
+    'a11 a12';
+}
+
+.a2 {
+  padding: 10px;
+  grid-area: a2;
+  grid-template-areas:
+    'a21 a22';
+}
+
+.attack {
+  padding: 10px;
+  grid-area: attack;
+}
+
+.i {
+  padding: 10px;
+  grid-area: i;
+}
+
+.button_attack {
+  color: #fff;
+  font-size: 2em;
+  width: 100%;
+  height: 100%;
+  border: -4px;
+  border-radius: 6px;
+  background: #27ae60;
+
+}
+
+.h1 {
+  padding: 10px;
+  grid-area: h1;
+  border: 2px solid #27ae60;
+}
+
+.i1 {
+  padding: 10px;
+  grid-area: i1;
+}
+
+.i2 {
+  padding: 10px;
+  grid-area: i2;
+}
+
+.i3 {
+  padding: 10px;
+  grid-area: i3;
+}
+
+.i4 {
+  padding: 10px;
+  grid-area: i4;
+}
