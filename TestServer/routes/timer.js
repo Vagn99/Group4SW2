@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var Players = require('../model/playerDB.js');
 
 //Starts timer on page load
 let time = 0;
@@ -15,14 +16,15 @@ function runTimer() {
   }, 1000);
 }
 
-let winner = "";
+
 router.get('/victory', function(req, res) {
-  if (winner==""){
-    winner = req.session.name;
-  }
-  console.log(winner+" won");
-  res.render("success", {winner: winner});
+  console.log(Players.winner + " won");
+  res.render("success", {
+      winner: Players.winner
+  })
 });
+
+
 
 
 module.exports = router;

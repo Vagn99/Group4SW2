@@ -43,8 +43,9 @@ function getValues() {
         document.getElementById("commonCost").textContent = valueData.upgradeCostTownHall[0].toString();
         document.getElementById("borderColor").style.borderColor = valueData.color;
         document.getElementById("level").textContent = 'Your level: ' + valueData.townHallLVL.toString();
-        victoryChecker(valueData.townHallLVL);
-
+        if (valueData.winner!=""){
+            victoryChecker();
+        }
     }).catch(error => {
         console.log(error);
     });

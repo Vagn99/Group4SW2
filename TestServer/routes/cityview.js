@@ -43,6 +43,9 @@ function getStartValues(req,res){
     //Values: townhall level, resources per sec, resources, gold per sec, gold,
     // troops in town, troop training cost, town hall upgrade cost,
     let player = players.get(req.session.name);
+    if (player.town.townHall.lvl>=10){
+        Players.winner = player.playerName;
+    }
     let valuePack = {
         color:                      player.color,
         townHallLVL:                player.town.townHall.lvl,
@@ -54,7 +57,8 @@ function getStartValues(req,res){
         goldResources:              player.gold,
         troopsInside:               player.town.troopsInside,
         playerName:                 req.session.name,
-        troopTrainingCost:          player.town.barracks.trainingCost
+        troopTrainingCost:          player.town.barracks.trainingCost,
+        winner:                     Players.winner,
     }
     return valuePack;
 }

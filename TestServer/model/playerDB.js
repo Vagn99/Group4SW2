@@ -15,9 +15,10 @@ players.forEach(player=>{
     player.generateIncome();
 })
 
-
+let winner = "";
 
 
 module.exports = {
     players,
+    winner,
 }

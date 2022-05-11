@@ -21,16 +21,9 @@ setInterval(() => {
 }, 1000);
 
 
-function victoryChecker(level) {
-    if (Number(level)>=10) {
+function victoryChecker() {
         console.log("Someone won!");
         fetch('/timer/victory').then(response => {
-            if (!response.ok) {
-                throw new Error("Response error: " + response.status);
-            }
-            return response.text();
-        }).catch(error => {
-            console.log(error);
+
         });
-    }
 }

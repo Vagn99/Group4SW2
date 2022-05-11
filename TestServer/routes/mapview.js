@@ -147,6 +147,9 @@ function getValues(req, res){
             mapCreator[i][j].type = gameMap.cellArray[i][j].type.type;
         }
     }
+    if (player.town.townHall.lvl>=10){
+        Players.winner = player.playerName;
+    }
     let valueObject = {
         mapObject: mapCreator,
         playerObject: {
@@ -162,6 +165,7 @@ function getValues(req, res){
             user4LVL: gameMap.cellArray[6][2].type.townHall.lvl,
             user5LVL: gameMap.cellArray[8][6].type.townHall.lvl,
             user6LVL: gameMap.cellArray[2][6].type.townHall.lvl,
+            winner: Players.winner,
 
         }
     }
