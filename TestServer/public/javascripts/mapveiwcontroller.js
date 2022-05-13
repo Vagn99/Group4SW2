@@ -62,7 +62,7 @@ function sendTroopsToLocation() {
         document.querySelector('input').value = troops.textContent;
     else if (Number(document.querySelector('input').value) < 0)
         document.querySelector('input').value = 0;
-    if (x != undefined && y != undefined) {
+    if (x != undefined && y != undefined && document.getElementById("i"+x+y).getAttribute("type")!="empty") {
         fetch('/mapview/sendTroopsToLocation?x=' + x + "&y=" + y + "&troopsSend=" + document.querySelector('input').value)
             .then(response => {
                 if (!response.ok) {
@@ -102,7 +102,7 @@ function getValues() {
                     if (j < i + 5) {
                         document.getElementById("i" + i.toString() + j.toString()).setAttribute("owner", loadValues.mapObject[i][j].owner);
                         document.getElementById("i" + i.toString() + j.toString()).setAttribute("troopsInside", loadValues.mapObject[i][j].troopsInside);
-                        document.getElementById("i" + i.toString() + j.toString()).setAttribute("type", loadValues.mapObject[i][j].type.type);
+                        document.getElementById("i" + i.toString() + j.toString()).setAttribute("type", loadValues.mapObject[i][j].type);
                         someString += i.toString() + j.toString() + " ";
                     } else {
                         someString += "xx ";
@@ -113,7 +113,7 @@ function getValues() {
                     } else {
                         document.getElementById("i" + i.toString() + j.toString()).setAttribute("owner", loadValues.mapObject[i][j].owner);
                         document.getElementById("i" + i.toString() + j.toString()).setAttribute("troopsInside", loadValues.mapObject[i][j].troopsInside);
-                        document.getElementById("i" + i.toString() + j.toString()).setAttribute("type", loadValues.mapObject[i][j].type.type);
+                        document.getElementById("i" + i.toString() + j.toString()).setAttribute("type", loadValues.mapObject[i][j].type);
                         someString += i.toString() + j.toString() + " ";
                     }
                 }
