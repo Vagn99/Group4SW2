@@ -13,7 +13,7 @@ let selected = '';
 
 var img = document.createElement("img");
 img.src = "../images/assets/sword_3.png";
-img.setAttribute("style", "width:50px; text-align:center; margin: 20% 500px 0 0; position: absolute;");
+img.setAttribute("style", "width:50px; text-align:center; margin-top: 20%; position: absolute; left: 8%;");
 img.setAttribute("id", "selectedTile");
 
 getValues();
@@ -127,7 +127,7 @@ function getValues() {
         troops.textContent = loadValues.playerObject.troops.toString();
         numberOfTroops.setAttribute("max", troops.textContent);
 
-        //document.getElementById("i20").textContent = loadValues.playerObject.user1LVL;
+        document.getElementById("i20").textContent = loadValues.playerObject.user1LVL;
         document.getElementById("i02").textContent = loadValues.playerObject.user2LVL;
         document.getElementById("i68").textContent = loadValues.playerObject.user3LVL;
         document.getElementById("i62").textContent = loadValues.playerObject.user4LVL;
