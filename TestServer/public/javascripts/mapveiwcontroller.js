@@ -49,6 +49,7 @@ function tile(id) {
 }
 */
 
+
 function currentTileSelected(id) {
     if (id != "" && Number(id.charAt(1)) < 10) {
         x = id.charAt(1);
@@ -71,14 +72,14 @@ function sendTroopsToLocation() {
                 return response.text();
             })
             .then(handle => {
-                let battleOutcome = JSON.parse(handle);
-                console.log(document.querySelector('input').value);
-                console.log("Send nudes");
-                console.log(battleOutcome.message);
-                if (battleOutcome.victory) {
-                    document.getElementById("i" + x.toString() + y.toString()).setAttribute("owner", user);
-                }
-
+                new Notify ({
+                    title: 'Test',
+                    text: 'Upgrade done!',
+                    autoclose: true,
+                    autotimeout: Number(handle),
+                    position: 'left top',
+                    status: 'success'
+                });
             })
             .catch(error => {
                 console.log(error);

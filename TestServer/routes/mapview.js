@@ -38,9 +38,8 @@ function showId(req, res) {
 router.get('/sendTroopsToLocation', function (req, res) {
     // Should send an object with visible values
     showId(req, res);
-    sendTroopsToLocation(req, res);
     console.log("Done ");
-    res.send("Done ");
+    res.send(sendTroopsToLocation(req, res));
 });
 
 function sendTroopsToLocation(req, res) {
@@ -49,7 +48,7 @@ function sendTroopsToLocation(req, res) {
     let attackingTroops = Number(req.query.troopsSend);
     let troopsAvailable = players.get(req.session.name).town.troopsInside;
     if (attackingTroops > troopsAvailable || attackingTroops < 0) {
-        return 0;
+        return "Invalid troop amount";
     }
 
     players.get(req.session.name).town.troopsInside -= attackingTroops;
@@ -67,6 +66,7 @@ function sendTroopsToLocation(req, res) {
     setTimeout(() => {
         whenArrived(req, res, cell, attackingTroops)
     }, timeFactor * dist);
+    return (timeFactor * dist).toString;
 }
 
 //could use some cleanup
