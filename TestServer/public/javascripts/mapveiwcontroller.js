@@ -24,10 +24,13 @@ setInterval(() => {
 
 window.onload = function () {
     document.addEventListener('click', function handleClick(event) {
-        currentTileSelected(event.target.id)
+        currentTileSelected(event.target.id);
+        console.log(event.target.id);
         if (event.target.id === "selectedTile") {
             document.getElementById(selected).removeChild(img);
             document.getElementById(selected).style.filter = "brightness(100%)"
+            x = undefined;
+            y = undefined;
         } else if (event.target.id.charAt(0) === 'i') {
             if (selected != '') {
                 document.getElementById(selected).style.filter = "brightness(100%)"
