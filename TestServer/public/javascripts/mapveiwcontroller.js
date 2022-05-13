@@ -60,10 +60,21 @@ function currentTileSelected(id) {
 //Test function for sending troops
 function sendTroopsToLocation() {
     let attackingTroopsAmount = document.querySelector('input');
-    if (Number(attackingTroopsAmount.value) > Number(troops.textContent))
+    if (Number(attackingTroopsAmount.value) > Number(troops.textContent)) {
         attackingTroopsAmount.value = troops.textContent;
-    else if (Number(document.querySelector('input').value) < 0)
+    }
+    else if (Number(attackingTroopsAmount.value) <= 0) {
         attackingTroopsAmount.value = 0;
+        new Notify({
+            title: 'You cannot attack with 0 troops ',
+            text: '',
+            autoclose: true,
+            autotimeout: 4000,
+            position: 'left top',
+            status: 'error'
+        });
+        return "";
+    }
     if (x != undefined && y != undefined && document.getElementById("i"+x+y).getAttribute("type")!="empty") {
         fetch('/mapview/sendTroopsToLocation?x=' + x + "&y=" + y + "&troopsSend=" + attackingTroopsAmount.value)
             .then(response => {
