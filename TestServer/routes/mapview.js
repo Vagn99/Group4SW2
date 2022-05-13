@@ -130,6 +130,7 @@ function takeControlOfCell(cell, attackingTroops, req, res){
     };
 }
 
+
 // This function should return an object with visible values for start
 function getValues(req, res){
     //Values: All player town hall level, field ownership, (if map approach, then also:
