@@ -75,12 +75,14 @@ function upgradeTimer(upgradeTime, upgradeText) {
     if (upgradeTime == 0){
         upgradeText.textContent = "Done";
         new Notify ({
-            title: 'Townhall',
-            text: 'Upgrade done!',
+            title: 'Attacking',
+            text: 'At location '+x+","+y+" with "+attackingTroopsAmount.value+" troops!",
             autoclose: true,
-            autotimeout: 3000,
+            autotimeout: Number(handle),
             position: 'left top',
-            status: 'success'
+            status: 'warning',
+            customIcon: '<img src="../images/assets/sword_1.png" height="32" width="32" viewBox="0 0 32 32" fill="none">',
+            type: 2,
         });
     } else {
         setTimeout(() => {

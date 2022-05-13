@@ -79,7 +79,8 @@ function sendTroopsToLocation() {
                     autoclose: true,
                     autotimeout: Number(handle),
                     position: 'left top',
-                    status: 'success',
+                    status: 'warning',
+                    customIcon: '<img src="../images/assets/sword_1.png" height="32" width="32" viewBox="0 0 32 32" fill="none">',
                     type: 2,
                 });
             })
