@@ -74,12 +74,13 @@ function sendTroopsToLocation() {
             })
             .then(handle => {
                 new Notify ({
-                    title: 'Attacking ',
+                    title: 'Attacking',
                     text: 'At location '+x+","+y+" with "+attackingTroopsAmount.value+" troops!",
                     autoclose: true,
                     autotimeout: Number(handle),
                     position: 'left top',
-                    status: 'success'
+                    status: 'success',
+                    type: 2,
                 });
             })
             .catch(error => {
