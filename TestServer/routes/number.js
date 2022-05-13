@@ -39,8 +39,8 @@ router.get('/set', function(req, res) {
 function trainTrooper(req, res) {
     console.log("trainTroops have been called by: " + req.session.name);
     let activePlayer = players.get(req.session.name);
-    if (activePlayer.resources>0){
-        activePlayer.resources = activePlayer.resources-1;
+    if (activePlayer.resources>=activePlayer.town.barracks.trainingCost){
+        activePlayer.resources -= activePlayer.town.barracks.trainingCost;
         console.log("Calling trainTroop function...");
         activePlayer.town.barracks.newTrainTroops(activePlayer.town);
     } else {

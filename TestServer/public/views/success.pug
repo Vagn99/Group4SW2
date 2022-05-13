@@ -1,13 +1,9 @@
 extends layout
 
 block content
-  p Login success 
-  p User: #{username}
-  p(id="count") Placeholder
-  button(id="button") Yay!
-  p(id="countDown")
-  p(id="queue")
+  p The winne page
+  p#winner #{winner}
 
   
   //- Scripts
-  script(src="./../javascripts/troops.js")
+  script(src="./../javascripts/timer.js")

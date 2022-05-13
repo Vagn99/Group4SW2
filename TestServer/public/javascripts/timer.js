@@ -19,3 +19,11 @@ setInterval(() => {
     local_timer++;
     timer.textContent = `Server time ${local_timer} s`;
 }, 1000);
+
+
+function victoryChecker() {
+        console.log("Someone won!");
+        fetch('/timer/victory').then(response => {
+
+        });
+}
