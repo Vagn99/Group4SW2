@@ -8,51 +8,48 @@ let gameMap = GameMap.gameMap;
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-    if (req.session.loggedIn){
+router.get('/', function (req, res, next) {
+    if (req.session.loggedIn) {
         res.render('mapview', {username: req.session.name});
     } else {
         res.redirect('/');
     }
 });
 
-router.get('/getValues', function (req,res){
+router.get('/getValues', function (req, res) {
     // Should send an object with visible values
     res.send(getValues(req, res));
 });
 
 
 // Test route in prep for send troops
-router.get('/sendId', function (req,res){
+router.get('/sendId', function (req, res) {
     // Should send an object with visible values
-    res.send(showId(req,res));
+    res.send(showId(req, res));
 });
 
-function showId(req,res){
-    console.log("x="+req.query.x);
-    console.log("y="+req.query.y);
-    console.log("troopsSend="+req.query.troopsSend);
+function showId(req, res) {
+    console.log("x=" + req.query.x);
+    console.log("y=" + req.query.y);
+    console.log("troopsSend=" + req.query.troopsSend);
 }
 
 // Test route in prep for send troops
-router.get('/sendTroopsToLocation', function (req,res){
+router.get('/sendTroopsToLocation', function (req, res) {
     // Should send an object with visible values
     showId(req, res);
-    let text = sendTroopsToLocation(req,res);
-    console.log(text);
-    res.send(text);
+    sendTroopsToLocation(req, res);
+    console.log("Done ");
+    res.send("Done ");
 });
 
-function sendTroopsToLocation (req,res) {
+function sendTroopsToLocation(req, res) {
     let timeFactor = 1000;
     let cell = gameMap.cellArray[req.query.x][req.query.y];
     let attackingTroops = Number(req.query.troopsSend);
     let troopsAvailable = players.get(req.session.name).town.troopsInside;
-    if (attackingTroops>troopsAvailable || attackingTroops<0){
-        return {
-            message: "You can't do that",
-            victory: false
-        };
+    if (attackingTroops > troopsAvailable || attackingTroops < 0) {
+        return 0;
     }
 
     players.get(req.session.name).town.troopsInside -= attackingTroops;
@@ -62,76 +59,94 @@ function sendTroopsToLocation (req,res) {
     let startX = players.get(req.session.name).town.locationOnMap[0];
     let startY = players.get(req.session.name).town.locationOnMap[1];
 
-    let deltaX = Math.abs(destX-startX);
-    let deltaY = Math.abs(destY-startY);
+    let deltaX = Math.abs(destX - startX);
+    let deltaY = Math.abs(destY - startY);
     let dist;
     deltaX > deltaY ? dist = deltaX : dist = deltaY;
 
-    setTimeout(() => {return whenArrived(req,res,cell,attackingTroops)},timeFactor * dist);
+    setTimeout(() => {
+        whenArrived(req, res, cell, attackingTroops)
+    }, timeFactor * dist);
 }
 
 //could use some cleanup
-function whenArrived (req,res,cell,attackingTroops){
+function whenArrived(req, res, cell, attackingTroops) {
     //If the player already owns the tile, it just moves the troops
-    if (cell.owner==req.session.name){
+    if (cell.owner == req.session.name) {
         cell.type.troopsInside += attackingTroops;
-        return {
-            message: "You own this tile already, moving troops!",
-            victory: false
-        };
+
     } //If attacking another players city
-    else if (cell.type.type == "town"){
-        if (players.get(cell.type.owner).gold>attackingTroops){
-            players.get(cell.type.owner).gold -= attackingTroops;
-            players.get(req.session.name).gold += attackingTroops;
-            return {
-                message: "You stole "+ attackingTroops + " gold from " + cell.type.owner,
-                victory: false
-            };
+    else if (cell.type.type == "town") {
+        if (cell.type.troopsInside > attackingTroops) {
+            cell.type.troopsInside -= attackingTroops;
         } else {
-            let goldText = players.get(cell.type.owner).gold;
-            players.get(req.session.name).gold += players.get(cell.type.owner).gold;
-            players.get(cell.type.owner).gold = 0;
-            return {
-                message: "You stole "+ goldText + " gold from " + cell.type.owner,
-                victory: false
-            };
+            attackingTroops -= cell.type.troopsInside;
+            cell.type.troopsInside = 0;
+            if (players.get(cell.type.owner).gold >= attackingTroops) {
+                players.get(cell.type.owner).gold -= attackingTroops;
+                players.get(req.session.name).gold += attackingTroops;
+            } else {
+                players.get(req.session.name).gold += players.get(cell.type.owner).gold;
+                players.get(cell.type.owner).gold = 0;
+            }
         }
     }//If attacking an uncontrolled recourse tile
-    else if (cell.type.owner==""){
-        return takeControlOfCell(cell, attackingTroops, req, res);
+    else if (cell.type.owner == "") {
+        takeControlOfCell(cell, attackingTroops, req, res);
     }//If attacking a recourse tile controlled by another player
     else {
-        if (attackingTroops>cell.type.troopsInside){
+        if (attackingTroops > cell.type.troopsInside) {
             attackingTroops -= cell.type.troopsInside;
-            return takeControlOfCell(cell, attackingTroops, req, res);
+            takeControlOfCell(cell, attackingTroops, req, res);
         } else {
             cell.type.troopsInside = cell.type.troopsInside - attackingTroops;
-            return {
-                message: "You lost, " + cell.type.troopsInside + " troop remaining on " + cell.location,
-                victory: false
-            };
+
         }
 
     }
 }
 
-function takeControlOfCell(cell, attackingTroops, req, res){
+function takeControlOfCell(cell, attackingTroops, req, res) {
     console.log("Time to take control");
-    if (cell.owner!="") {
+    if (cell.owner != "") {
         players.get(cell.owner).removeField(cell.type);
     }
     cell.owner = req.session.name;
     players.get(req.session.name).addField(cell.type);
     cell.type.troopsInside = attackingTroops;
-    return {
+
+}
+
+//some responses
+/*
+{
+    message: "You can't do that",
+    victory: false
+}
+return {
+            message: "You own this tile already, moving troops!",
+            victory: false
+        };
+return {
+                message: "You stole "+ attackingTroops + " gold from " + cell.type.owner,
+                victory: false
+            };
+return {
+                message: "You stole "+ goldText + " gold from " + cell.type.owner,
+                victory: false
+            };
+return {
+                message: "You lost, " + cell.type.troopsInside + " troop remaining on " + cell.location,
+                victory: false
+            };
+            return {
         message: "You now control the " + cell.type.type + " at " + cell.location,
         victory: true
     };
-}
+ */
 
 // This function should return an object with visible values for start
-function getValues(req, res){
+function getValues(req, res) {
     //Values: All player town hall level, field ownership, (if map approach, then also:
     // field income value, troops on every plot.)
     let player = players.get(req.session.name);
@@ -147,7 +162,7 @@ function getValues(req, res){
             mapCreator[i][j].type = gameMap.cellArray[i][j].type.type;
         }
     }
-    if (player.town.townHall.lvl>=10){
+    if (player.town.townHall.lvl >= 10) {
         Players.winner = player.playerName;
     }
     let valueObject = {
@@ -158,7 +173,7 @@ function getValues(req, res){
             gold: player.gold,
             common: player.resources,
             troops: player.town.troopsInside,
-            playerLocation: player.mapCoordinates[0].toString()+player.mapCoordinates[1].toString(),
+            playerLocation: player.mapCoordinates[0].toString() + player.mapCoordinates[1].toString(),
             user1LVL: gameMap.cellArray[2][0].type.townHall.lvl,
             user2LVL: gameMap.cellArray[0][2].type.townHall.lvl,
             user3LVL: gameMap.cellArray[6][8].type.townHall.lvl,
@@ -172,6 +187,7 @@ function getValues(req, res){
     console.log("Im done! Here's start values ");
     return valueObject;
 }
+
 /*
 // This function should return an object with visible values for update
 function getUpdateValues(){
