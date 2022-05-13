@@ -1,3 +1,4 @@
+const { townHallCostArray } = require('./startValues.js');
 var startValues = require('./startValues.js');
 
 class Player {
@@ -244,18 +245,20 @@ class Building {
                 player.resources = player.resources - this.upgradeCost[0];
                 player.gold = player.gold - this.upgradeCost[1];
                 setTimeout(() => {
-                    this.upgradeCost[0] += startValues.upgradeTownHallCostIncreaseCommon;
-                    this.upgradeCost[1] += startValues.upgradeTownHallCostIncreaseGold;
+                    this.upgradeCost[0] = townHallCostArray[this.lvl][0]
+                    this.upgradeCost[1] = townHallCostArray[this.lvl][1]
                     this.lvl = this.lvl + 1;
                     this.busy = false;
-                }, this.upgradeTime * 1000)
-                return this.upgradeTime.toString();
+                }, (this.lvl + 1) * this.upgradeTime * 1000)
+                return ((this.lvl + 1) * this.upgradeTime).toString();
             } else {
                 return "Not enough resources!";
             }
         }
     }
 }
+
+
 
 class TownHall extends Building {
     constructor() {
