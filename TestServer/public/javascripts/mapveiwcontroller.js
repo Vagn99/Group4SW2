@@ -9,25 +9,33 @@ attackButton.addEventListener("click", sendTroopsToLocation);
 let x;
 let y;
 let array = [];
+let selected = '';
 
-getValues();
+var img = document.createElement("img");
+    img.src = "../images/assets/sword_3.png";
+    img.setAttribute("style", "width:50px; text-align:center; margin-top: 25%;");
+
+    getValues();
 
 setInterval(()=>{
     getValues();
 }, 5000);
 
 window.onload = function() {
-    document.addEventListener('click', function handleClick(event) {
-        console.log('Button id:',event.target.id);
-        currentTileSelected(event.target.id);
-        document.getElementById(event.target.id).style.filter = "brightness(50%)";
-
-        document.getElementById("troopsI").textContent = document.getElementById(event.target.id).getAttribute("troopsInside")+" troops here";
-        document.getElementById("Owned").textContent = "Owned by "+document.getElementById(event.target.id).getAttribute("owner")
-
-        array = event.target.id.split('i')
-        document.getElementsByClassName('i1')[0].textContent = array[1];
-
+        document.addEventListener('click', function handleClick(event) {
+            currentTileSelected(event.target.id)
+            if (event.target.id.charAt(0) === 'i') {
+                if (event.target.id != selected && selected !='') {
+                    document.getElementById(selected).style.filter = "brightness(100%)"
+                }
+                document.getElementById(event.target.id).appendChild(img);
+                document.getElementById(event.target.id).style.filter = "brightness(80%)"
+                selected = event.target.id;
+        }
+        else { 
+            document.getElementById(selected).removeChild(img);
+            document.getElementById(selected).style.filter = "brightness(100%)"
+        }
     });
 }
 
