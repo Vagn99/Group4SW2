@@ -7,7 +7,7 @@ module.exports = {
         startGoldTileRecoursesPerSec: 1,
         startTroopsNeutralTiles: 5,
 
-        startTroopsPlayers: 5,
+        startTroopsPlayers: 12,
         startTroopsCost: 1,
         startTroopTrainingTime: 3,
 

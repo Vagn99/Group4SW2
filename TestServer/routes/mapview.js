@@ -114,7 +114,6 @@ function takeControlOfCell(cell, attackingTroops, req, res) {
     cell.owner = req.session.name;
     players.get(req.session.name).addField(cell.type);
     cell.type.troopsInside = attackingTroops;
-
 }
 
 //some responses

@@ -74,6 +74,14 @@ function upgradeTimer(upgradeTime, upgradeText) {
     upgradeText.textContent = "Upgrade finished in " + upgradeTime + " seconds";
     if (upgradeTime == 0){
         upgradeText.textContent = "Done";
+        new Notify ({
+            title: 'Townhall',
+            text: 'Upgrade done!',
+            autoclose: true,
+            autotimeout: 3000,
+            position: 'left top',
+            status: 'success'
+        });
     } else {
         setTimeout(() => {
             upgradeTime--;
