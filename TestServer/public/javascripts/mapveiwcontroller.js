@@ -12,29 +12,31 @@ let array = [];
 let selected = '';
 
 var img = document.createElement("img");
-    img.src = "../images/assets/sword_3.png";
-    img.setAttribute("style", "width:50px; text-align:center; margin-top: 25%;");
+img.src = "../images/assets/sword_3.png";
+img.setAttribute("style", "width:50px; text-align:center; margin: 20% 500px 0 0; position: absolute;");
+img.setAttribute("id", "selectedTile");
 
-    getValues();
+getValues();
 
-setInterval(()=>{
+setInterval(() => {
     getValues();
 }, 5000);
 
-window.onload = function() {
-        document.addEventListener('click', function handleClick(event) {
-            currentTileSelected(event.target.id)
-            if (event.target.id.charAt(0) === 'i') {
-                if (event.target.id != selected && selected !='') {
-                    document.getElementById(selected).style.filter = "brightness(100%)"
-                }
-                document.getElementById(event.target.id).appendChild(img);
-                document.getElementById(event.target.id).style.filter = "brightness(80%)"
-                selected = event.target.id;
-        }
-        else { 
+window.onload = function () {
+    document.addEventListener('click', function handleClick(event) {
+        currentTileSelected(event.target.id)
+        if (event.target.id === "selectedTile") {
             document.getElementById(selected).removeChild(img);
             document.getElementById(selected).style.filter = "brightness(100%)"
+            console.log("Same id: "+ event.target.id);
+        } else if (event.target.id.charAt(0) === 'i') {
+            console.log("New id: "+ event.target.id);
+            if (selected != '') {
+                document.getElementById(selected).style.filter = "brightness(100%)"
+            }
+            document.getElementById(event.target.id).appendChild(img);
+            document.getElementById(event.target.id).style.filter = "brightness(80%)"
+            selected = event.target.id;
         }
     });
 }
@@ -46,44 +48,44 @@ function tile(id) {
 }
 */
 
-function currentTileSelected(id){
-    if (id!=""&&Number(id.charAt(1))<10) {
+function currentTileSelected(id) {
+    if (id != "" && Number(id.charAt(1)) < 10) {
         x = id.charAt(1);
         y = id.charAt(2);
     }
 }
 
 //Test function for sending troops
-function sendTroopsToLocation(){
-    if (Number(document.querySelector('input').value)>Number(troops.textContent))
+function sendTroopsToLocation() {
+    if (Number(document.querySelector('input').value) > Number(troops.textContent))
         document.querySelector('input').value = troops.textContent;
-    else if (Number(document.querySelector('input').value)<0)
+    else if (Number(document.querySelector('input').value) < 0)
         document.querySelector('input').value = 0;
-    if (x!=undefined&&y!=undefined) {
+    if (x != undefined && y != undefined) {
         fetch('/mapview/sendTroopsToLocation?x=' + x + "&y=" + y + "&troopsSend=" + document.querySelector('input').value)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Response error: " + response.status);
-            }
-            return response.text();
-        })
-        .then(handle => {
-            let battleOutcome = JSON.parse(handle);
-            console.log(document.querySelector('input').value);
-            console.log("Send nudes");
-            console.log(battleOutcome.message);
-            if (battleOutcome.victory){
-                document.getElementById("i" + x.toString() + y.toString()).setAttribute("owner", user);
-            }
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Response error: " + response.status);
+                }
+                return response.text();
+            })
+            .then(handle => {
+                let battleOutcome = JSON.parse(handle);
+                console.log(document.querySelector('input').value);
+                console.log("Send nudes");
+                console.log(battleOutcome.message);
+                if (battleOutcome.victory) {
+                    document.getElementById("i" + x.toString() + y.toString()).setAttribute("owner", user);
+                }
 
-        })
-        .catch(error => {
-            console.log(error);
-        });
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 }
 
-function getValues(){
+function getValues() {
     fetch('/mapview/getValues').then(response => {
         if (!response.ok) {
             throw new Error("Response error: " + response.status);
@@ -95,47 +97,47 @@ function getValues(){
         let endString = "";
         for (let i = 0; i < 9; i++) {
             for (let j = 0; j < 9; j++) {
-                if(i<5) {
+                if (i < 5) {
                     if (j < i + 5) {
                         document.getElementById("i" + i.toString() + j.toString()).setAttribute("owner", loadValues.mapObject[i][j].owner);
                         document.getElementById("i" + i.toString() + j.toString()).setAttribute("troopsInside", loadValues.mapObject[i][j].troopsInside);
                         document.getElementById("i" + i.toString() + j.toString()).setAttribute("type", loadValues.mapObject[i][j].type.type);
-                        someString += i.toString()+j.toString()+" ";
+                        someString += i.toString() + j.toString() + " ";
                     } else {
                         someString += "xx ";
                     }
                 } else {
-                    if (j<i-4){
+                    if (j < i - 4) {
                         someString += "xx ";
                     } else {
                         document.getElementById("i" + i.toString() + j.toString()).setAttribute("owner", loadValues.mapObject[i][j].owner);
                         document.getElementById("i" + i.toString() + j.toString()).setAttribute("troopsInside", loadValues.mapObject[i][j].troopsInside);
                         document.getElementById("i" + i.toString() + j.toString()).setAttribute("type", loadValues.mapObject[i][j].type.type);
-                        someString += i.toString()+j.toString()+" ";
+                        someString += i.toString() + j.toString() + " ";
                     }
                 }
             }
-            endString = someString+"\n"+endString;
+            endString = someString + "\n" + endString;
             someString = "";
         }
         console.log(endString);
 
-        common.textContent =  loadValues.playerObject.common.toString();
-        gold.textContent =  loadValues.playerObject.gold.toString();
-        troops.textContent =  loadValues.playerObject.troops.toString();
+        common.textContent = loadValues.playerObject.common.toString();
+        gold.textContent = loadValues.playerObject.gold.toString();
+        troops.textContent = loadValues.playerObject.troops.toString();
         numberOfTroops.setAttribute("max", troops.textContent);
 
-        document.getElementById("i20").textContent = loadValues.playerObject.user1LVL;
+        //document.getElementById("i20").textContent = loadValues.playerObject.user1LVL;
         document.getElementById("i02").textContent = loadValues.playerObject.user2LVL;
         document.getElementById("i68").textContent = loadValues.playerObject.user3LVL;
         document.getElementById("i62").textContent = loadValues.playerObject.user4LVL;
         document.getElementById("i86").textContent = loadValues.playerObject.user5LVL;
         document.getElementById("i26").textContent = loadValues.playerObject.user6LVL;
-        
+
         document.getElementById("level").textContent = 'Your level: ' + loadValues.playerObject.myLevel;
         document.getElementById("borderColor").style.borderColor = loadValues.playerObject.color;
 
-        if (loadValues.playerObject.winner!=""){
+        if (loadValues.playerObject.winner != "") {
             victoryChecker();
         }
         console.log("Update done");
