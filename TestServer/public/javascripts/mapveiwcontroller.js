@@ -28,9 +28,7 @@ window.onload = function () {
         if (event.target.id === "selectedTile") {
             document.getElementById(selected).removeChild(img);
             document.getElementById(selected).style.filter = "brightness(100%)"
-            console.log("Same id: "+ event.target.id);
         } else if (event.target.id.charAt(0) === 'i') {
-            console.log("New id: "+ event.target.id);
             if (selected != '') {
                 document.getElementById(selected).style.filter = "brightness(100%)"
             }
@@ -127,12 +125,12 @@ function getValues() {
         troops.textContent = loadValues.playerObject.troops.toString();
         numberOfTroops.setAttribute("max", troops.textContent);
 
-        document.getElementById("i20").textContent = loadValues.playerObject.user1LVL;
-        document.getElementById("i02").textContent = loadValues.playerObject.user2LVL;
-        document.getElementById("i68").textContent = loadValues.playerObject.user3LVL;
-        document.getElementById("i62").textContent = loadValues.playerObject.user4LVL;
-        document.getElementById("i86").textContent = loadValues.playerObject.user5LVL;
-        document.getElementById("i26").textContent = loadValues.playerObject.user6LVL;
+        document.getElementById("i20").childNodes[0].textContent = loadValues.playerObject.user1LVL;
+        document.getElementById("i02").childNodes[0].textContent = loadValues.playerObject.user2LVL;
+        document.getElementById("i68").childNodes[0].textContent = loadValues.playerObject.user3LVL;
+        document.getElementById("i62").childNodes[0].textContent = loadValues.playerObject.user4LVL;
+        document.getElementById("i86").childNodes[0].textContent = loadValues.playerObject.user5LVL;
+        document.getElementById("i26").childNodes[0].textContent = loadValues.playerObject.user6LVL;
 
         document.getElementById("level").textContent = 'Your level: ' + loadValues.playerObject.myLevel;
         document.getElementById("borderColor").style.borderColor = loadValues.playerObject.color;
