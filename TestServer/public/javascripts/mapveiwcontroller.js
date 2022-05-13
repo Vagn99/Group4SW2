@@ -59,12 +59,13 @@ function currentTileSelected(id) {
 
 //Test function for sending troops
 function sendTroopsToLocation() {
-    if (Number(document.querySelector('input').value) > Number(troops.textContent))
-        document.querySelector('input').value = troops.textContent;
+    let attackingTroopsAmount = document.querySelector('input');
+    if (Number(attackingTroopsAmount.value) > Number(troops.textContent))
+        attackingTroopsAmount.value = troops.textContent;
     else if (Number(document.querySelector('input').value) < 0)
-        document.querySelector('input').value = 0;
+        attackingTroopsAmount.value = 0;
     if (x != undefined && y != undefined && document.getElementById("i"+x+y).getAttribute("type")!="empty") {
-        fetch('/mapview/sendTroopsToLocation?x=' + x + "&y=" + y + "&troopsSend=" + document.querySelector('input').value)
+        fetch('/mapview/sendTroopsToLocation?x=' + x + "&y=" + y + "&troopsSend=" + attackingTroopsAmount.value)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Response error: " + response.status);
@@ -73,8 +74,8 @@ function sendTroopsToLocation() {
             })
             .then(handle => {
                 new Notify ({
-                    title: 'Test',
-                    text: 'Upgrade done!',
+                    title: 'Attacking ',
+                    text: 'At location '+x+","+y+" with "+attackingTroopsAmount.value+" troops!",
                     autoclose: true,
                     autotimeout: Number(handle),
                     position: 'left top',

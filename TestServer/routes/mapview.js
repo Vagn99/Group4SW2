@@ -66,7 +66,7 @@ function sendTroopsToLocation(req, res) {
     setTimeout(() => {
         whenArrived(req, res, cell, attackingTroops)
     }, timeFactor * dist);
-    return (timeFactor * dist).toString;
+    return (timeFactor * dist).toString();
 }
 
 //could use some cleanup
