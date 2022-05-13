@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var Players = require('../model/playerDB.js');
 var GameMap = require('./../model/mapDB');
-var startValues = require('./startValues.js');
 
 let players = Players.players;
 let gameMap = GameMap.gameMap;
@@ -40,8 +39,8 @@ router.get('/set', function(req, res) {
 function trainTrooper(req, res) {
     console.log("trainTroops have been called by: " + req.session.name);
     let activePlayer = players.get(req.session.name);
-    if (activePlayer.resources>=startValues.startTroopsCost){
-        activePlayer.resources -= startValues.startTroopsCost;
+    if (activePlayer.resources>=activePlayer.town.barracks.trainingCost){
+        activePlayer.resources -= activePlayer.town.barracks.trainingCost;
         console.log("Calling trainTroop function...");
         activePlayer.town.barracks.newTrainTroops(activePlayer.town);
     } else {
