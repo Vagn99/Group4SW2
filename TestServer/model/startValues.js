@@ -1,14 +1,14 @@
 
 module.exports = {
         startCommonIncome: 1,
-        startCommon: 100,
-        startGold: 100,
+        startCommon: 20,
+        startGold: 0,
         startCommonTileRecoursesPerSec: 1,
         startGoldTileRecoursesPerSec: 1,
         startTroopsNeutralTiles: 5,
 
         startTroopsPlayers: 5,
-        startTroopsCost: 1,
+        startTroopsCost: 20,
         startTroopTrainingTime: 3,
 
         startTownHallUpgradeCost: [1,1],
