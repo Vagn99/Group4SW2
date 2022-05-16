@@ -49,6 +49,7 @@ function tile(id) {
 }
 */
 
+
 function currentTileSelected(id) {
     if (id != "" && Number(id.charAt(1)) < 10) {
         x = id.charAt(1);
@@ -58,12 +59,13 @@ function currentTileSelected(id) {
 
 //Test function for sending troops
 function sendTroopsToLocation() {
-    if (Number(document.querySelector('input').value) > Number(troops.textContent))
-        document.querySelector('input').value = troops.textContent;
+    let attackingTroopsAmount = document.querySelector('input');
+    if (Number(attackingTroopsAmount.value) > Number(troops.textContent))
+        attackingTroopsAmount.value = troops.textContent;
     else if (Number(document.querySelector('input').value) < 0)
-        document.querySelector('input').value = 0;
+        attackingTroopsAmount.value = 0;
     if (x != undefined && y != undefined && document.getElementById("i"+x+y).getAttribute("type")!="empty") {
-        fetch('/mapview/sendTroopsToLocation?x=' + x + "&y=" + y + "&troopsSend=" + document.querySelector('input').value)
+        fetch('/mapview/sendTroopsToLocation?x=' + x + "&y=" + y + "&troopsSend=" + attackingTroopsAmount.value)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Response error: " + response.status);
@@ -71,14 +73,16 @@ function sendTroopsToLocation() {
                 return response.text();
             })
             .then(handle => {
-                let battleOutcome = JSON.parse(handle);
-                console.log(document.querySelector('input').value);
-                console.log("Send nudes");
-                console.log(battleOutcome.message);
-                if (battleOutcome.victory) {
-                    document.getElementById("i" + x.toString() + y.toString()).setAttribute("owner", user);
-                }
-
+                new Notify ({
+                    title: 'Attacking',
+                    text: 'At location '+x+","+y+" with "+attackingTroopsAmount.value+" troops!",
+                    autoclose: true,
+                    autotimeout: Number(handle),
+                    position: 'left top',
+                    status: 'warning',
+                    customIcon: '<img src="../images/assets/sword_1.png" height="32" width="32" viewBox="0 0 32 32" fill="none">',
+                    type: 2,
+                });
             })
             .catch(error => {
                 console.log(error);
