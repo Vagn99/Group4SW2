@@ -24,13 +24,14 @@ setInterval(() => {
 
 window.onload = function () {
     document.addEventListener('click', function handleClick(event) {
-        currentTileSelected(event.target.id)
+        currentTileSelected(event.target.id);
+        console.log(event.target.id);
         if (event.target.id === "selectedTile") {
             document.getElementById(selected).removeChild(img);
             document.getElementById(selected).style.filter = "brightness(100%)"
-            console.log("Same id: "+ event.target.id);
+            x = undefined;
+            y = undefined;
         } else if (event.target.id.charAt(0) === 'i') {
-            console.log("New id: "+ event.target.id);
             if (selected != '') {
                 document.getElementById(selected).style.filter = "brightness(100%)"
             }
@@ -61,7 +62,7 @@ function sendTroopsToLocation() {
         document.querySelector('input').value = troops.textContent;
     else if (Number(document.querySelector('input').value) < 0)
         document.querySelector('input').value = 0;
-    if (x != undefined && y != undefined) {
+    if (x != undefined && y != undefined && document.getElementById("i"+x+y).getAttribute("type")!="empty") {
         fetch('/mapview/sendTroopsToLocation?x=' + x + "&y=" + y + "&troopsSend=" + document.querySelector('input').value)
             .then(response => {
                 if (!response.ok) {
@@ -101,7 +102,7 @@ function getValues() {
                     if (j < i + 5) {
                         document.getElementById("i" + i.toString() + j.toString()).setAttribute("owner", loadValues.mapObject[i][j].owner);
                         document.getElementById("i" + i.toString() + j.toString()).setAttribute("troopsInside", loadValues.mapObject[i][j].troopsInside);
-                        document.getElementById("i" + i.toString() + j.toString()).setAttribute("type", loadValues.mapObject[i][j].type.type);
+                        document.getElementById("i" + i.toString() + j.toString()).setAttribute("type", loadValues.mapObject[i][j].type);
                         someString += i.toString() + j.toString() + " ";
                     } else {
                         someString += "xx ";
@@ -112,7 +113,7 @@ function getValues() {
                     } else {
                         document.getElementById("i" + i.toString() + j.toString()).setAttribute("owner", loadValues.mapObject[i][j].owner);
                         document.getElementById("i" + i.toString() + j.toString()).setAttribute("troopsInside", loadValues.mapObject[i][j].troopsInside);
-                        document.getElementById("i" + i.toString() + j.toString()).setAttribute("type", loadValues.mapObject[i][j].type.type);
+                        document.getElementById("i" + i.toString() + j.toString()).setAttribute("type", loadValues.mapObject[i][j].type);
                         someString += i.toString() + j.toString() + " ";
                     }
                 }
@@ -127,12 +128,12 @@ function getValues() {
         troops.textContent = loadValues.playerObject.troops.toString();
         numberOfTroops.setAttribute("max", troops.textContent);
 
-        document.getElementById("i20").textContent = loadValues.playerObject.user1LVL;
-        document.getElementById("i02").textContent = loadValues.playerObject.user2LVL;
-        document.getElementById("i68").textContent = loadValues.playerObject.user3LVL;
-        document.getElementById("i62").textContent = loadValues.playerObject.user4LVL;
-        document.getElementById("i86").textContent = loadValues.playerObject.user5LVL;
-        document.getElementById("i26").textContent = loadValues.playerObject.user6LVL;
+        document.getElementById("i20").childNodes[0].textContent = loadValues.playerObject.user1LVL;
+        document.getElementById("i02").childNodes[0].textContent = loadValues.playerObject.user2LVL;
+        document.getElementById("i68").childNodes[0].textContent = loadValues.playerObject.user3LVL;
+        document.getElementById("i62").childNodes[0].textContent = loadValues.playerObject.user4LVL;
+        document.getElementById("i86").childNodes[0].textContent = loadValues.playerObject.user5LVL;
+        document.getElementById("i26").childNodes[0].textContent = loadValues.playerObject.user6LVL;
 
         document.getElementById("level").textContent = 'Your level: ' + loadValues.playerObject.myLevel;
         document.getElementById("borderColor").style.borderColor = loadValues.playerObject.color;
