@@ -63,6 +63,16 @@ function upgradeTownHall() {
             upgradeText.textContent = upgradeResponse;
         } else {
             let upgradeTime = Number(upgradeResponse);
+            new Notify ({
+                title: 'Townhall',
+                text: 'Upgrading your townhall to lvl:' + loadValues.townHallLVL,
+                autoclose: true,
+                autotimeout: Number(upgradeTime)*1000,
+                position: 'left top',
+                status: 'success',
+                customIcon: '<img src="../images/assets/sword_1.png" height="32" width="32" viewBox="0 0 32 32" fill="none">',
+                type: 2,
+            });
             upgradeTimer(upgradeTime, upgradeText);
         }
     }).catch(error => {
@@ -74,16 +84,6 @@ function upgradeTimer(upgradeTime, upgradeText) {
     upgradeText.textContent = "Upgrade finished in " + upgradeTime + " seconds";
     if (upgradeTime == 0){
         upgradeText.textContent = "Done";
-        new Notify ({
-            title: 'Attacking',
-            text: 'At location '+x+","+y+" with "+attackingTroopsAmount.value+" troops!",
-            autoclose: true,
-            autotimeout: Number(handle),
-            position: 'left top',
-            status: 'warning',
-            customIcon: '<img src="../images/assets/sword_1.png" height="32" width="32" viewBox="0 0 32 32" fill="none">',
-            type: 2,
-        });
     } else {
         setTimeout(() => {
             upgradeTime--;
