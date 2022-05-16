@@ -76,6 +76,14 @@ function setCount() {
             displayWork(barrackTrainingTime/10);
         } else if (queue === 0){
             showQueue.textContent = "Not enough resources!"
+            new Notify ({
+                title: 'Barrack',
+                text: 'Not enough resources!',
+                autoclose: true,
+                autotimeout: 3000,
+                position: 'left top',
+                status: 'error'
+            });
         } else if (queue > 0){
             showQueue.textContent = queue.toString();
         } else {
@@ -102,7 +110,7 @@ function displayWork(workTime) {
                 showQueue.textContent = queue.toString();
                 displayWork(barrackTrainingTime/10);
             } else {
-                showQueue.textContent = "";
+                showQueue.textContent = "0";
                 working = false;
             }
         } else {
