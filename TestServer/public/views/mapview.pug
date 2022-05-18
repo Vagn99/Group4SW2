@@ -8,14 +8,22 @@ html(lang="en")
     link(rel="stylesheet", href="/stylesheets/menu.css")
     link(rel="stylesheet", href="/stylesheets/selector.css")
     link(rel="stylesheet", href="/stylesheets/simple-notify.min.css")
+    link(rel="stylesheet", href="/stylesheets/test.css")
 
     title Bravian
   body
-    .alert
-          span.closebtn &times;
-          div test 
-          h4 test
     .box
+      .notification#dropdown
+        img(src='https://s3.amazonaws.com/codecademy-content/projects/2/feedster/bell.svg')
+        .notification-menu
+          li
+            img.avatar(src='https://s3.amazonaws.com/codecademy-content/projects/2/feedster/wr2.svg')
+            h3 William Roberts II
+            p Clean as a whistle
+          li
+            img.avatar(src='https://s3.amazonaws.com/codecademy-content/projects/2/feedster/fn.svg')
+            h3 Faheem Najm
+            p All I do is win
       .main
         .container-v
           .resource1#i48
@@ -137,5 +145,6 @@ html(lang="en")
     script(src="./../javascripts/mapveiwcontroller.js")
     script(src="./../javascripts/simple-notify.min.js")
     script(src="./../javascripts/timer.js")
+    script(src="./../javascripts/dropdown.js")
 
 

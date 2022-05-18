@@ -8,9 +8,6 @@ let troopTrainingCost = document.getElementById('cost');
 let upgradeButton = document.getElementById("buttonUpgrade");
 upgradeButton.addEventListener("click", upgradeTownHall);
 
-var popup = document.getElementById("myPopup");
-
-
 //Runs at page load
 
 getValues();
@@ -65,7 +62,7 @@ function upgradeTownHall() {
             let upgradeTime = Number(upgradeResponse);
             new Notify ({
                 title: 'Townhall',
-                text: 'Upgrading your townhall to lvl:' + loadValues.townHallLVL,
+                text: 'Upgrading your townhall to lvl:',
                 autoclose: true,
                 autotimeout: Number(upgradeTime)*1000,
                 position: 'left top',
@@ -92,10 +89,9 @@ function upgradeTimer(upgradeTime, upgradeText) {
     }
 }
 
-
-
 window.onload = function() {
-
+    
+    var dropdown = document.getElementsByClassName("notification-menu")[0];
     var barrack = document.getElementsByClassName("selector1")[0];
     var townhall = document.getElementsByClassName("selector2")[0];
     var resource = document.getElementsByClassName("selector3")[0];
@@ -103,6 +99,7 @@ window.onload = function() {
     barrack.style.display = "none";
     townhall.style.display = "none";
     resource.style.display = "none";
+    dropdown.style.display = "none";
 
     //Im gonna switch it !
     document.addEventListener('click', function handleClick(event) {
@@ -127,9 +124,12 @@ window.onload = function() {
                 if (barrack.style.display === "grid" || townhall.style.display === "grid") {
                     barrack.style.display = "none";
                     townhall.style.display = "none";
-                    
             }
             resource.style.display = "grid";
+        }
+        if (event.target.id == 'dropdown') {
+            console.log('Fisse');
+            //dropdown.style.display = "block";
         }
     });
 }

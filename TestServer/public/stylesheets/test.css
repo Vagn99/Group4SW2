@@ -1,0 +1,41 @@
+.notification {
+    position: relative;
+    text-align: left;
+  }
+  
+  .notification img {
+    padding: 10px 0;
+  }
+  
+  .notification-menu {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    background-color: #e5e5e5;
+    border: #989898;
+    padding: 10px;
+    list-style: none;
+    width: 250px;
+    text-align: left;
+  }
+  
+  .notification-menu li {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .notification-menu .avatar {
+    padding: 2px 0;
+  }
+  
+  .notification-menu h3 {
+    font-size: 15px;
+    margin: 0 0 5px 0;
+    display: inline;
+  }
+  
+  .notification-menu p {
+    margin-bottom: 0;
+    font-size: 14px;
+  }

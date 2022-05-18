@@ -22,10 +22,18 @@ setInterval(() => {
     getValues();
 }, 5000);
 
+
+
 window.onload = function () {
+    
+    var dropdown = document.getElementsByClassName(".notification-menu")[0];
+
     document.addEventListener('click', function handleClick(event) {
         currentTileSelected(event.target.id);
         console.log(event.target.id);
+        if (event.target.id === 'dropdown') {
+            dropdown.style.display = "none";
+        }
         if (event.target.id === "selectedTile") {
             document.getElementById(selected).removeChild(img);
             document.getElementById(selected).style.filter = "brightness(100%)"
