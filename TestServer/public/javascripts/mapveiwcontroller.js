@@ -20,7 +20,7 @@ getValues();
 
 setInterval(() => {
     getValues();
-}, 5000);
+}, 500);
 
 window.onload = function () {
     document.addEventListener('click', function handleClick(event) {
